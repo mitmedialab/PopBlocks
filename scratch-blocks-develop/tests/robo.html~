@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Robot</title>
+
+    <script src="../blockly_uncompressed_horizontal.js"></script>
+    <script src="../msg/messages.js"></script>
+    <script src="../blocks_common/math.js"></script>
+    <script src="../blocks_common/text.js"></script>
+    <script src="../blocks_horizontal/control.js"></script>
+    <script src="../blocks_horizontal/event.js"></script>
+    <script src="../blocks_horizontal/wedo.js"></script>
+    <script src="../blocks_horizontal/default_toolbox.js"></script>
+    <script>
+      'use strict';
+
+     var workspace = null;
+
+      function start() {
+
+        // Setup blocks
+        // Parse the URL arguments.
+        var match = location.search.match(/dir=([^&]+)/);
+
+        match = location.search.match(/side=([^&]+)/);
+
+        var side = match ? match[1] : 'start';
+
+        workspace = Blockly.inject('blocklyDiv', {
+          comments: false,
+          disable: false,
+          collapse: false,
+          media: '../media/',
+          readOnly: false,
+          rtl: 0,
+          scrollbars: false,
+          toolbox: 0,
+          trashcan: true,
+          horizontalLayout: 'top',
+          toolboxPosition: 'top', /* side */
+          sounds: true,
+          grid: {spacing: 16,
+            length: 1,
+            colour: '#2C344A',
+            snap: false
+          },
+          zoom: {
+            controls: false,
+            wheel: true,
+            startScale: 1.0,
+            maxScale: 4,
+            minScale: 0.25,
+            scaleSpeed: 1.1
+          },
+          colours: {
+            workspace: '#334771',
+            flyout: '#283856',
+            scrollbar: '#24324D',
+            scrollbarHover: '#0C111A',
+            insertionMarker: '#FFFFFF',
+            insertionMarkerOpacity: 0.3,
+            fieldShadow: 'rgba(255, 255, 255, 0.3)',
+            dragShadowOpacity: 0.6
+          }
+        });
+      }
+
+      function getToolboxElement() {
+        var match = location.search.match(/toolbox=([^&]+)/);
+        return document.getElementById('toolbox-' + (match ? match[1] : 'categories'));
+      }
+    
+    </script>
+
+    <style>
+      html, body {
+        height: 100%;
+      }
+
+      body {
+        background-color: #fff;
+        font-family: sans-serif;
+        overflow: hidden;
+      }
+
+      h1 {
+        font-weight: normal;
+        font-size: 140%;
+      }
+
+      #blocklyDiv {
+        height: 95%;
+        width: 100%;
+      }
+
+      #collaborators {
+        float: right;
+        width: 30px;
+        margin-left: 10px;
+      }
+
+      #collaborators > img {
+        margin-right: 5px;
+        height: 30px;
+        padding-bottom: 5px;
+        width: 30px;
+        border-radius: 3px;
+      }
+
+      #importExport {
+        font-family: monospace;
+      }
+    </style>
+  </head>
+
+  <body onload="start()">
+    <div id="collaborators"></div>
+    <div id="blocklyDiv"></div>
+
+  </body>
+</html>
