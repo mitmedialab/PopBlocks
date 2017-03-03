@@ -11,3 +11,9 @@ First, download the source code from GitHub. As this project is quickly being up
 Before running the program, you'll need to ensure that you have Google's <a href="https://developers.google.com/closure/compiler/">Closure Library<a/> installed. If you run into any trouble with this step, or see the following dialog please refer to Google's Blockly documentation.
 
 Once you have the code, point your browser at <code>popr/index.html</code> and verify that blocks can be dragged around.
+
+
+<h1>Extensions to Scratch Blocks</h1>
+<ol>
+<li></li>
+</ol>
