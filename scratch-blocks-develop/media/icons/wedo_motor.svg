@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="Icon"
+   viewBox="0 0 40 40"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   width="100%"
+   height="100%"
+   sodipodi:docname="wedo_motor.svg">
+  <metadata
+     id="metadata59">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>set-motor-speed_slow</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs57" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="640"
+     inkscape:window-height="480"
+     id="namedview55"
+     showgrid="false"
+     inkscape:zoom="5.9"
+     inkscape:cx="20"
+     inkscape:cy="20"
+     inkscape:window-x="138"
+     inkscape:window-y="148"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="Icon" />
+  <title
+     id="title3">set-motor-speed_slow</title>
+  <path
+     d="M11.51,0.76h5.87a1,1,0,0,1,1,1v3a0,0,0,0,1,0,0H10.51a0,0,0,0,1,0,0v-3a1,1,0,0,1,1-1Z"
+     fill="#e6e7e8"
+     id="path5" />
+  <path
+     d="M15.68,0.76v4h2.71V1.52a0.88,0.88,0,0,0-1-.76H15.68Z"
+     fill="#231f20"
+     stroke="#231f20"
+     stroke-linecap="round"
+     stroke-linejoin="round"
+     opacity="0.1"
+     id="path7" />
+  <path
+     d="M11.51,0.76h5.87a1,1,0,0,1,1,1v3a0,0,0,0,1,0,0H10.51a0,0,0,0,1,0,0v-3a1,1,0,0,1,1-1Z"
+     fill="none"
+     stroke="#3d79cc"
+     stroke-linecap="round"
+     stroke-linejoin="round"
+     id="path9" />
+  <path
+     d="M29.65,3.8H21.76v-2a1,1,0,0,1,1-1h5.87a1,1,0,0,1,1,1v2Z"
+     fill="#e6e7e8"
+     id="path11" />
+  <path
+     d="M26.94,0.76v4h2.71V1.52a0.88,0.88,0,0,0-1-.76H26.94Z"
+     fill="#231f20"
+     stroke="#231f20"
+     stroke-linecap="round"
+     stroke-linejoin="round"
+     opacity="0.1"
+     id="path13" />
+  <path
+     d="M7.17,37.33a1.59,1.59,0,0,1-1.59-1.59V29.62a17.46,17.46,0,0,1,0-19.51v-4A1.84,1.84,0,0,1,7.42,4.3h25.3a1.84,1.84,0,0,1,1.84,1.84v3.94a17.46,17.46,0,0,1,0,19.55v6.1A1.6,1.6,0,0,1,33,37.33H7.17Z"
+     fill="#e6e7e8"
+     id="path15" />
+  <path
+     d="M32.73,4.8a1.34,1.34,0,0,1,1.34,1.34v4.1a17,17,0,0,1,0,19.24v6.26A1.1,1.1,0,0,1,33,36.83H7.17a1.1,1.1,0,0,1-1.09-1.09V29.47a17,17,0,0,1-3-9.61,16.78,16.78,0,0,1,3-9.59V6.14A1.35,1.35,0,0,1,7.42,4.8h25.3m0-1H7.42A2.34,2.34,0,0,0,5.08,6.14V10a18,18,0,0,0,0,19.81v6a2.1,2.1,0,0,0,2.09,2.09H33a2.1,2.1,0,0,0,2.09-2.09v-6a18,18,0,0,0,0-19.86V6.14A2.34,2.34,0,0,0,32.73,3.8h0Z"
+     id="path17"
+     fill="#3d79cc" />
+  <g
+     opacity="0.1"
+     id="g19">
+    <path
+       d="M37.06,19.86a16.88,16.88,0,0,1-3,9.62v6.26a1.11,1.11,0,0,1-1.1,1.1H7.17a1.1,1.1,0,0,1-1.09-1.1V33.94h24a1.11,1.11,0,0,0,1.1-1.1V26.59a17,17,0,0,0,0-19.24V4.8h1.55a1.34,1.34,0,0,1,1.34,1.35v4.09A16.88,16.88,0,0,1,37.06,19.86Z"
+       fill="#231f20"
+       id="path21" />
+  </g>
+  <path
+     d="M22.68,0.76h6.06a0.91,0.91,0,0,1,.91.91V4.21a0,0,0,0,1,0,0H21.76a0,0,0,0,1,0,0V1.67A0.91,0.91,0,0,1,22.68.76Z"
+     id="path23"
+     stroke-linejoin="round"
+     stroke-linecap="round"
+     stroke="#3d79cc"
+     fill="none" />
+  <path
+     d="M20.09,32.53A11.93,11.93,0,1,1,32,20.6,11.94,11.94,0,0,1,20.09,32.53Z"
+     fill="#e6e7e8"
+     id="path25" />
+  <path
+     d="M20.09,9.05A11.55,11.55,0,1,1,8.54,20.6,11.55,11.55,0,0,1,20.09,9.05m0-.75a12.3,12.3,0,1,0,12.3,12.3A12.31,12.31,0,0,0,20.09,8.3h0Z"
+     fill="#8e9bba"
+     id="path27" />
+  <path
+     d="M35.67,19.81A5.15,5.15,0,0,1,30.49,25H25.23v6a5.17,5.17,0,0,1-10.34,0V25H9.63a5.16,5.16,0,1,1,0-10.33h7.14a5.17,5.17,0,0,1,6.58,0h7.13A5.17,5.17,0,0,1,35.67,19.81Z"
+     fill="#e6e7e8"
+     stroke="#8e9bba"
+     stroke-linecap="round"
+     stroke-linejoin="round"
+     stroke-width="0.75"
+     id="path29" />
+  <circle
+     cx="9.7"
+     cy="19.89"
+     r="2.64"
+     fill="#231f20"
+     opacity="0.15"
+     id="circle31" />
+  <circle
+     cx="30.46"
+     cy="19.89"
+     r="2.64"
+     fill="#231f20"
+     opacity="0.15"
+     id="circle33" />
+  <circle
+     cx="20.08"
+     cy="30.99"
+     r="2.64"
+     fill="#231f20"
+     opacity="0.15"
+     id="circle35" />
+  <circle
+     cx="20.08"
+     cy="20.61"
+     r="4.45"
+     transform="translate(-8.69 20.24) rotate(-45)"
+     fill="#e57055"
+     stroke="#d65b56"
+     stroke-linecap="round"
+     stroke-linejoin="round"
+     id="circle37" />
+  <line
+     x1="18.62"
+     y1="22.08"
+     x2="21.55"
+     y2="19.15"
+     fill="#e57055"
+     stroke="#58595b"
+     stroke-linecap="round"
+     stroke-linejoin="round"
+     id="line39" />
+  <line
+     x1="18.62"
+     y1="19.15"
+     x2="21.55"
+     y2="22.08"
+     fill="#e57055"
+     stroke="#58595b"
+     stroke-linecap="round"
+     stroke-linejoin="round"
+     id="line41" />
+</svg>

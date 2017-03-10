@@ -279,6 +279,9 @@ Blockly.Events.fromJson = function(json, workspace) {
     case Blockly.Events.UI:
       event = new Blockly.Events.Ui(null);
       break;
+    case Blockly.Events.TOOLBOX:
+      event = new Blockly.Events.Toolbox(null);
+      break;
     default:
       throw 'Unknown event type.';
   }

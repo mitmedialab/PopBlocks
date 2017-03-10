@@ -13,8 +13,8 @@
    version="1.1"
    inkscape:version="0.48.4 r9939"
    width="124.01154"
-   height="54.467278"
-   sodipodi:docname="set_eyes_yellow.png">
+   height="124.01"
+   sodipodi:docname="set-eyes-yellow.svg">
   <metadata
      id="metadata4170">
     <rdf:RDF>
@@ -23,7 +23,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -49,13 +49,13 @@
      inkscape:zoom="2.3174603"
      inkscape:cx="58.876794"
      inkscape:cy="50.073706"
-     inkscape:window-x="817"
-     inkscape:window-y="860"
+     inkscape:window-x="726"
+     inkscape:window-y="260"
      inkscape:window-maximized="0"
      inkscape:current-layer="svg4164" />
   <g
      id="g4186"
-     transform="translate(-1.5341648,-2.5310877)">
+     transform="translate(-1.5341648,30.011638)">
     <path
        style="fill:#f4d403"
        d="M 14.338791,54.692997 C 2.5037246,48.497906 -2.0373356,29.322506 4.8719222,14.717535 13.293462,-3.084139 32.008407,-1.0172192 39.371348,18.527727 c 1.886847,5.008639 2.187501,7.44796 1.863351,15.118078 -0.338485,8.009331 -0.755567,9.748995 -3.35648,14 -5.332922,8.716272 -14.88672,11.576472 -23.539428,7.047192 z m 84.474414,0.7763 C 94.942022,53.771559 90.7267,48.876328 88.158391,43.095917 85.244287,36.537236 86.018368,23.40864 89.771481,15.737554 95.317517,4.4018648 104.03819,0.47579644 113.21392,5.1837049 c 3.97883,2.0414669 5.26361,3.4886828 8.20438,9.2416331 6.09578,11.925019 5.37252,26.769084 -1.7264,35.43238 -5.58029,6.810012 -13.3713,8.904005 -20.878695,5.611579 z"

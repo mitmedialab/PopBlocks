@@ -13,8 +13,8 @@
    version="1.1"
    inkscape:version="0.48.4 r9939"
    width="123.83906"
-   height="54.503349"
-   sodipodi:docname="set_eyes_pink.png">
+   height="123.84"
+   sodipodi:docname="set-eyes-pink.svg">
   <metadata
      id="metadata3583">
     <rdf:RDF>
@@ -23,7 +23,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -49,13 +49,13 @@
      inkscape:zoom="2.3174603"
      inkscape:cx="65.337837"
      inkscape:cy="29.827249"
-     inkscape:window-x="65"
-     inkscape:window-y="24"
+     inkscape:window-x="75"
+     inkscape:window-y="34"
      inkscape:window-maximized="0"
      inkscape:current-layer="svg3577" />
   <g
      id="g3587"
-     transform="translate(-18.374492,-60.351297)">
+     transform="translate(-18.374492,-26.829715)">
     <path
        style="fill:#ee1083"
        d="m 31.463992,112.69373 c -8.41311,-4.1644 -12.710677,-12.925805 -12.690411,-25.871812 0.01135,-7.253355 0.422129,-9.336548 2.800783,-14.203837 8.731056,-17.865809 27.241102,-15.87101 34.625752,3.731564 1.886847,5.008639 2.187501,7.44796 1.863351,15.118078 -0.338485,8.009331 -0.755567,9.748997 -3.35648,13.999997 -5.257807,8.59351 -14.607817,11.50033 -23.242995,7.22601 z m 84.177978,0.59748 c -3.87118,-1.69773 -8.0865,-6.59296 -10.65481,-12.37338 -2.9141,-6.558676 -2.14002,-19.687272 1.61309,-27.358358 5.56814,-11.380865 14.76024,-15.478577 23.66002,-10.547316 6.51753,3.611282 11.32605,13.134467 11.84766,23.464136 0.48517,9.607723 -1.14034,15.776458 -5.58727,21.203348 -5.58029,6.81001 -13.3713,8.904 -20.87869,5.61157 z"

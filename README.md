@@ -15,5 +15,7 @@ Once you have the code, point your browser at <code>popr/index.html</code> and v
 
 <h1>Extensions to Scratch Blocks</h1>
 <ol>
-<li></li>
+<li>Added toolbox click event</li>
+<li>Added play and stop controls to workspace</li>
+<li>Added sounds and looks categories</li>
 </ol>

@@ -55,7 +55,7 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
         '</block>' +
     '</category>' + 
     // Motion category
-    '<category name="Motion" colour="#4C97FF" secondaryColour="#4280D7" icon="../media/icons/motion.svg">' + 
+    '<category name="Motion" colour="#4C97FF" secondaryColour="#4280D7" icon="../media/icons/wedo_motor.svg">' + 
     	'<block type="wedo_motorclockwise">' +
         '<value name="MOTOR">' +
         '<shadow type="dropdown_wedo_number">' +

@@ -17,6 +17,23 @@
     <script src="../popr_blocks/malle.js"></script>
     <script src="../popr_blocks/default_toolbox.js"></script>
     <script>
+	  function toggleSidenav() {
+        var nav = document.getElementById("sidenav");
+        if (nav.style.display == "block") {
+          nav.className = "sidenav-up";
+          setTimeout(function(){
+      	    nav.style.display = "none";
+		  }, 400);
+        } else {
+	      nav.className = "sidenav-down";
+	      setTimeout(function(){
+	        nav.style.display = "block";
+		  }, 400);
+        }
+	  }
+	  
+    </script>
+    <script>
       'use strict';
 
      var workspace = null;
@@ -99,9 +116,28 @@
         Android.deleteAllRules();
       }
       
-      function toXML() {
-      	var code = Blockly.Popr.workspaceToCode(workspace);
-      	Android.saveRule(code);
+      function saveWorkspace() {
+      	var xml = Blockly.Xml.workspaceToDom(workspace);
+      	var xml_text = Blockly.Xml.domToText(xml);
+      	/*var FileSaver = require('file-saver');
+		var blob = new Blob([xml_text], {type: "text/plain;charset=utf-8"});
+		FileSaver.saveAs(blob, "blocks.txt");*/
+		
+		var file = new File([xml_text], "blocks.txt", {type: "text/plain;charset=utf-8"});
+		saveAs(file);
+      	//Android.saveWorkspace(code);
+      }
+      
+      function addWedo() {
+      	//Android.addWedo();
+      }
+      
+      function loadWorkspace() {
+      	var xml = Blockly.Xml.textToDom(xml_text);
+      	Blockly.Xml.domToWorkspace(xml, workspace);
+      	
+	    var code = Blockly.Popr.workspaceToCode(workspace); 
+	    //Android.saveRule(code);
       }
       
       function updateFunction(event) {
@@ -110,7 +146,6 @@
   	      console.log(code);
 	      //Android.saveRule(code);
 	    }
-	    //console.log(code);
         if (event.type == Blockly.Events.UI) {
           if (event.element == 'click') {
             var block = workspace.getBlockById(event.blockId);
@@ -133,10 +168,14 @@
         	//Android.deleteAllRules();
           }
         }
+        
+        if (event.type == Blockly.Events.TOOLBOX) {
+        	console.log(event.type);
+        }
 	  }
       
     </script>
-
+	<!---<link rel="stylesheet" href="https://www.w3schools.com//lib/w3.css">-->
     <style>
       html, body {
         height: 100%;
@@ -158,21 +197,113 @@
       #blocklyDiv {
         height: 100%;
         width: 100%;
+        position:fixed;
+        top:40px;
       }
 
       #importExport {
         font-family: monospace;
       }
+      
+      #sidenav {
+      	background-color:#283856;
+      	position:relative;
+      	z-index:5000;
+      }
+      
+      #sidenav a:hover {
+      	background-color:#334771;
+      }
+      
+      .sidenav-down {
+        -webkit-animation:animatedown 0.4s;
+        animation:animatedown 0.4s
+      }      
+      @-webkit-keyframes animatedown {
+        from { 
+          top:-300px;
+          opacity:0;
+        }
+        to { 
+          top:0;
+          opacity:1;
+          visibility:visible;
+        }
+      }	  
+	  @keyframes animatedown { 
+	    from { 
+	      top:-300px;
+	      opacity:0;
+	    }
+	    to { 
+	      top:0;
+	      opacity:1;
+	    }
+	  }
+	  
+	  .sidenav-up {
+        -webkit-animation:animateup 0.4s;
+        animation:animateup 0.4s;
+        display:none;
+      }
+      @-webkit-keyframes animateup {
+        from {
+	      top:0px;
+	      opacity:1;
+	    }
+	    to {
+	      top:-300px;
+	      opacity:0;
+	    }
+      } 
+	  @keyframes animateup { 
+	    from {
+	      top:0px;
+	      opacity:1;
+	    }
+	    to {
+	      top:-300px;
+	      opacity:0;
+	    }
+	  }
+      
+      .navLink {
+      	width:100%;
+      	height:100px;
+      	display:block;
+      	text-align:center;
+      	border:1px solid #334771;
+      	transition: background-color .25s,color .15s,box-shadow .15s,opacity .25s,filter .25s,border .15s;
+      }
+      
+      .navLink img {
+      	height:75px;
+        margin-top:12px;
+      }
+      
+      .menuButton {
+      	position:absolute;
+        width:100%;+
+        font-size:40px;
+      	line-height:50px;
+      	color:#fff;
+      	text-align:center;
+      	background-color: #283856;
+      }
+  );
     </style>
   </head>
 
   <body onload="start()">
-    <!--<input type="button" value="Say hello" onClick="showAndroidToast('Hello Android!')" />-->
-    <input type="text" id="command">
-    <input type="submit" value="Save" onClick="saveTextRule()">
-    <input type="submit" value="Delete" onClick="deleteTextRule()">
-    <input type="submit" value="Delete All" onClick="deleteAllRules()">
-    <input type="submit" value="Convert" onClick="toXML()"><br/>
+   <nav class="sidenav-up" id="sidenav">
+      <div style="width:150px">
+	    <a href="#" onclick="saveWorkspace()" class="navLink"><img src="../media/save.svg" alt="Save"></a>
+	    <a href="#" onclick="addWedo()" class="navLink"><img src="../media/icons/wedo.svg" alt="Wedo"></a>
+	    <div class="menuButton" onclick="toggleSidenav()">&#9776;</div>
+	    <!---<a href="#" onclick="addRobot()" class="navLink"><img src="../media/icons/malle/idlestill.svg alt="Robot"></a>-->
+	  </div>
+	</nav>
+	<div class="menuButton" onclick="toggleSidenav()">&#9776;</div>
     <div id="blocklyDiv"></div>
   </body>
 </html>

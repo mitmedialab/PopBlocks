@@ -13,8 +13,8 @@
    version="1.1"
    inkscape:version="0.48.4 r9939"
    width="124.03974"
-   height="54.794498"
-   sodipodi:docname="set_eyes_orange.png">
+   height="124.04"
+   sodipodi:docname="set-eyes-orange.svg">
   <metadata
      id="metadata3463">
     <rdf:RDF>
@@ -38,7 +38,7 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="640"
+     inkscape:window-width="751"
      inkscape:window-height="480"
      id="namedview3459"
      showgrid="false"
@@ -47,15 +47,15 @@
      fit-margin-right="0"
      fit-margin-bottom="0"
      inkscape:zoom="2.3174603"
-     inkscape:cx="52.882136"
+     inkscape:cx="128.39584"
      inkscape:cy="62.577136"
-     inkscape:window-x="65"
-     inkscape:window-y="24"
+     inkscape:window-x="75"
+     inkscape:window-y="34"
      inkscape:window-maximized="0"
      inkscape:current-layer="svg3457" />
   <g
      id="g3467"
-     transform="translate(-1.0562206,-2.1935972)">
+     transform="translate(-0.1932069,32.099849)">
     <path
        style="fill:#c18c61"
        d="M 14.5,55.104137 C 5.8937751,51.119585 1.992087,44.012653 1.2668873,31 0.87446313,23.958519 1.1577373,21.556252 2.9177607,17 7.5369763,5.0420271 15.673826,0.11479673 26.044357,2.9958002 33.768731,5.1416833 41.114663,17.312581 41.817666,29.129359 43.006773,49.117056 29.437015,62.019749 14.5,55.104137 z m 83.30256,0.119639 C 89.54093,51.372139 84.343009,40.37658 85.313205,28.804093 86.396292,15.885034 92.701119,6.0148804 101.50535,3.4554197 c 4.84343,-1.408021 5.68219,-1.4038998 9.1498,0.044957 8.80576,3.6792854 13.37757,11.6695813 14.1192,24.6766033 0.62237,10.915491 -0.82473,16.893304 -5.38041,22.225829 -5.50824,6.447529 -14.02399,8.348944 -21.59138,4.820967 z"
