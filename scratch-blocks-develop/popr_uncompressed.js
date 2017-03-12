@@ -83,32 +83,23 @@ Blockly.Popr.malle_setcolor = function(block) {
   return block.type + "_" + value + " ";
 }
 /* Motion blocks */
-Blockly.Popr.wedo_motorclockwise = function(block) {
-  var value;
-  for (var i = 0, child; child = block.getChildren()[i]; i++) {
-    if (child.getField("NUM") != null) {
-	  value = child.getField("NUM").getValue();
-	}
-  }
-  return block.type + "_" + value + " ";
+Blockly.Popr.wedo_motor1clockwise = function(block) {
+  return block.type + " ";
 }
-Blockly.Popr.wedo_motorcounterclockwise = function(block) {
-  var value;
-  for (var i = 0, child; child = block.getChildren()[i]; i++) {
-    if (child.getField("NUM") != null) {
-	  value = child.getField("NUM").getValue();
-	}
-  }
-  return block.type + "_" + value + " ";
+Blockly.Popr.wedo_motor1counterclockwise = function(block) {
+  return block.type + " ";
 }
-Blockly.Popr.wedo_motorstop = function(block) {
-  var value;
-  for (var i = 0, child; child = block.getChildren()[i]; i++) {
-    if (child.getField("NUM") != null) {
-	  value = child.getField("NUM").getValue();
-	}
-  }
-  return block.type + "_" + value + " ";
+Blockly.Popr.wedo_motor1stop = function(block) {
+  return block.type + " ";
+}
+Blockly.Popr.wedo_motor2clockwise = function(block) {
+  return block.type + " ";
+}
+Blockly.Popr.wedo_motor2counterclockwise = function(block) {
+  return block.type + " ";
+}
+Blockly.Popr.wedo_motor2stop = function(block) {
+  return block.type + " ";
 }
 /* Sound blocks */
 Blockly.Popr.malle_fart = function(block) {

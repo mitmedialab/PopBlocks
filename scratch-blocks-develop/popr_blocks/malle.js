@@ -178,9 +178,9 @@ Blockly.Blocks['malle_fart'] = {
       "previousStatement": null,
       "nextStatement": null,
       "category": Blockly.Categories.sounds,
-      "colour": Blockly.Colours.sounds.primary,
-      "colourSecondary": Blockly.Colours.sounds.secondary,
-      "colourTertiary": Blockly.Colours.sounds.tertiary
+      "colour": Blockly.Colours.more.primary,
+      "colourSecondary": Blockly.Colours.more.secondary,
+      "colourTertiary": Blockly.Colours.more.tertiary
     });
   }
 };
@@ -235,9 +235,9 @@ Blockly.Blocks['malle_hi'] = {
       "previousStatement": null,
       "nextStatement": null,
       "category": Blockly.Categories.sounds,
-      "colour": Blockly.Colours.sounds.primary,
-      "colourSecondary": Blockly.Colours.sounds.secondary,
-      "colourTertiary": Blockly.Colours.sounds.tertiary
+      "colour": Blockly.Colours.more.primary,
+      "colourSecondary": Blockly.Colours.more.secondary,
+      "colourTertiary": Blockly.Colours.more.tertiary
     });
   }
 };
@@ -264,9 +264,9 @@ Blockly.Blocks['malle_bye'] = {
       "previousStatement": null,
       "nextStatement": null,
       "category": Blockly.Categories.sounds,
-      "colour": Blockly.Colours.sounds.primary,
-      "colourSecondary": Blockly.Colours.sounds.secondary,
-      "colourTertiary": Blockly.Colours.sounds.tertiary
+      "colour": Blockly.Colours.more.primary,
+      "colourSecondary": Blockly.Colours.more.secondary,
+      "colourTertiary": Blockly.Colours.more.tertiary
     });
   }
 };
@@ -351,9 +351,9 @@ Blockly.Blocks['malle_happywiggle'] = {
       "previousStatement": null,
       "nextStatement": null,
       "category": Blockly.Categories.sounds,
-      "colour": Blockly.Colours.sounds.primary,
-      "colourSecondary": Blockly.Colours.sounds.secondary,
-      "colourTertiary": Blockly.Colours.sounds.tertiary
+      "colour": Blockly.Colours.more.primary,
+      "colourSecondary": Blockly.Colours.more.secondary,
+      "colourTertiary": Blockly.Colours.more.tertiary
     });
   }
 };
@@ -471,9 +471,9 @@ Blockly.Blocks['malle_yawn'] = {
       "previousStatement": null,
       "nextStatement": null,
       "category": Blockly.Categories.sounds,
-      "colour": Blockly.Colours.sounds.primary,
-      "colourSecondary": Blockly.Colours.sounds.secondary,
-      "colourTertiary": Blockly.Colours.sounds.tertiary
+      "colour": Blockly.Colours.more.primary,
+      "colourSecondary": Blockly.Colours.more.secondary,
+      "colourTertiary": Blockly.Colours.more.tertiary
     });
   }
 };
@@ -531,9 +531,9 @@ Blockly.Blocks['malle_excited'] = {
       "previousStatement": null,
       "nextStatement": null,
       "category": Blockly.Categories.sounds,
-      "colour": Blockly.Colours.sounds.primary,
-      "colourSecondary": Blockly.Colours.sounds.secondary,
-      "colourTertiary": Blockly.Colours.sounds.tertiary
+      "colour": Blockly.Colours.more.primary,
+      "colourSecondary": Blockly.Colours.more.secondary,
+      "colourTertiary": Blockly.Colours.more.tertiary
     });
   }
 };
@@ -561,9 +561,9 @@ Blockly.Blocks['malle_dancebingo'] = {
       "previousStatement": null,
       "nextStatement": null,
       "category": Blockly.Categories.sounds,
-      "colour": Blockly.Colours.sounds.primary,
-      "colourSecondary": Blockly.Colours.sounds.secondary,
-      "colourTertiary": Blockly.Colours.sounds.tertiary
+      "colour": Blockly.Colours.more.primary,
+      "colourSecondary": Blockly.Colours.more.secondary,
+      "colourTertiary": Blockly.Colours.more.tertiary
     });
   }
 };

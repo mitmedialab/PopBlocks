@@ -46,58 +46,41 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
         '</shadow>' +
         '</value>' +
         '</block>' +
-        '<block type="malle_setcolor">' +
+        '<!--<block type="malle_setcolor">' +
         '<value name="CHOICE">' +
         '<shadow type="dropdown_malle_setcolor">' +
         '<field name="CHOICE">mystery</field>' +
         '</shadow>' +
         '</value>' +
-        '</block>' +
+        '</block>-->' +
     '</category>' + 
     // Motion category
     '<category name="Motion" colour="#4C97FF" secondaryColour="#4280D7" icon="../media/icons/wedo_motor.svg">' + 
-    	'<block type="wedo_motorclockwise">' +
-        '<value name="MOTOR">' +
-        '<shadow type="dropdown_wedo_number">' +
-        '<field name="NUM">1</field>' +
-        '</shadow>' +
-        '</value>' +
-        '</block>' +
-        '<block type="wedo_motorcounterclockwise">' +
-        '<value name="MOTOR">' +
-        '<shadow type="dropdown_wedo_number">' +
-        '<field name="NUM">1</field>' +
-        '</shadow>' +
-        '</value>' +
-        '</block>' +
-        '<block type="wedo_motorstop">' +
-        '<value name="MOTOR">' +
-        '<shadow type="dropdown_wedo_number">' +
-        '<field name="NUM">1</field>' +
-        '</shadow>' +
-        '</value>' +
-        '</block>' +
+    	'<block type="wedo_motor1clockwise"></block>' +
+        '<block type="wedo_motor1counterclockwise"></block>' +
+        '<block type="wedo_motor1stop"></block>' +
+        '<block type="wedo_motor2clockwise"></block>' +
+        '<block type="wedo_motor2counterclockwise"></block>' +
+        '<block type="wedo_motor2stop"></block>' +
     '</category>' +
     // Sounds category
     '<category name="Sounds" colour="#CF63CF" secondaryColour="#C94FC9" icon="../media/icons/sounds.svg">' +
-        '<block type="malle_fart"></block>' +
-        '<block type="malle_happywiggle"></block>' +
-        '<block type="malle_yawn"></block>' +
-        '<block type="malle_excited"></block>' +
-        '<block type="malle_dancebingo"></block>' +
-        '<block type="malle_hi"></block>' +
-        '<block type="malle_bye"></block>' +
     '</category>' +
     // Expressions (More) category
     '<category name="Expressions" colour="#FF6680" secondaryColour="#FF4D6A" icon="../media/icons/expressions.svg">' +
-        '<block type="malle_idlestill"></block>' +
         '<block type="malle_nod"></block>' +
+        '<block type="malle_interested"></block>' +
+        '<block type="malle_happywiggle"></block>' +
+        '<block type="malle_fart"></block>' +
+        '<block type="malle_yawn"></block>' +
         '<block type="malle_no"></block>' +
         '<block type="malle_scared"></block>' +
-        '<block type="malle_posesleepingsnore"></block>' +
         '<block type="malle_sad"></block>' +
-        '<block type="malle_interested"></block>' +
-        '<!--<block type="malle_hi"></block>' +
+        '<block type="malle_excited"></block>' +
+        '<block type="malle_idlestill"></block>' +
+        '<!--<block type="malle_dancebingo"></block>' +
+        '<block type="malle_posesleepingsnore"></block>' +
+        '<block type="malle_hi"></block>' +
         '<block type="malle_bye"></block>-->' +
     '</category>' +
     // Control category

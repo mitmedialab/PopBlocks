@@ -45,9 +45,9 @@ Blockly.Blocks['dropdown_wedo_setcolor'] = {
           {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/set-led_orange.svg',
             value: 'orange', width: 48, height: 48, alt: 'Orange'},
           {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/set-led_coral.svg',
-            value: 'coral', width: 48, height: 48, alt: 'Coral'},
+            value: 'coral', width: 48, height: 48, alt: 'Red'},
           {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/set-led_magenta.svg',
-            value: 'magenta', width: 48, height: 48, alt: 'Magenta'},
+            value: 'magenta', width: 48, height: 48, alt: 'Pink'},
           {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/set-led_purple.svg',
             value: 'purple', width: 48, height: 48, alt: 'Purple'},
           {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/set-led_blue.svg',
@@ -127,27 +127,22 @@ Blockly.Blocks['wedo_setcolor'] = {
   }
 };
 
-Blockly.Blocks['wedo_motorclockwise'] = {
+Blockly.Blocks['wedo_motor1clockwise'] = {
   /**
    * Block to spin motor clockwise.
    * @this Blockly.Block
    */
   init: function() {
     this.jsonInit({
-      "id": "wedo_motorclockwise",
-      "message0": "%1 %2",
+      "id": "wedo_motor1clockwise",
+      "message0": "%1",
       "args0": [
         {
           "type": "field_image",
           "src": Blockly.mainWorkspace.options.pathToMedia + "icons/wedo_motor-clockwise.svg",
           "width": 40,
           "height": 40,
-          "alt": "Turn motor clockwise"
-        },
-        {
-          "type": "input_value",
-          "name": "MOTOR",
-          "check": "Number"
+          "alt": "Turn motor 1 clockwise"
         }
       ],
       "inputsInline": true,
@@ -161,27 +156,22 @@ Blockly.Blocks['wedo_motorclockwise'] = {
   }
 };
 
-Blockly.Blocks['wedo_motorcounterclockwise'] = {
+Blockly.Blocks['wedo_motor1counterclockwise'] = {
   /**
    * Block to spin motor counter-clockwise.
    * @this Blockly.Block
    */
   init: function() {
     this.jsonInit({
-      "id": "wedo_motorcounterclockwise",
-      "message0": "%1 %2",
+      "id": "wedo_motor1counterclockwise",
+      "message0": "%1",
       "args0": [
         {
           "type": "field_image",
           "src": Blockly.mainWorkspace.options.pathToMedia + "icons/wedo_motor-counterclockwise.svg",
           "width": 40,
           "height": 40,
-          "alt": "Turn motor counter-clockwise"
-        },
-        {
-          "type": "input_value",
-          "name": "MOTOR",
-          "check": "Number"
+          "alt": "Turn motor 1 counter-clockwise"
         }
       ],
       "inputsInline": true,
@@ -195,27 +185,22 @@ Blockly.Blocks['wedo_motorcounterclockwise'] = {
   }
 };
 
-Blockly.Blocks['wedo_motorstop'] = {
+Blockly.Blocks['wedo_motor1stop'] = {
   /**
    * Block to spin motor counter-clockwise.
    * @this Blockly.Block
    */
   init: function() {
     this.jsonInit({
-      "id": "wedo_motorstop",
-      "message0": "%1 %2",
+      "id": "wedo_motor1stop",
+      "message0": "%1",
       "args0": [
         {
           "type": "field_image",
           "src": Blockly.mainWorkspace.options.pathToMedia + "icons/wedo_motor-stop.svg",
           "width": 40,
           "height": 40,
-          "alt": "Stop motor"
-        },
-        {
-          "type": "input_value",
-          "name": "MOTOR",
-          "check": "Number"
+          "alt": "Stop motor 1"
         }
       ],
       "inputsInline": true,
@@ -223,6 +208,93 @@ Blockly.Blocks['wedo_motorstop'] = {
       "nextStatement": null,
       "category": Blockly.Categories.motion,
       "colour": Blockly.Colours.motion.primary,
+      "colourSecondary": Blockly.Colours.motion.secondary,
+      "colourTertiary": Blockly.Colours.motion.tertiary
+    });
+  }
+};
+
+Blockly.Blocks['wedo_motor2clockwise'] = {
+  /**
+   * Block to spin motor clockwise.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.jsonInit({
+      "id": "wedo_motor2clockwise",
+      "message0": "%1",
+      "args0": [
+        {
+          "type": "field_image",
+          "src": Blockly.mainWorkspace.options.pathToMedia + "icons/wedo_motor-clockwise.svg",
+          "width": 40,
+          "height": 40,
+          "alt": "Turn motor 2 clockwise"
+        }
+      ],
+      "inputsInline": true,
+      "previousStatement": null,
+      "nextStatement": null,
+      "category": Blockly.Categories.motion,
+      "colour": Blockly.Colours.motion.tertiary,
+      "colourSecondary": Blockly.Colours.motion.secondary,
+      "colourTertiary": Blockly.Colours.motion.tertiary
+    });
+  }
+};
+
+Blockly.Blocks['wedo_motor2counterclockwise'] = {
+  /**
+   * Block to spin motor counter-clockwise.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.jsonInit({
+      "id": "wedo_motor2counterclockwise",
+      "message0": "%1",
+      "args0": [
+        {
+          "type": "field_image",
+          "src": Blockly.mainWorkspace.options.pathToMedia + "icons/wedo_motor-counterclockwise.svg",
+          "width": 40,
+          "height": 40,
+          "alt": "Turn motor 2 counter-clockwise"
+        }
+      ],
+      "inputsInline": true,
+      "previousStatement": null,
+      "nextStatement": null,
+      "category": Blockly.Categories.motion,
+      "colour": Blockly.Colours.motion.tertiary,
+      "colourSecondary": Blockly.Colours.motion.secondary,
+      "colourTertiary": Blockly.Colours.motion.tertiary
+    });
+  }
+};
+
+Blockly.Blocks['wedo_motor2stop'] = {
+  /**
+   * Block to spin motor counter-clockwise.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.jsonInit({
+      "id": "wedo_motor2stop",
+      "message0": "%1",
+      "args0": [
+        {
+          "type": "field_image",
+          "src": Blockly.mainWorkspace.options.pathToMedia + "icons/wedo_motor-stop.svg",
+          "width": 40,
+          "height": 40,
+          "alt": "Stop motor 2"
+        }
+      ],
+      "inputsInline": true,
+      "previousStatement": null,
+      "nextStatement": null,
+      "category": Blockly.Categories.motion,
+      "colour": Blockly.Colours.motion.tertiary,
       "colourSecondary": Blockly.Colours.motion.secondary,
       "colourTertiary": Blockly.Colours.motion.tertiary
     });
