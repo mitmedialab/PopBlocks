@@ -18,4 +18,5 @@ Once you have the code, point your browser at <code>popr/index.html</code> and v
 <li>Added toolbox click event</li>
 <li>Added play and stop controls to workspace</li>
 <li>Added sounds and looks categories</li>
+<li>Added logging of interactions with the toolbox, workspace, and flyout</li>
 </ol>

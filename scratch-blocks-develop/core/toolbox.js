@@ -320,9 +320,13 @@ Blockly.Toolbox.prototype.setSelectedItem = function(item) {
  */
 Blockly.Toolbox.prototype.setSelectedItemFactory = function(item) {
   var selectedItem = item;
+  var event = new Blockly.Events.Ui(null, 'toolboxclick', null, item.name_);
+  event.workspaceId = this.workspace_.id;
+  
   return function() {
     this.setSelectedItem(selectedItem);
     Blockly.Touch.clearTouchIdentifier();
+    Blockly.Events.fire(event);  
   };
 };
 
@@ -484,7 +488,7 @@ Blockly.Toolbox.Category.prototype.createDom = function() {
   this.item_.appendChild(this.bubble_);*/
   this.parentHtml_.appendChild(this.item_);
   Blockly.bindEvent_(this.item_, 'mousedown', toolbox,
-    toolbox.setSelectedItemFactory(this));
+  	toolbox.setSelectedItemFactory(this));
 };
 
 /**

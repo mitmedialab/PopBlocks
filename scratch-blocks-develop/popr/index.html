@@ -149,7 +149,7 @@
       
       function updateFunction(event) {
 	    var code = Blockly.Popr.workspaceToCode(workspace);
-	    Android.log(Date.now() + "\t" + event.type + "\t" + event.element + "\t" + event.blockId + "\t" + code + "\n");
+	    //Android.log(Date.now() + "\t" + event.type + "\t" + event.element + "\t" + event.blockId + "\t" + event.newValue + "\t" + code + "\n");
         if (event.type == Blockly.Events.UI) {
           if (event.element == 'click') {
             var block = workspace.getBlockById(event.blockId);
@@ -159,21 +159,25 @@
   	  		  block = block.getNextBlock();
   	  		}
   	  		console.log(code);
-            Android.sendCommand(code);
+            //Android.sendCommand(code);
+          } else if (event.element == 'toolboxclick') {
+          	console.log(event.element + ' ' + event.newValue);
           } else if (event.element == 'stop') {
         	console.log(event.element);
-        	Android.stopTrigger();
+        	//Android.stopTrigger();
           } else if (event.element == 'play') {
         	console.log(event.element);
-        	Android.startTrigger();
+        	//Android.startTrigger();
           } else if (event.element == 'trashcan') {
         	console.log(event.element);
         	workspace.clear()
-        	Android.deleteAllRules();
+        	//Android.deleteAllRules();
+          } else {
+            console.log(event.element);
           }
       } else {
   	      console.log(code);
-	      Android.resetRules(code);
+	      //Android.resetRules(code);
 	    }
       }
       
@@ -213,10 +217,6 @@
       	background-color:#283856;
       	position:relative;
       	z-index:5000;
-      }
-      
-      #sidenav a:hover {
-      	background-color:#334771;
       }
       
       .sidenav-down {
@@ -294,6 +294,10 @@
       	color:#fff;
       	text-align:center;
       	background-color: #283856;
+      }
+      
+      div.menuButton:active, div.menuButton:hover{
+      	background-color: #334771;
       }
     </style>
   </head>
