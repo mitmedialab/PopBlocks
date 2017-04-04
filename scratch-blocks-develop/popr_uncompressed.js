@@ -63,6 +63,9 @@ Blockly.Popr.event_whentouched = function(block) {
 Blockly.Popr.event_whenlight = function(block) {
     return block.type + " ";
 }
+Blockly.Popr.event_whenheard = function(block) {
+    return block.type + " ";
+}
 /* Looks blocks */
 Blockly.Popr.wedo_setcolor = function(block) {
   var value;
@@ -73,7 +76,7 @@ Blockly.Popr.wedo_setcolor = function(block) {
   }
   return block.type + "_" + value + " ";
 }
-Blockly.Popr.malle_setcolor = function(block) {
+Blockly.Popr.malle_setcolor = function(block) {9
   var value;
   for (var i = 0, child; child = block.getChildren()[i]; i++) {
     if (child.getField("CHOICE") != null) {
@@ -102,6 +105,24 @@ Blockly.Popr.wedo_motor2stop = function(block) {
   return block.type + " ";
 }
 /* Sound blocks */
+Blockly.Popr.wedo_playnote = function(block) {
+  var value;
+  for (var i = 0, child; child = block.getChildren()[i]; i++) {
+    if (child.getField("CHOICE") != null) {
+	  value = child.getField("CHOICE").getValue();
+	}
+  }
+  return block.type + "_" + value + " ";
+}
+Blockly.Popr.malle_record = function(block) {9
+  var value;
+  for (var i = 0, child; child = block.getChildren()[i]; i++) {
+    if (child.getField("CHOICE") != null) {
+	  value = child.getField("CHOICE").getValue();
+	}
+  }
+  return block.type + "_" + value + " ";
+}
 Blockly.Popr.malle_fart = function(block) {
 	return block.type + " ";
 }

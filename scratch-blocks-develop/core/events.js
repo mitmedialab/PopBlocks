@@ -85,6 +85,12 @@ Blockly.Events.MOVE = 'move';
 Blockly.Events.UI = 'ui';
 
 /**
+ * Name of event to start recording.
+ * @const
+ */
+Blockly.Events.RECORD = 'record';
+
+/**
  * List of events queued for firing.
  * @private
  */
@@ -783,14 +789,21 @@ Blockly.Events.Ui.prototype.toJson = function() {
 };
 
 /**
- * Decode the JSON event.
- * @param {!Object} json JSON representation.
+ * Class for a record event.
+ * @extends {Blockly.Events.Abstract}
+ * @constructor
  */
-Blockly.Events.Ui.prototype.fromJson = function(json) {
-  Blockly.Events.Ui.superClass_.fromJson.call(this, json);
-  this.element = json['element'];
-  this.newValue = json['newValue'];
+Blockly.Events.Record = function(filename) {
+  this.filename = filename;
 };
+goog.inherits(Blockly.Events.Record, Blockly.Events.Abstract);
+
+/**
+ * Type of this event.
+ * @type {string}
+ */
+Blockly.Events.Record.prototype.type = Blockly.Events.RECORD;
+
 
 /**
  * Enable/disable a block depending on whether it is properly connected.

@@ -320,10 +320,10 @@ Blockly.Toolbox.prototype.setSelectedItem = function(item) {
  */
 Blockly.Toolbox.prototype.setSelectedItemFactory = function(item) {
   var selectedItem = item;
-  var event = new Blockly.Events.Ui(null, 'toolboxclick', null, item.name_);
-  event.workspaceId = this.workspace_.id;
   
   return function() {
+    var event = new Blockly.Events.Ui(null, 'categoryclick', this.selectedItem_.name_, item.name_);
+    event.workspaceId = this.workspace_.id;
     this.setSelectedItem(selectedItem);
     Blockly.Touch.clearTouchIdentifier();
     Blockly.Events.fire(event);  

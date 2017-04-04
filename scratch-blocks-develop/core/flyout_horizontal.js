@@ -314,18 +314,6 @@ Blockly.HorizontalFlyout.prototype.layout_ = function(contents, gaps) {
       this.backgroundButtons_[i] = rect;
 
       this.addBlockListeners_(root, block, rect);
-      
-      
-	  Blockly.bindEvent_(rect, 'mousedown', null, function(e) {
-		Blockly.Touch.clearTouchIdentifier(); // Don't block future drags.
-		e.stopPropagation();  // Don't start a workspace scroll.
-		e.preventDefault();  // Stop double-clicking from selecting text.
-	  var event = new Blockly.Events.Ui(null, 'toolboxclick', block, null);
-	  event.workspaceId = workspace.id;
-	  Blockly.Events.fire(event);
-	  });
-	  
-	  
     } else if (item.type == 'button') {
       var button = item.button;
       var buttonSvg = button.createDom();

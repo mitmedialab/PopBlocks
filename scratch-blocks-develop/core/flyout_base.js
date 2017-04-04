@@ -558,6 +558,17 @@ Blockly.Flyout.prototype.addBlockListeners_ = function(root, block, rect) {
       block.addSelect));
   this.listeners_.push(Blockly.bindEvent_(rect, 'mouseout', block,
       block.removeSelect));
+  
+  this.listeners_.push(Blockly.bindEvent_(root, 'click', block, function (e) {
+ 	  var event = new Blockly.Events.Ui(block, 'toolboxclick', undefined, undefined);
+	  event.workspaceId = workspace.id;
+	  Blockly.Events.fire(event);   
+  }));    
+  this.listeners_.push(Blockly.bindEvent_(rect, 'click', block, function (e) {
+ 	  var event = new Blockly.Events.Ui(block, 'toolboxclick', undefined, undefined);
+	  event.workspaceId = workspace.id;
+	  Blockly.Events.fire(event);
+  }));
 };
 
 /**

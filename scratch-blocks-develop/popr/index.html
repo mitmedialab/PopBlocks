@@ -151,17 +151,17 @@
 	    var code = Blockly.Popr.workspaceToCode(workspace);
 	    //Android.log(Date.now() + "\t" + event.type + "\t" + event.element + "\t" + event.blockId + "\t" + event.newValue + "\t" + code + "\n");
         if (event.type == Blockly.Events.UI) {
-          if (event.element == 'click') {
+          if (event.element == 'click' || event.element == 'toolboxclick') {
             var block = workspace.getBlockById(event.blockId);
             var code = "";
   			while (block != null) {
   	  		  code += Blockly.Popr.blockToCode(block);
   	  		  block = block.getNextBlock();
   	  		}
-  	  		console.log(code);
+  	  		console.log(event.element + ' ' + code);
             //Android.sendCommand(code);
-          } else if (event.element == 'toolboxclick') {
-          	console.log(event.element + ' ' + event.newValue);
+          } else if (event.element == 'categoryclick') {
+          	console.log(event.element + ' ' + event.oldValue + ' ' + event.newValue);
           } else if (event.element == 'stop') {
         	console.log(event.element);
         	//Android.stopTrigger();
@@ -172,147 +172,25 @@
         	console.log(event.element);
         	workspace.clear()
         	//Android.deleteAllRules();
-          } else {
-            console.log(event.element);
           }
+      } else if (event.type == Blockly.Events.RECORD) {
+      	//console.log('record' + event.filename + '.wav');
       } else {
   	      console.log(code);
+  	      //console.log(event);
 	      //Android.resetRules(code);
 	    }
       }
       
     </script>
-
-    <style>
-      html, body {
-        height: 100%;
-        width: 100%;
-      }
-
-      body {
-        background-color: #283856;
-        font-family: sans-serif;
-        overflow: hidden;
-        margin:0;
-      }
-
-      h1 {
-        font-weight: normal;
-        font-size: 140%;
-      }
-
-      #blocklyDiv {
-        height: 100%;
-        width: 100%;
-        position:fixed;
-        top:30px;
-      }
-
-      #importExport {
-        font-family: monospace;
-      }
-      
-      /* Navigation bar */
-       #sidenav {
-      	background-color:#283856;
-      	position:relative;
-      	z-index:5000;
-      }
-      
-      .sidenav-down {
-        -webkit-animation:animatedown 0.4s;
-        animation:animatedown 0.4s
-      }      
-      @-webkit-keyframes animatedown {
-        from { 
-          top:-300px;
-          opacity:0;
-        }
-        to { 
-          top:0;
-          opacity:1;
-          visibility:visible;
-        }
-      }	  
-	  @keyframes animatedown { 
-	    from { 
-	      top:-300px;
-	      opacity:0;
-	    }
-	    to { 
-	      top:0;
-	      opacity:1;
-	    }
-	  }
-	  
-	  .sidenav-up {
-        -webkit-animation:animateup 0.4s;
-        animation:animateup 0.4s;
-        display:none;
-      }
-      @-webkit-keyframes animateup {
-        from {
-	      top:0px;
-	      opacity:1;
-	    }
-	    to {
-	      top:-300px;
-	      opacity:0;
-	    }
-      } 
-	  @keyframes animateup { 
-	    from {
-	      top:0px;
-	      opacity:1;
-	    }
-	    to {
-	      top:-300px;
-	      opacity:0;
-	    }
-	  }
-      
-      .navLink {
-      	width:100%;
-      	height:100px;
-      	display:block;
-      	text-align:center;
-      	border:1px solid #334771;
-      	transition: background-color .25s,color .15s,box-shadow .15s,opacity .25s,filter .25s,border .15s;
-      }
-      
-      .navLink img {
-      	height:75px;
-        margin-top:12px;
-      }
-      
-      .menuButton {
-      	position:absolute;
-        width:100%;
-        text-decoration:underline;
-        font-size:20px;
-      	line-height:30px;
-      	color:#fff;
-      	text-align:center;
-      	background-color: #283856;
-      }
-      
-      div.menuButton:active, div.menuButton:hover{
-      	background-color: #334771;
-      }
-    </style>
+	<link rel="stylesheet" type="text/css" href="index.css"> 
   </head>
 
   <body onload="start()">
-    <!--<input type="button" value="Say hello" onClick="showAndroidToast('Hello Android!')" />-->
-    <!--<input type="text" id="command">
-    <input type="submit" value="Save" onClick="saveTextRule()">
-    <input type="submit" value="Delete" onClick="deleteTextRule()">
-    <input type="submit" value="Delete All" onClick="deleteAllRules()">
-    <input type="submit" value="Convert" onClick="toXML()"><br/>-->
     <nav class="sidenav-up" id="sidenav">
       <div style="width:150px">
 	    <a href="#" onclick="saveWorkspace()" class="navLink"><img src="../media/save.svg" alt="Save"></a>
-	    <a href="#" onclick="addWedo()" class="navLink"><img src="../media/icons/wedo.svg" alt="Wedo"></a>
+	    <a href="#" onclick="addWedo()" class="navLink"><img src="../media/icons/wedo_add.svg" alt="Wedo"></a>
 	    <a href="#" onclick="addRobot()" class="navLink"><img src="../media/icons/add_robot.svg" alt="Robot"></a>
 	    <div class="menuButton" onclick="toggleSidenav()">&#x25B2;</div>
 	  </div>

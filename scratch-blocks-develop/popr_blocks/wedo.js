@@ -45,9 +45,9 @@ Blockly.Blocks['dropdown_wedo_setcolor'] = {
           {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/set-led_orange.svg',
             value: 'orange', width: 48, height: 48, alt: 'Orange'},
           {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/set-led_coral.svg',
-            value: 'coral', width: 48, height: 48, alt: 'Red'},
+            value: 'red', width: 48, height: 48, alt: 'Red'},
           {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/set-led_magenta.svg',
-            value: 'magenta', width: 48, height: 48, alt: 'Pink'},
+            value: 'pink', width: 48, height: 48, alt: 'Pink'},
           {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/set-led_purple.svg',
             value: 'purple', width: 48, height: 48, alt: 'Purple'},
           {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/set-led_blue.svg',
@@ -61,6 +61,47 @@ Blockly.Blocks['dropdown_wedo_setcolor'] = {
     this.setColour(Blockly.Colours.looks.primary,
       Blockly.Colours.looks.secondary,
       Blockly.Colours.looks.tertiary
+    );
+  }
+};
+
+Blockly.Blocks['dropdown_wedo_setnote'] = {
+  /**
+   * Block for set color drop-down (used for shadow).
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldIconMenu([
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/set-note_c.svg',
+              value: '1', width: 48, height: 48, alt: 'C'},
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/set-note_cis.svg',
+              value: '2', width: 48, height: 48, alt: 'C#'},
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/set-note_d.svg',
+              value: '3', width: 48, height: 48, alt: 'D'},
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/set-note_dis.svg',
+              value: '4', width: 48, height: 48, alt: 'D#'},
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/set-note_e.svg',
+              value: '5', width: 48, height: 48, alt: 'E'},
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/set-note_f.svg',
+              value: '6', width: 48, height: 48, alt: 'F'},
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/set-note_fis.svg',
+              value: '7', width: 48, height: 48, alt: 'F#'},
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/set-note_g.svg',
+              value: '8', width: 48, height: 48, alt: 'G'},
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/set-note_gis.svg',
+              value: '9', width: 48, height: 48, alt: 'G#'},
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/set-note_a.svg',
+              value: '10', width: 48, height: 48, alt: 'A'},
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/set-note_ais.svg',
+              value: '11', width: 48, height: 48, alt: 'A#'},
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/set-note_b.svg',
+              value: '12', width: 48, height: 48, alt: 'B'}
+        ]), 'CHOICE');
+    this.setOutput(true);
+    this.setColour(Blockly.Colours.sounds.primary,
+      Blockly.Colours.sounds.secondary,
+      Blockly.Colours.sounds.tertiary
     );
   }
 };
@@ -123,6 +164,39 @@ Blockly.Blocks['wedo_setcolor'] = {
       "colour": Blockly.Colours.looks.primary,
       "colourSecondary": Blockly.Colours.looks.secondary,
       "colourTertiary": Blockly.Colours.looks.tertiary
+    });
+  }
+};
+
+Blockly.Blocks['wedo_playnote'] = {
+  /**
+   * Block to set note of piezo
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.jsonInit({
+      "id": "wedo_playnote",
+      "message0": "%1 %2",
+      "args0": [
+        {
+          "type": "field_image",
+          "src": Blockly.mainWorkspace.options.pathToMedia + "icons/set-note_c.svg",
+          "width": 40,
+          "height": 40,
+          "alt": "Set Piezo Note"
+        },
+        {
+          "type": "input_value",
+          "name": "CHOICE"
+        }
+      ],
+      "inputsInline": true,
+      "previousStatement": null,
+      "nextStatement": null,
+      "category": Blockly.Categories.sounds,
+      "colour": Blockly.Colours.sounds.primary,
+      "colourSecondary": Blockly.Colours.sounds.secondary,
+      "colourTertiary": Blockly.Colours.sounds.tertiary
     });
   }
 };

@@ -2,7 +2,7 @@
 
 Pop Blocks is a web application used to program the Pop Bot robot of the MIT Media Lab Personal Robots Group. 
 
-Pop Blocks is based of the the MIT Media Lab LLK Group's <a href="https://github.com/LLK/scratch-blocks/wiki">Scratch Blocks</a>. Scratch Blocks is based on Google's <a href="https://developers.google.com/blockly">Blockly</a> project. For a full API reference please see Google's Custom Blocks documentation.
+Pop Blocks is based off of the the MIT Media Lab LLK Group's <a href="https://github.com/LLK/scratch-blocks/wiki">Scratch Blocks</a>. Scratch Blocks is based on Google's <a href="https://developers.google.com/blockly">Blockly</a> project. For a full API reference please see Google's Custom Blocks documentation.
 
 <h1>Installation</h1>
 Parts taken from Scratch Blocks documentation:

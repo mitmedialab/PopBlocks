@@ -32,10 +32,11 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
 // Event category
     '<category name="Events" colour="#FFBF00" secondaryColour="#E6AC00" icon="../media/icons/event_whenflagclicked.svg">' +
         '<block type="event_whenflagclicked"></block>' +
-        '<block type="wedo_whentilt"></block>' +
-        '<block type="wedo_whendistanceclose"></block>' +
         '<block type="event_whentouched"></block>' +
         '<block type="event_whenlight"></block>' +
+        '<block type="event_whenheard"></block>' +
+        '<block type="wedo_whentilt"></block>' +
+        '<block type="wedo_whendistanceclose"></block>' +
     '</category>' +
     // Look category
     '<category name="Look" colour="#9966FF" secondaryColour="#855CD6" icon="../media/icons/looks.svg">' + 
@@ -65,6 +66,19 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
     '</category>' +
     // Sounds category
     '<category name="Sounds" colour="#CF63CF" secondaryColour="#C94FC9" icon="../media/icons/sounds.svg">' +
+    	'<block type="wedo_playnote">' +
+        '<value name="CHOICE">' +
+        '<shadow type="dropdown_wedo_setnote">' +
+        '<field name="CHOICE">1</field>' +
+        '</shadow>' +
+        '</value>' +
+        '</block>' +
+        '<block type="malle_record">' +
+        '<value name="CHOICE">' +
+        '<shadow type="dropdown_malle_setaudio">' +
+        '</shadow>' +
+        '</value>' +
+        '</block>' +
     '</category>' +
     // Expressions (More) category
     '<category name="Expressions" colour="#FF6680" secondaryColour="#FF4D6A" icon="../media/icons/expressions.svg">' +
@@ -77,8 +91,8 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
         '<block type="malle_scared"></block>' +
         '<block type="malle_sad"></block>' +
         '<block type="malle_excited"></block>' +
-        '<block type="malle_idlestill"></block>' +
-        '<!--<block type="malle_dancebingo"></block>' +
+        '<!--<block type="malle_idlestill"></block>' +
+        '<block type="malle_dancebingo"></block>' +
         '<block type="malle_posesleepingsnore"></block>' +
         '<block type="malle_hi"></block>' +
         '<block type="malle_bye"></block>-->' +

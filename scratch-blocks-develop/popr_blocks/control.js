@@ -47,9 +47,7 @@ Blockly.Blocks['dropdown_control_number'] = {
           {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/dice-4.svg',
             value: '4', width: 48, height: 48, alt: '4'},
           {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/dice-5.svg',
-            value: '5', width: 48, height: 48, alt: '5'},
-          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/dice-6.svg',
-            value: '6', width: 48, height: 48, alt: '6'},
+            value: '5', width: 48, height: 48, alt: '5'}
         ]), 'NUM');
     this.setOutput(true);
     this.setColour(Blockly.Colours.control.primary,

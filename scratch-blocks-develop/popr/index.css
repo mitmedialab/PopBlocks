@@ -1,0 +1,114 @@
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-color: #283856;
+  font-family: sans-serif;
+  overflow: hidden;
+  margin:0;
+}
+
+h1 {
+  font-weight: normal;
+  font-size: 140%;
+}
+
+#blocklyDiv {
+  height: 100%;
+  width: 100%;
+  position:fixed;
+  top:30px;
+}
+
+#importExport {
+  font-family: monospace;
+}
+
+/* Navigation bar */
+#sidenav {
+  background-color:#283856;
+  position:relative;
+  z-index:5000;
+}
+
+.sidenav-down {
+  -webkit-animation:animatedown 0.4s;
+  animation:animatedown 0.4s
+}      
+@-webkit-keyframes animatedown {
+  from { 
+    top:-300px;
+    opacity:0;
+  }
+  to { 
+	top:0;
+	opacity:1;
+  }
+}	  
+@keyframes animatedown { 
+  from { 
+	top:-300px;
+	opacity:0;
+  }
+  to { 
+	top:0;
+	opacity:1;
+  }
+}
+
+.sidenav-up {
+  -webkit-animation:animateup 0.4s;
+  animation:animateup 0.4s;
+  display:none;
+}
+@-webkit-keyframes animateup {
+  from {
+	top:0px;
+	opacity:1;
+  }
+  to {
+	top:-300px;
+	opacity:0;
+  }
+} 
+@keyframes animateup { 
+  from {
+	top:0px;
+	opacity:1;
+  }
+  to {
+	top:-300px;
+	opacity:0;
+  }
+}
+
+.navLink {
+  width:100%;
+  height:100px;
+  display:block;
+  text-align:center;
+  border:1px solid #334771;
+  transition: background-color .25s,color .15s,box-shadow .15s,opacity .25s,filter .25s,border .15s;
+}
+
+.navLink img {
+  height:75px;
+  margin-top:12px;
+}
+
+.menuButton {
+  color:#fff;
+  width:100%;
+  font-size:20px;
+  line-height:30px;
+  position:absolute;
+  text-align:center;
+  text-decoration:underline;
+  background-color: #283856;
+}
+
+div.menuButton:active, div.menuButton:hover{
+  background-color: #334771;
+}

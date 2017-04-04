@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   width="32"
+   height="32"
+   id="svg2"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="add.svg">
+  <metadata
+     id="metadata65">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs63" />
+  <sodipodi:namedview
+     pagecolor="#dadada"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="1"
+     inkscape:pageshadow="2"
+     inkscape:window-width="753"
+     inkscape:window-height="480"
+     id="namedview61"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="1.9032258"
+     inkscape:cx="15.912833"
+     inkscape:cy="6.0504186"
+     inkscape:window-x="75"
+     inkscape:window-y="34"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2" />
+  <style
+     type="text/css"
+     id="style4">
+#background {
+  fill: none;
+}
+.arrows {
+  fill: #000;
+  stroke: none;
+}
+.selected&gt;.arrows {
+  fill: #fff;
+}
+.checkmark {
+  fill: #000;
+  font-family: sans-serif;
+  font-size: 10pt;
+  text-anchor: middle;
+}
+.trash {
+  fill: #888;
+}
+.zoom {
+  fill: none;
+  stroke: #888;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.zoom&gt;.center {
+  fill: #888;
+  stroke-width: 0;
+}
+  </style>
+  <g
+     class="zoom"
+     id="g47"
+     inkscape:transform-center-x="39.40678"
+     inkscape:transform-center-y="50.966102"
+     style="fill:none;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-opacity:1"
+     transform="translate(-32,-92)">
+    <path
+       d="m 48,101.6 v 12.8"
+       id="path51"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+    <path
+       d="M 41.6,108 H 54.4"
+       id="path53"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+  </g>
+</svg>

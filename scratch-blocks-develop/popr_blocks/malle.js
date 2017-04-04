@@ -71,10 +71,39 @@ Blockly.Blocks['event_whenlight'] = {
       "args0": [
         {
           "type": "field_image",
-          "src": Blockly.mainWorkspace.options.pathToMedia + "icons/set-led_white.svg",
+          "src": Blockly.mainWorkspace.options.pathToMedia + "icons/event_whenlight.svg",
           "width": 40,
           "height": 40,
           "alt": "When Mall-E sees light",
+          "flip_rtl": true
+        }
+      ],
+      "inputsInline": true,
+      "nextStatement": null,
+      "category": Blockly.Categories.event,
+      "colour": Blockly.Colours.event.primary,
+      "colourSecondary": Blockly.Colours.event.secondary,
+      "colourTertiary": Blockly.Colours.event.tertiary
+    });
+  }
+};
+
+Blockly.Blocks['event_whenheard'] = {
+  /**
+   * Block for when Mall-e hears loud sounds
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.jsonInit({
+      "id": "event_whenheard",
+      "message0": "%1",
+      "args0": [
+        {
+          "type": "field_image",
+          "src": Blockly.mainWorkspace.options.pathToMedia + "icons/event_whenhear.svg",
+          "width": 40,
+          "height": 40,
+          "alt": "When Mall-E hears a sound",
           "flip_rtl": true
         }
       ],
@@ -123,6 +152,22 @@ Blockly.Blocks['dropdown_malle_setcolor'] = {
   }
 };
 
+Blockly.Blocks['dropdown_malle_setaudio'] = {
+  /**
+   * Block for set color drop-down (used for shadow).
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldIconMenu3([]), 'CHOICE');
+    this.setOutput(true);
+    this.setColour(Blockly.Colours.sounds.primary,
+      Blockly.Colours.sounds.secondary,
+      Blockly.Colours.sounds.tertiary
+    );
+  }
+};
+
 Blockly.Blocks['malle_setcolor'] = {
   /**
    * Block to set color of etes
@@ -156,6 +201,39 @@ Blockly.Blocks['malle_setcolor'] = {
   }
 };
 
+Blockly.Blocks['malle_record'] = {
+  /**
+   * Block repeats a recording
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.jsonInit({
+      "id": "malle_record",
+      "message0": "%1 %2",
+      "args0": [
+        {
+          "type": "field_image",
+          "src": Blockly.mainWorkspace.options.pathToMedia + "icons/microphone.svg",
+          "width": 40,
+          "height": 40,
+          "alt": "Execute malle recording"
+        },
+        {
+          "type": "input_value",
+          "name": "CHOICE"
+        }
+      ],
+      "inputsInline": true,
+      "previousStatement": null,
+      "nextStatement": null,
+      "category": Blockly.Categories.sounds,
+      "colour": Blockly.Colours.sounds.primary,
+      "colourSecondary": Blockly.Colours.sounds.secondary,
+      "colourTertiary": Blockly.Colours.sounds.tertiary
+    });
+  }
+};
+
 Blockly.Blocks['malle_fart'] = {
   /**
    * Block executes a fart animation on Mall-E
@@ -177,7 +255,7 @@ Blockly.Blocks['malle_fart'] = {
       "inputsInline": true,
       "previousStatement": null,
       "nextStatement": null,
-      "category": Blockly.Categories.sounds,
+      "category": Blockly.Categories.more,
       "colour": Blockly.Colours.more.primary,
       "colourSecondary": Blockly.Colours.more.secondary,
       "colourTertiary": Blockly.Colours.more.tertiary
@@ -234,7 +312,7 @@ Blockly.Blocks['malle_hi'] = {
       "inputsInline": true,
       "previousStatement": null,
       "nextStatement": null,
-      "category": Blockly.Categories.sounds,
+      "category": Blockly.Categories.more,
       "colour": Blockly.Colours.more.primary,
       "colourSecondary": Blockly.Colours.more.secondary,
       "colourTertiary": Blockly.Colours.more.tertiary
@@ -263,7 +341,7 @@ Blockly.Blocks['malle_bye'] = {
       "inputsInline": true,
       "previousStatement": null,
       "nextStatement": null,
-      "category": Blockly.Categories.sounds,
+      "category": Blockly.Categories.more,
       "colour": Blockly.Colours.more.primary,
       "colourSecondary": Blockly.Colours.more.secondary,
       "colourTertiary": Blockly.Colours.more.tertiary
@@ -350,7 +428,7 @@ Blockly.Blocks['malle_happywiggle'] = {
       "inputsInline": true,
       "previousStatement": null,
       "nextStatement": null,
-      "category": Blockly.Categories.sounds,
+      "category": Blockly.Categories.more,
       "colour": Blockly.Colours.more.primary,
       "colourSecondary": Blockly.Colours.more.secondary,
       "colourTertiary": Blockly.Colours.more.tertiary
@@ -470,7 +548,7 @@ Blockly.Blocks['malle_yawn'] = {
       "inputsInline": true,
       "previousStatement": null,
       "nextStatement": null,
-      "category": Blockly.Categories.sounds,
+      "category": Blockly.Categories.more,
       "colour": Blockly.Colours.more.primary,
       "colourSecondary": Blockly.Colours.more.secondary,
       "colourTertiary": Blockly.Colours.more.tertiary
@@ -530,7 +608,7 @@ Blockly.Blocks['malle_excited'] = {
       "inputsInline": true,
       "previousStatement": null,
       "nextStatement": null,
-      "category": Blockly.Categories.sounds,
+      "category": Blockly.Categories.more,
       "colour": Blockly.Colours.more.primary,
       "colourSecondary": Blockly.Colours.more.secondary,
       "colourTertiary": Blockly.Colours.more.tertiary
@@ -560,7 +638,7 @@ Blockly.Blocks['malle_dancebingo'] = {
       "inputsInline": true,
       "previousStatement": null,
       "nextStatement": null,
-      "category": Blockly.Categories.sounds,
+      "category": Blockly.Categories.more,
       "colour": Blockly.Colours.more.primary,
       "colourSecondary": Blockly.Colours.more.secondary,
       "colourTertiary": Blockly.Colours.more.tertiary
