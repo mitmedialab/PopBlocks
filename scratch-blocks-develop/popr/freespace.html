@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>PopBlocks</title>
+
+    <script src="../blockly_uncompressed_horizontal.js"></script>
+    <script src="../popr_uncompressed.js"></script>
+    <script src="../msg/messages.js"></script>
+    <script src="../blocks_common/math.js"></script>
+    <script src="../blocks_common/text.js"></script>
+    <script src="../popr_blocks/control.js"></script>
+    <script src="../popr_blocks/event.js"></script>
+    <script src="../popr_blocks/wedo.js"></script>
+    <script src="../popr_blocks/malle.js"></script>
+    <script src="../popr_blocks/default_toolbox.js"></script>
+    <!---<script src="../../file-saver/FileSaver.js"></script>-->
+    <script>
+	  function toggleSidenav() {
+        var nav = document.getElementById("sidenav");
+        if (nav.style.display == "block") {
+          nav.className = "sidenav-up";
+          setTimeout(function(){
+      	    nav.style.display = "none";
+		  }, 400);
+        } else {
+	      nav.className = "sidenav-down";
+	      setTimeout(function(){
+	        nav.style.display = "block";
+		  }, 400);
+        }
+	  }
+	  
+    </script>
+    <script>
+      'use strict';
+
+     var workspace = null;
+
+      function start() {
+        // Setup blocks
+        // Parse the URL arguments.
+        workspace = Blockly.inject('blocklyDiv', {
+          comments: true,
+          disable: false,
+          collapse: false,
+          media: '../media/',
+          readOnly: false,
+          rtl: false,
+          scrollbars: true,
+          toolbox: null,
+          trashcan: true,
+          playControls: true,
+          horizontalLayout: true,
+          toolboxPosition: 'start',
+          sounds: true,
+          grid: {spacing: 55,
+            length: 2,
+            colour: '#FFF',
+            snap: true
+          },
+          zoom: {
+            controls: false,
+            wheel: true,
+            startScale: 1.1,
+            maxScale: 4,
+            minScale: 0.25,
+            scaleSpeed: 1.1
+          },
+          colours: {
+            workspace: '#334771',
+            toolbox: '#24324D',
+            flyout: '#283856',
+            scrollbar: '#24324D',
+            scrollbarHover: '#0C111A',
+            insertionMarker: '#FFFFFF',
+            insertionMarkerOpacity: 0.3,
+            fieldShadow: 'rgba(255, 255, 255, 0.3)',
+            dragShadowOpacity: 0.6
+          }
+      });
+		
+	  workspace.addChangeListener(updateFunction);
+      }
+    
+      function showAndroidToast(toast) {
+        Android.showToast(toast);
+      }
+
+      function sendCommand(command) {
+        Android.sendCommand(command);
+      }
+
+      function saveTextRule() {
+        var c = document.getElementById("command").value;
+        saveRule(c);
+      }
+
+      function deleteTextRule() {
+        var c = document.getElementById("command").value;
+        deleteRule(c);
+      }
+
+      function saveRule(rule) {
+        Android.saveRule(rule);
+        console.log(rule);
+      }
+
+      function deleteRule(rule) {
+        Android.deleteRule(rule);
+      }
+
+      function deleteAllRules() {
+      	workspace.clear()
+        Android.deleteAllRules();
+      }
+      
+      function toXML() {
+      	var code = Blockly.Popr.workspaceToCode(workspace);
+      	Android.saveRule(code);
+      }
+      
+      function saveWorkspace() {
+      	var xml = Blockly.Xml.workspaceToDom(workspace);
+      	var xml_text = Blockly.Xml.domToText(xml)
+		
+		//var file = new File([xml_text], "blocks.txt", {type: "text/plain;charset=utf-8"});
+		//saveAs(file);
+      	Android.saveWorkspace(xml_text);
+      }
+      
+      function addWedo() {
+      	Android.addWedo();
+      }
+      
+      function addRobot() {
+      	Android.addRobot();
+      }
+      
+      function loadWorkspace() {
+      	var xml = Blockly.Xml.textToDom(xml_text);
+      	Blockly.Xml.domToWorkspace(xml, workspace);
+      	
+	    var code = Blockly.Popr.workspaceToCode(workspace); 
+	    Android.saveRule(code);
+      }
+      
+      function updateFunction(event) {
+	    var code = Blockly.Popr.workspaceToCode(workspace);
+	    //Android.log(Date.now() + "\t" + event.type + "\t" + event.element + "\t" + event.blockId + "\t" + event.newValue + "\t" + code + "\n");
+        if (event.type == Blockly.Events.UI) {
+          if (event.element == 'click' || event.element == 'toolboxclick') {
+            var block = workspace.getBlockById(event.blockId);
+            var code = "";
+  			while (block != null) {
+  	  		  code += Blockly.Popr.blockToCode(block);
+  	  		  block = block.getNextBlock();
+  	  		}
+  	  		console.log(event.element + ' ' + code);
+            //Android.sendCommand(code);
+          } else if (event.element == 'categoryclick') {
+          	console.log(event.element + ' ' + event.oldValue + ' ' + event.newValue);
+          } else if (event.element == 'stop') {
+        	console.log(event.element);
+        	//Android.stopTrigger();
+          } else if (event.element == 'play') {
+        	console.log(event.element);
+        	//Android.startTrigger();
+          } else if (event.element == 'trashcan') {
+        	console.log(event.element);
+        	workspace.clear()
+        	//Android.deleteAllRules();
+          }
+      } else if (event.type == Blockly.Events.RECORD) {
+      	//console.log('record' + event.filename + '.wav');
+      } else {
+  	      console.log(code);
+  	      //console.log(event);
+	      //Android.resetRules(code);
+	    }
+      }
+      
+    </script>
+	<link rel="stylesheet" type="text/css" href="index.css"> 
+  </head>
+
+  <body onload="start()">
+    <nav class="sidenav-up" id="sidenav">
+      <div style="width:150px">
+      	<a href="index.html" class="navLink"><img src="../media/icons/back.svg" alt="Back"></a>
+	    <a href="#" onclick="saveWorkspace()" class="navLink"><img src="../media/save.svg" alt="Save"></a>
+	    <a href="#" onclick="addWedo()" class="navLink"><img src="../media/icons/wedo_add.svg" alt="Wedo"></a>
+	    <a href="#" onclick="addRobot()" class="navLink"><img src="../media/icons/add_robot.svg" alt="Robot"></a>
+	    <div class="menuButton" onclick="toggleSidenav()">&#x25B2;</div>
+	  </div>
+	</nav>
+	<div class="menuButton" onclick="toggleSidenav()">&#x25BC;</div>
+    <div id="blocklyDiv"></div>
+  </body>
+</html>
