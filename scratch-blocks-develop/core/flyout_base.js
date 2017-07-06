@@ -569,6 +569,17 @@ Blockly.Flyout.prototype.addBlockListeners_ = function(root, block, rect) {
 	  event.workspaceId = workspace.id;
 	  Blockly.Events.fire(event);
   }));
+  // For touch screen
+  this.listeners_.push(Blockly.bindEvent_(root, 'touchend', block, function (e) {
+ 	  var event = new Blockly.Events.Ui(block, 'toolboxclick', undefined, undefined);
+	  event.workspaceId = workspace.id;
+	  Blockly.Events.fire(event);   
+  }));    
+  this.listeners_.push(Blockly.bindEvent_(rect, 'touchend', block, function (e) {
+ 	  var event = new Blockly.Events.Ui(block, 'toolboxclick', undefined, undefined);
+	  event.workspaceId = workspace.id;
+	  Blockly.Events.fire(event);
+  }));
 };
 
 /**
