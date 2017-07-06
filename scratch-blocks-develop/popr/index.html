@@ -4,23 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    <title>PopBlocks</title>
+    <title>POP!</title>
 
     <script>
-	  function toggleSidenav() {
-        var nav = document.getElementById("sidenav");
-        if (nav.style.display == "block") {
-          nav.className = "sidenav-up";
-          setTimeout(function(){
-      	    nav.style.display = "none";
-		  }, 400);
-        } else {
-	      nav.className = "sidenav-down";
-	      setTimeout(function(){
-	        nav.style.display = "block";
-		  }, 400);
-        }
-	  }
+    	var live = (window.location.href.startsWith("http://")); // whether or not this is live or just on computer
 	      
       function showAndroidToast(toast) {
         Android.showToast(toast);
@@ -30,23 +17,64 @@
       	Android.addRobot();
       }
       
-      function loadWorkspace() {
-      	var xml = Blockly.Xml.textToDom(xml_text);
-      	Blockly.Xml.domToWorkspace(xml, workspace);
+      function populateNav() {
+        var count;
+      	if (live) {
+      	  count = Android.numPrograms();
+      	} else {
+      	  count = 10; // 10;
+      	}
+      	var prog = document.getElementById("programs");
+      				  	
+      	for (let i=0; i<count; i++) {
+      		var a = document.createElement('a');
+			var img = document.createElement('img');
+			img.src = "../media/piece" + (i%7+1) + ".svg";
+			img.alt = "Prog " + (i+1);
+			a.appendChild(img);
+			a.href = "freespace.html#" + (i+1);
+			a.className = "progLink";
+			prog.appendChild(a);
+      	}
+      }
+      
+      function toggleWorkspaces() {
+        var prog = document.getElementById("programs");
+        if (prog.style.display == "intiial") {
+          setTimeout(function(){
+      	    prog.style.display = "none";
+		  }, 100);
+        } else {
+	      setTimeout(function(){
+	        prog.style.display = "initial";
+		  }, 100);
+        }
+      }
+      
+      function loadWorkspace(number) {
+        if (live) {
+    	  var xml_text = Android.loadWorkspace(number);
+      	  var xml = Blockly.Xml.textToDom(xml_text);
+      	  Blockly.Xml.domToWorkspace(xml, workspace);
       	
-	    var code = Blockly.Popr.workspaceToCode(workspace); 
-	    Android.saveRule(code);
+	      var code = Blockly.Popr.workspaceToCode(workspace);
+	      Android.saveRule(code);
+	    } else {
+	      console.log("Loading program " + number);
+	    }
       }
     </script>
 	<link rel="stylesheet" type="text/css" href="index.css"> 
   </head>
 
-  <body onload="start()">
+  <body onload="populateNav()">
   <div>
-    <a href="#" onclick="addRobot()" class="navLink"><img src="../media/icons/add_robot.svg" alt="Robot"></a>
-	<a href="tutorial.html" class="navLink"><img src="../media/book.svg" alt="Story Tutorial"></a>
+	<a href="tutorial.jpg" class="navLink"><img src="../media/book.svg" alt="Story Tutorial"></a>
     <a href="freespace.html" class="navLink"><img src="../media/new.svg" alt="New Workspace"></a>
-    <a href="#" onclick="loadWorkspace()" class="navLink"><img src="../media/open.svg" alt="Load Workspace"></a>
+	    <a href="#" onclick="toggleWorkspaces()" class="navLink"><img src="../media/open.svg" alt="Load Workspace">
+			<div id="programs"></div>
+	    </a>
+    <a href="tega.html" class="navLink"><img src="../media/icons/tega_blue.svg" alt="New Workspace"></a>
   </div>
 	
   </body>

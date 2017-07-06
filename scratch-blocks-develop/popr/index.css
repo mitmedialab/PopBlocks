@@ -33,6 +33,13 @@ h1 {
   z-index:5000;
 }
 
+#programs {
+  display:none;
+}
+.progLink img {
+  height:75px;
+}
+
 .sidenav-down {
   -webkit-animation:animatedown 0.4s;
   animation:animatedown 0.4s
@@ -40,21 +47,17 @@ h1 {
 @-webkit-keyframes animatedown {
   from { 
     top:-300px;
-    opacity:0;
   }
   to { 
 	top:0;
-	opacity:1;
   }
 }	  
 @keyframes animatedown { 
   from { 
 	top:-300px;
-	opacity:0;
   }
   to { 
 	top:0;
-	opacity:1;
   }
 }
 
@@ -66,21 +69,17 @@ h1 {
 @-webkit-keyframes animateup {
   from {
 	top:0px;
-	opacity:1;
   }
   to {
 	top:-300px;
-	opacity:0;
   }
 } 
 @keyframes animateup { 
   from {
 	top:0px;
-	opacity:1;
   }
   to {
 	top:-300px;
-	opacity:0;
   }
 }
 

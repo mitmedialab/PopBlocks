@@ -16,7 +16,6 @@
     <script src="../popr_blocks/wedo.js"></script>
     <script src="../popr_blocks/malle.js"></script>
     <script src="../popr_blocks/default_toolbox.js"></script>
-    <!---<script src="../../file-saver/FileSaver.js"></script>-->
     <script>
 	  function toggleSidenav() {
         var nav = document.getElementById("sidenav");
@@ -38,7 +37,8 @@
       'use strict';
 
      var workspace = null;
-
+     var live = window.location.href.startsWith("http://"); // whether or not this is live or just on computer
+     
       function start() {
         // Setup blocks
         // Parse the URL arguments.
@@ -82,7 +82,13 @@
           }
       });
 		
+     // should look for # and take everything after
+     var number = parseFloat(window.location.href.slice(-1));
+     if (!isNaN(number)) {
+     	loadWorkspace(number);
+     }
 	  workspace.addChangeListener(updateFunction);
+	  populateNav();
       }
     
       function showAndroidToast(toast) {
@@ -91,16 +97,6 @@
 
       function sendCommand(command) {
         Android.sendCommand(command);
-      }
-
-      function saveTextRule() {
-        var c = document.getElementById("command").value;
-        saveRule(c);
-      }
-
-      function deleteTextRule() {
-        var c = document.getElementById("command").value;
-        deleteRule(c);
       }
 
       function saveRule(rule) {
@@ -117,18 +113,14 @@
         Android.deleteAllRules();
       }
       
-      function toXML() {
-      	var code = Blockly.Popr.workspaceToCode(workspace);
-      	Android.saveRule(code);
-      }
-      
       function saveWorkspace() {
       	var xml = Blockly.Xml.workspaceToDom(workspace);
       	var xml_text = Blockly.Xml.domToText(xml)
-		
-		//var file = new File([xml_text], "blocks.txt", {type: "text/plain;charset=utf-8"});
-		//saveAs(file);
-      	Android.saveWorkspace(xml_text);
+      	if (live) {
+	      Android.saveWorkspace(xml_text);
+	    } else {
+	      console.log(xml_text);
+	    }
       }
       
       function addWedo() {
@@ -139,17 +131,64 @@
       	Android.addRobot();
       }
       
-      function loadWorkspace() {
-      	var xml = Blockly.Xml.textToDom(xml_text);
-      	Blockly.Xml.domToWorkspace(xml, workspace);
+      function populateNav() {
+        var count;
+      	if (live) {
+      	  count = Android.numPrograms();
+      	} else {
+      	  count = 10; // 10;
+      	}
+      	var prog = document.getElementById("programs");
+      				  	
+      	for (let i=0; i<count; i++) {
+      		var a = document.createElement('a');
+			var img = document.createElement('img');
+			img.src = "../media/piece" + (i%7+1) + ".svg";
+			img.alt = "Prog " + (i+1);
+			a.appendChild(img);
+			a.href = "#";
+			a.onclick = function() { 
+				loadWorkspace(i+1); 
+		        toggleSidenav(); };
+			a.className = "progLink";
+			prog.appendChild(a);
+      	}
+      }
+      
+      function toggleWorkspaces() {
+        var prog = document.getElementById("programs");
+        if (prog.style.display == "initial") {
+          setTimeout(function(){
+      	    prog.style.display = "none";
+		  }, 100);
+        } else {
+	      setTimeout(function(){
+	        prog.style.display = "initial";
+		  }, 100);
+        }
+      }
+      function loadWorkspace(number) {
+        if (live) {
+    	  var xml_text = Android.loadWorkspace(number);
+      	  var xml = Blockly.Xml.textToDom(xml_text);
+      	  Blockly.Xml.domToWorkspace(xml, workspace);
       	
-	    var code = Blockly.Popr.workspaceToCode(workspace); 
-	    Android.saveRule(code);
+	      var code = Blockly.Popr.workspaceToCode(workspace);
+	      Android.saveRule(code);
+	    } else {
+	      console.log("Loading program " + number);
+	    }
       }
       
       function updateFunction(event) {
 	    var code = Blockly.Popr.workspaceToCode(workspace);
-	    //Android.log(Date.now() + "\t" + event.type + "\t" + event.element + "\t" + event.blockId + "\t" + event.newValue + "\t" + code + "\n");
+	    
+	    // Log event
+	    if (live) {
+		    Android.log(Date.now() + "\t" + event.type + "\t" + event.element + "\t" + event.newValue + "\t" + code + "\n");
+		}
+		
+		// Sort events into Android commands
         if (event.type == Blockly.Events.UI) {
           if (event.element == 'click' || event.element == 'toolboxclick') {
             var block = workspace.getBlockById(event.blockId);
@@ -158,29 +197,49 @@
   	  		  code += Blockly.Popr.blockToCode(block);
   	  		  block = block.getNextBlock();
   	  		}
-  	  		console.log(event.element + ' ' + code);
-            //Android.sendCommand(code);
+  	  		
+  	  		if (live) {
+	            Android.sendCommand(code);
+            } else {
+	  	  		console.log(event.element + ' ' + code);
+  	  		}
+  	  		
           } else if (event.element == 'categoryclick') {
-          	console.log(event.element + ' ' + event.oldValue + ' ' + event.newValue);
+          
+  	  		if (!live) {
+	          	console.log(event.element + ' ' + event.oldValue + ' ' + event.newValue);
+            }
           } else if (event.element == 'stop') {
-        	console.log(event.element);
-        	//Android.stopTrigger();
+        	if (live) {
+        		Android.stopTrigger();
+        	} else {
+        		console.log(event.element);	
+        	}
+        	
           } else if (event.element == 'play') {
-        	console.log(event.element);
-        	//Android.startTrigger();
+        	if (live) {
+	        	Android.startTrigger();
+        	} else {
+        		console.log(event.element);	
+        	}
           } else if (event.element == 'trashcan') {
-        	console.log(event.element);
-        	workspace.clear()
-        	//Android.deleteAllRules();
+        	workspace.clear();
+        	if (live) {
+	        	Android.deleteAllRules();
+        	} else {
+        		console.log(event.element);	
+        	}
           }
       } else if (event.type == Blockly.Events.RECORD) {
       	//console.log('record' + event.filename + '.wav');
       } else {
-  	      console.log(code);
-  	      //console.log(event);
-	      //Android.resetRules(code);
-	    }
+      	if (live) {
+	      Android.resetRules(code);
+       	} else {
+       		console.log(event.code);	
+       	}
       }
+    }
       
     </script>
 	<link rel="stylesheet" type="text/css" href="index.css"> 
@@ -188,14 +247,17 @@
 
   <body onload="start()">
     <nav class="sidenav-up" id="sidenav">
-      <div style="width:150px">
+      <div>
       	<a href="index.html" class="navLink"><img src="../media/icons/back.svg" alt="Back"></a>
 	    <a href="#" onclick="saveWorkspace()" class="navLink"><img src="../media/save.svg" alt="Save"></a>
+	    <a href="#" onclick="toggleWorkspaces()" class="navLink"><img src="../media/open.svg" alt="Load Workspace">
+			<div id="programs"></div>
+	    </a>
 	    <a href="#" onclick="addWedo()" class="navLink"><img src="../media/icons/wedo_add.svg" alt="Wedo"></a>
 	    <a href="#" onclick="addRobot()" class="navLink"><img src="../media/icons/add_robot.svg" alt="Robot"></a>
 	    <div class="menuButton" onclick="toggleSidenav()">&#x25B2;</div>
 	  </div>
-	</nav>
+	</nav>	
 	<div class="menuButton" onclick="toggleSidenav()">&#x25BC;</div>
     <div id="blocklyDiv"></div>
   </body>
