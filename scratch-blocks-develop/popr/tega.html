@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>TegaBlocks</title>
+
+    <script src="../blockly_uncompressed_vertical.js"></script>
+    <script src="../tega_uncompressed.js"></script>
+    <script src="../msg/messages.js"></script>
+    <script src="../blocks_common/math.js"></script>
+    <script src="../blocks_common/text.js"></script>
+    <script src="../popr_blocks/tega.js"></script>
+    <script src="../popr_blocks/tega_toolbox.js"></script> 
+    <script>
+	  function toggleSidenav() {
+        var nav = document.getElementById("sidenav");
+        if (nav.style.display == "block") {
+          nav.className = "sidenav-up";
+          setTimeout(function(){
+      	    nav.style.display = "none";
+		  }, 400);
+        } else {
+	      nav.className = "sidenav-down";
+	      setTimeout(function(){
+	        nav.style.display = "block";
+		  }, 400);
+        }
+	  } 
+    </script>
+    <script>
+      'use strict';
+
+     var workspace = null;
+
+      function start() {
+        // Setup blocks
+        // Parse the URL arguments.
+        workspace = Blockly.inject('blocklyDiv', {
+          comments: true,
+          disable: false,
+          collapse: false,
+          media: '../media/',
+          readOnly: false,
+          rtl: false,
+          scrollbars: true,
+          toolbox: null,
+          trashcan: true,
+          playControls: false,
+          horizontalLayout: false,
+          toolboxPosition: 'start',
+          sounds: true,
+          grid: {spacing: 55,
+            length: 2,
+            colour: '#FFF',
+            snap: true
+          },
+          zoom: {
+            controls: false,
+            wheel: true,
+            startScale: 1.1,
+            maxScale: 4,
+            minScale: 0.25,
+            scaleSpeed: 1.1
+          },
+          colours: {
+            workspace: '#334771',
+            toolbox: '#24324D',
+            flyout: '#283856',
+            scrollbar: '#24324D',
+            scrollbarHover: '#0C111A',
+            insertionMarker: '#FFFFFF',
+            insertionMarkerOpacity: 0.3,
+            fieldShadow: 'rgba(255, 255, 255, 0.3)',
+            dragShadowOpacity: 0.6
+          }
+      });
+		
+	  workspace.addChangeListener(updateFunction);
+      }
+
+      function sendCommand(command) {
+        Android.sendCommand(command);
+      }
+
+      function deleteAllRules() {
+      	workspace.clear()
+      }
+      
+      function toXML() {
+      	var code = Blockly.Tega.workspaceToCode(workspace);
+      	Android.saveRule(code);
+      }
+      
+      function saveWorkspace() {
+      	var xml = Blockly.Xml.workspaceToDom(workspace);
+      	var xml_text = Blockly.Xml.domToText(xml)
+      	console.log(xml_text);
+      	Android.saveWorkspace(xml_text);
+      }
+      
+      function loadWorkspace() {
+      	var xml = Blockly.Xml.textToDom(xml_text);
+      	Blockly.Xml.domToWorkspace(xml, workspace);
+      	
+	    var code = Blockly.Tega.workspaceToCode(workspace); 
+	    Android.saveRule(code);
+      }
+      
+      function updateFunction(event) {
+	    var code = Blockly.Tega.workspaceToCode(workspace);
+	    //Android.log(Date.now() + "\t" + event.type + "\t" + event.element + "\t" + event.blockId + "\t" + event.newValue + "\t" + code + "\n");
+        if (event.type == Blockly.Events.UI) {
+          if (event.element == 'click' || event.element == 'toolboxclick') {
+            var block = workspace.getBlockById(event.blockId);
+            var code = Blockly.Tega.blockToCode(block);
+  	  		console.log(event.element + ' ' + code);
+            Android.triggerCommand(code);
+          } else if (event.element == 'categoryclick') {
+          	console.log(event.element + ' ' + event.oldValue + ' ' + event.newValue);
+          } else if (event.element == 'stop') {
+        	console.log(event.element);
+        	//Android.stopTrigger();
+          } else if (event.element == 'play') {
+        	console.log(event.element);
+        	//Android.startTrigger();
+          } else if (event.element == 'trashcan') {
+        	console.log(event.element);
+        	workspace.clear()
+        	//Android.deleteAllRules();
+          }
+      } else if (event.type == Blockly.Events.RECORD) {
+      	//console.log('record' + event.filename + '.wav');
+      } else {
+  	      console.log(code);
+	    }
+      }
+      
+    </script>
+	<link rel="stylesheet" type="text/css" href="index.css"> 
+  </head>
+
+  <body onload="start()">
+    <nav class="sidenav-up" id="sidenav">
+      <div style="width:150px">
+      	<a href="index.html" class="navLink"><img src="../media/icons/back.svg" alt="Back"></a>
+      	<a href="#" class="navLink" onclick="saveWorkspace()"><img src="../media/save.svg" alt="Save"></a>
+	    <div class="menuButton" onclick="toggleSidenav()">&#x25B2;</div>
+	  </div>
+	</nav>
+	<div class="menuButton" onclick="toggleSidenav()">&#x25BC;</div>
+    <div id="blocklyDiv"></div>
+  </body>
+</html>
