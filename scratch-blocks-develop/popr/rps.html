@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>PopBlocks</title>
+
+    <script src="../blockly_uncompressed_horizontal.js"></script>
+    <script src="../popr_uncompressed.js"></script>
+    <script src="../msg/messages.js"></script>
+    <script src="../blocks_common/math.js"></script>
+    <script src="../blocks_common/text.js"></script>
+    <script src="../popr_blocks/control.js"></script>
+    <script src="../popr_blocks/event.js"></script>
+    <script src="../popr_blocks/wedo.js"></script>
+    <script src="../popr_blocks/malle.js"></script>
+    <script src="../popr_blocks/game.js"></script>
+    <script src="./rps.js"></script>
+    <script src="./index.js"></script>
+	<link rel="stylesheet" type="text/css" href="./index.css"> 
+  </head>
+
+  <body onload="start(); loadWorkspace('rps')">
+	<div class="stableNav">
+      	<a class="navRow" href="./index.html" onclick="saveWorkspace('rps')"><img src="../media/home.svg" alt="Home"></a>
+      	<a class="navRow" href="#" onclick="sendCommand('rps_rock')"><img src="../media/icons/rock.svg" alt="Rock"></a>
+      	<a class="navRow" href="#" onclick="sendCommand('rps_paper')"><img src="../media/icons/paper.svg" alt="Paper"></a>
+      	<a class="navRow" href="#" onclick="sendCommand('rps_scissors')"><img src="../media/icons/scissors.svg" alt="Scissors"></a>
+      	<a class="navRow" href="#" onclick="addWedo()"><img src="../media/icons/wedo.svg" alt="Wedo"></a>
+  	</div>
+    <div id="blocklyDiv" style="top:100px; height:90%"></div>
+    <div id="settings" style="width:100%;position:absolute;top:225px;margin:auto;background-color:#283856;display:none">
+	    <a class="navRow" href="#" onclick="setAIPolicy(0)"><img src="../media/icons/dice-5.svg" alt="Paper"></a>
+      	<a class="navRow" href="#" onclick="setAIPolicy(1)"><img src="../media/icons/learn.svg" alt="Scissors"></a>
+      	<a class="navRow" href="#" onclick="setAIPolicy(2)"><img src="../media/icons/genius.svg" alt="Wedo"></a>
+    </div>
+    
+  </body>
+</html>
