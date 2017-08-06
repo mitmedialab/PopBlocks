@@ -125,29 +125,60 @@ Blockly.Blocks['dropdown_malle_setcolor'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(new Blockly.FieldIconMenu([
-          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/malle/set-eyes-mystery.svg',
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/malle/set_eyes_mystery.svg',
               value: 'mystery', width: 48, height: 48, alt: 'Mystery'},
-          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/malle/set-eyes-yellow.svg',
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/malle/set_eyes_yellow.svg',
               value: 'yellow', width: 48, height: 48, alt: 'Yellow'},
-          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/malle/set-eyes-orange.svg',
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/malle/set_eyes_orange.svg',
             value: 'orange', width: 48, height: 48, alt: 'Orange'},
-          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/malle/set-eyes-red.svg',
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/malle/set_eyes_red.svg',
             value: 'red', width: 48, height: 48, alt: 'Red'},
-          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/malle/set-eyes-pink.svg',
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/malle/set_eyes_pink.svg',
             value: 'pink', width: 48, height: 48, alt: 'Pink'},
-          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/malle/set-eyes-purple.svg',
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/malle/set_eyes_purple.svg',
             value: 'purple', width: 48, height: 48, alt: 'Purple'},
-          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/malle/set-eyes-blue.svg',
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/malle/set_eyes_blue.svg',
             value: 'blue', width: 48, height: 48, alt: 'Blue'},
-          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/malle/set-eyes-green.svg',
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/malle/set_eyes_green.svg',
             value: 'green', width: 48, height: 48, alt: 'Green'},
-          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/malle/set-eyes-white.svg',
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/malle/set_eyes_white.svg',
               value: 'white', width: 48, height: 48, alt: 'White'}
         ]), 'CHOICE');
     this.setOutput(true);
     this.setColour(Blockly.Colours.looks.primary,
       Blockly.Colours.looks.secondary,
       Blockly.Colours.looks.tertiary
+    );
+  }
+};
+
+Blockly.Blocks['dropdown_malle_setnote'] = {
+  /**
+   * Block for set color drop-down (used for shadow).
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldIconMenu([
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/note_c.svg',
+              value: '4', width: 48, height: 48, alt: 'C'},
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/note_d.svg',
+              value: '5', width: 48, height: 48, alt: 'D'},
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/note_e.svg',
+              value: '6', width: 48, height: 48, alt: 'E'},
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/note_f.svg',
+              value: '7', width: 48, height: 48, alt: 'F'},
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/note_g.svg',
+              value: '1', width: 48, height: 48, alt: 'G'},
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/note_a.svg',
+              value: '2', width: 48, height: 48, alt: 'A'},
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/note_b.svg',
+              value: '3', width: 48, height: 48, alt: 'B'}
+        ]), 'CHOICE');
+    this.setOutput(true);
+    this.setColour(Blockly.Colours.sounds.primary,
+      Blockly.Colours.sounds.secondary,
+      Blockly.Colours.sounds.tertiary
     );
   }
 };
@@ -227,6 +258,39 @@ Blockly.Blocks['malle_record'] = {
       "previousStatement": null,
       "nextStatement": null,
       "category": Blockly.Categories.sounds,
+      "colour": Blockly.Colours.sounds.primary,
+      "colourSecondary": Blockly.Colours.sounds.secondary,
+      "colourTertiary": Blockly.Colours.sounds.tertiary
+    });
+  }
+};
+
+Blockly.Blocks['malle_playnote'] = {
+  /**
+   * Block to have malle play piano note
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.jsonInit({
+      "id": "malle_playnote",
+      "message0": "%1 %2",
+      "args0": [
+        {
+          "type": "field_image",
+          "src": Blockly.mainWorkspace.options.pathToMedia + "icons/set-note_c.svg",
+          "width": 40,
+          "height": 40,
+          "alt": "Malle play note"
+        },
+        {
+          "type": "input_value",
+          "name": "CHOICE"
+        }
+      ],
+      "inputsInline": true,
+      "previousStatement": null,
+      "nextStatement": null,
+      "category": Blockly.Categories.soudns,
       "colour": Blockly.Colours.sounds.primary,
       "colourSecondary": Blockly.Colours.sounds.secondary,
       "colourTertiary": Blockly.Colours.sounds.tertiary

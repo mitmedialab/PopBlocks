@@ -10,14 +10,27 @@ body {
   margin:0;
 }
 
+.blocklySvg {
+  /*background: url("castle.png"); !important
+  background-size:100px; !important*/
+}
+
 h1 {
   font-weight: normal;
   font-size: 140%;
 }
 
+.credits {
+  color:#fff;
+}
+
+.credits a {
+  color:#fff;
+}
+
 #blocklyDiv {
-  height: 100%;
   width: 100%;
+  height: 95%;
   position:fixed;
   top:30px;
 }
@@ -35,6 +48,9 @@ h1 {
 
 #programs {
   display:none;
+}
+.progLink {
+  text-align:center;
 }
 .progLink img {
   height:75px;
@@ -95,6 +111,21 @@ h1 {
 .navLink img {
   height:75px;
   margin-top:12px;
+}
+
+.stableNav {
+  display:table;
+  width:100%;
+}
+.navRow {
+  height:100%;
+  display:table-cell;
+  text-align:center;
+  border:1px solid #334771;
+}
+.navRow img {
+  height:75px;
+  margin:12px;
 }
 
 .menuButton {

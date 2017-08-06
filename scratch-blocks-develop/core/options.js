@@ -41,6 +41,7 @@ Blockly.Options = function(options) {
     var languageTree = null;
     var hasCategories = false;
     var hasTrashcan = false;
+    var hasSettings = false;
     var hasPlayControls = false;
     var hasCollapse = false;
     var hasComments = false;
@@ -58,6 +59,10 @@ Blockly.Options = function(options) {
     var hasTrashcan = options['trashcan'];
     if (hasTrashcan === undefined) {
       hasTrashcan = hasCategories;
+    }
+    var hasSettings = options['settings'];
+    if (hasSettings === undefined) {
+    	hasSettings = false;
     }
     var hasPlayControls = options['playControls'];
     if (hasPlayControls === undefined) {
@@ -147,6 +152,7 @@ Blockly.Options = function(options) {
   this.hasCategories = hasCategories;
   this.hasScrollbars = hasScrollbars;
   this.hasTrashcan = hasTrashcan;
+  this.hasSettings = hasSettings;
   this.hasPlayControls = hasPlayControls;
   this.hasSounds = hasSounds;
   this.hasCss = hasCss;

@@ -36,6 +36,7 @@ goog.require('Blockly.Events');
 //goog.require('Blockly.HorizontalFlyout');
 goog.require('Blockly.Options');
 goog.require('Blockly.PlayControls');
+goog.require('Blockly.Settings');
 goog.require('Blockly.ScrollbarPair');
 goog.require('Blockly.Touch');
 goog.require('Blockly.Trashcan');
@@ -180,6 +181,12 @@ Blockly.WorkspaceSvg.prototype.trashcan = null;
 Blockly.WorkspaceSvg.prototype.playControls = null;
 
 /**
+ * The workspace's settings (if any).
+ * @type {Blockly.Settings}
+ */
+Blockly.WorkspaceSvg.prototype.settings = null;
+
+/**
  * This workspace's scrollbars, if they exist.
  * @type {Blockly.ScrollbarPair}
  */
@@ -306,6 +313,9 @@ Blockly.WorkspaceSvg.prototype.createDom = function(opt_backgroundClass) {
   if (this.options.zoomOptions && this.options.zoomOptions.controls) {
     bottom = this.addZoomControls_(bottom);
   }
+  if (this.options.hasSettings) {
+  	bottom = this.addSettings_(bottom);
+  }
   if (this.options.hasPlayControls) {
   	bottom = this.addPlayControls_(bottom);
   }
@@ -361,6 +371,10 @@ Blockly.WorkspaceSvg.prototype.dispose = function() {
   if (this.flyout_) {
     this.flyout_.dispose();
     this.flyout_ = null;
+  }
+  if (this.settings) {
+  	this.settings.dispose();
+  	this.settings = null;
   }
   if (this.trashcan) {
     this.trashcan.dispose();
@@ -427,6 +441,20 @@ Blockly.WorkspaceSvg.prototype.addPlayControls_ = function(bottom) {
   var svgPlayControls = this.playControls.createDom();
   this.svgGroup_.insertBefore(svgPlayControls, this.svgBlockCanvas_);
   return this.playControls.init(bottom);
+};
+
+/**
+ * Add settings.
+ * @param {number} bottom Distance from workspace bottom to bottom of settings.
+ * @return {number} Distance from workspace bottom to the top of settings.
+ * @private
+ */
+Blockly.WorkspaceSvg.prototype.addSettings_ = function(bottom) {
+  /** @type {Blockly.Settings} */
+  this.settings = new Blockly.Settings(this);
+  var svgSettings = this.settings.createDom();
+  this.svgGroup_.insertBefore(svgSettings, this.svgBlockCanvas_);
+  return this.settings.init(bottom);
 };
 
 /**
@@ -514,6 +542,9 @@ Blockly.WorkspaceSvg.prototype.resize = function() {
   }
   if (this.playControls) {
   	this.playControls.position();
+  }
+  if (this.settings) {
+  	this.settings.position();
   }
   if (this.zoomControls_) {
     this.zoomControls_.position();

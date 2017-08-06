@@ -15,8 +15,18 @@ Once you have the code, point your browser at <code>popr/index.html</code> and v
 
 <h1>Extensions to Scratch Blocks</h1>
 <ol>
-<li>Added toolbox click event</li>
+<li>Added toolbox click event -- broke</li>
 <li>Added play and stop controls to workspace</li>
 <li>Added sounds and looks categories</li>
 <li>Added logging of interactions with the toolbox, workspace, and flyout</li>
+</ol>
+
+<h1>Making a New Toolbox Category</h1>
+<ol>
+	<li>Make a new file in ./scratch-blocks-develop/popr_blocks, for example text.js</li>
+	<li>Refer to the structure of the other files in the block to create blocks (insert example)</li>
+	<li>In ./scratch-blocks-develop/popr_blocks/default_toolbox.xml, add a new category (insert example)</li>
+	<li>Within the category, add blocks (insert example)</li>
+	<li>In your index file (e.g. ./scratch-blocks-develop/popr/index.html) add the js file, test.js to the list of javascript sources</li>
+	<li>Point your browser to your index file and confirm that the new category and blocks appear</li>
 </ol>

@@ -114,7 +114,16 @@ Blockly.Popr.wedo_playnote = function(block) {
   }
   return block.type + "_" + value + " ";
 }
-Blockly.Popr.malle_record = function(block) {9
+Blockly.Popr.malle_playnote = function(block) {
+  var value;
+  for (var i = 0, child; child = block.getChildren()[i]; i++) {
+    if (child.getField("CHOICE") != null) {
+	  value = child.getField("CHOICE").getValue();
+	}
+  }
+  return block.type + "_" + value + " ";
+}
+Blockly.Popr.malle_record = function(block) {
   var value;
   for (var i = 0, child; child = block.getChildren()[i]; i++) {
     if (child.getField("CHOICE") != null) {
@@ -209,4 +218,14 @@ Blockly.Popr.control_sametime = function(block) {
     child = child.getNextBlock();
   }
   return code + "end_" + block.type + " ";
+}
+/* Game */
+Blockly.Popr.event_whenwin = function(block) {
+  return block.type + " ";
+}
+Blockly.Popr.event_whenlose = function(block) {
+    return block.type + " ";
+}
+Blockly.Popr.event_whentie = function(block) {
+    return block.type + " ";
 }
