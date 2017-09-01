@@ -54,3 +54,12 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
     '</xml>' + // Close XML
     '<xml id="toolbox-simple" style="display: none">' +
     '</xml>';
+
+function playAudio() {
+	var text = "I've arrived at the castle party! Now, I'm ready to dance. Can you teach me how?";
+	if (live) {
+		Android.generateSpeech(text);
+		} else {
+		console.log(text);
+		}
+}

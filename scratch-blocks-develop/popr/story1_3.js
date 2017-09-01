@@ -48,3 +48,12 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
     '</xml>' + // Close XML
     '<xml id="toolbox-simple" style="display: none">' +
     '</xml>';
+
+function playAudio() {
+	var text = "I need to get all dressed up for the party. You can change the color of my eyes and light";
+	if (live) {
+		Android.generateSpeech(text);
+		} else {
+		console.log(text);
+		}
+}

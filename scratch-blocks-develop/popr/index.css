@@ -117,17 +117,50 @@ h1 {
   display:table;
   width:100%;
 }
+.indexNav {
+	width:50%;
+}
 .navRow {
   height:100%;
   display:table-cell;
   text-align:center;
   border:1px solid #334771;
 }
+.popupRow {
+  height:100%;
+  font-size:90px;
+  color:white;
+  text-decoration:none;
+  width:33%;
+  display:table-cell;
+  text-align:center;
+  border-radius:25px;
+}
+.popupRow4 {
+  height:100%;
+  font-size:90px;
+  color:white;
+  text-decoration:none;
+  width:25%;
+  display:table-cell;
+  text-align:center;
+  border-radius:25px;
+}
+.selected {
+	background-color:#334771;
+}
 .navRow img {
   height:75px;
   margin:12px;
 }
-
+.popupRow img {
+  height:75px;
+  margin:12px;
+}
+.popupRow4 img {
+  height:75px;
+  margin:12px;
+}
 .menuButton {
   color:#fff;
   width:100%;
@@ -141,4 +174,48 @@ h1 {
 
 div.menuButton:active, div.menuButton:hover{
   background-color: #334771;
+}
+.settings {
+  width:90%;
+  position:absolute;
+  top:200px;
+  display:none;
+  margin-left:5%;
+}
+.settingsRow {
+  display:table;
+  width:100%;
+  border:2px solid #24324D;
+  border-radius:25px;
+  background-color:#283856;
+}
+
+
+
+
+// Range Slider
+$range-handle-color: $shade-10 !default;
+$range-handle-color-hover: $teal !default;
+
+
+.range-slider {
+  width: 90%;
+}
+.range-slider__range {
+  -webkit-appearance: none;
+  width: 90%;
+  height: 10px;
+  border-radius: 5px;
+  background:#334771;
+  outline: none;
+  padding: 0;
+  margin: 20px 5%;
+}
+.range-slider__range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: none;
+  height: 20px;
+width: 20px;
+border-radius: 50%;
+background:#ffffff;
 }

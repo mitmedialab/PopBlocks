@@ -67,12 +67,42 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
     '<xml id="toolbox-simple" style="display: none">' +
     '</xml>';
     
- function setAIPolicy(policy) {
- 	if (live) {
-	 	Android.setAIPolicy(policy);
-	 } else {
-	 	console.log(policy);
-	 }
- 	document.getElementById('settings').style.display = 'none';
- 	
- }
+function selectMove(select) {
+	var moves = document.getElementsByClassName('move');
+	for (var i=0; i < moves.length; i++) {
+		moves[i].className = 'move popupRow';
+	}
+	var element = document.getElementById(select);
+	element.className += ' selected';
+	if (live)
+		sendCommand('rps_' + select);
+}
+
+function selectResult(select) {
+	var results = document.getElementsByClassName('result');
+	for (var i=0; i < results.length; i++) {
+		results[i].className = 'result popupRow';
+	}
+	var element = document.getElementById(select);
+	element.className += ' selected';
+	if (live)
+		sendCommand('rps_' + select);
+}
+
+function clearSelections() {
+	var moves = document.getElementsByClassName('move');
+	for (var i=0; i < moves.length; i++) {
+		moves[i].className = 'move popupRow';
+	}
+	
+	var results = document.getElementsByClassName('result');
+	for (var i=0; i < results.length; i++) {
+		results[i].className = 'result popupRow';
+	}
+}
+
+function playAgain() {
+	clearSelections();
+	if (live)
+		sendCommand('rps_play');
+}

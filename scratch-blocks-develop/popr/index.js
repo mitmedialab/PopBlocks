@@ -18,6 +18,15 @@ nav.style.display = "block";
 }
 }
 
+function toggleSettings() {
+var nav = document.getElementById("settings");
+if (nav.style.display == "block") {
+nav.style.display = "none";
+} else {
+nav.style.display = "block";
+}
+}
+
 function injectWorkspace() {
 // Parse the URL arguments.
 workspace = Blockly.inject('blocklyDiv', {
@@ -27,11 +36,11 @@ collapse: false,
 media: '../media/',
 readOnly: false,
 rtl: false,
-scrollbars: false,
+scrollbars: true,
 toolbox: null,
 trashcan: true,
 playControls: true,
-settings: true,
+settings: false,
 horizontalLayout: true,
 toolboxPosition: 'start',
 sounds: true,
@@ -107,7 +116,7 @@ dragShadowOpacity: 0.6
 
 function start() {
 // Setup blocks
-if (window.location.href.search("rps") == -1)
+if (window.location.href.search("rps") == -1 & window.location.href.search("music") == -1)
 	injectWorkspace();
 else 
 	alternateWorkspace();
@@ -246,6 +255,7 @@ var block = workspace.getBlockById(event.blockId);
 var code = "";
 while (block != null) {
 code += Blockly.Popr.blockToCode(block);
+console.log(block);
 block = block.getNextBlock();
 }
 
@@ -275,11 +285,7 @@ console.log(event.element);
 }
 } else if (event.element == 'settings') {
 var settings = document.getElementById('settings');
-if (settings.style.display == 'table') {
-settings.style.display = 'none';
-} else {
-settings.style.display = 'table';
-}
+toggleSettings();
 if (!live) {
 console.log(event.element);
 }

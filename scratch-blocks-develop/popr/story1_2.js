@@ -35,3 +35,12 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
     '</xml>' + // Close XML
     '<xml id="toolbox-simple" style="display: none">' +
     '</xml>';
+
+function playAudio() {
+	var text = "I was invited to a party at the castle! Can you make me get excited and sing a song?";
+	if (live) {
+		Android.generateSpeech(text);
+		} else {
+		console.log(text);
+		}
+}

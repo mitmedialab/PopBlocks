@@ -30,13 +30,33 @@ goog.require('Blockly.Blocks');
 
 Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: none">' +
     '<block type="event_whenflagclicked"></block>' +
-    '<block type="malle_hi"></block>' +
+    '<block type="wedo_motor1clockwise"></block>' +
+    '<block type="wedo_motor1counterclockwise"></block>' +
+    '<block type="wedo_motor1stop"></block>' +
+    '<block type="wedo_motor2clockwise"></block>' +
+    '<block type="wedo_motor2counterclockwise"></block>' +
+    '<block type="wedo_motor2stop"></block>' +
+    '<block type="control_wait">' +
+    	'<value name="DURATION">' +
+    		'<shadow type="dropdown_control_number">' +
+    		'<field name="NUM">1</field>' +
+    		'</shadow>' +
+    	'</value>' +
+    '</block>' +
+    '<block type="control_forever"></block>' +
+    '<block type="control_repeat">' +
+	    '<value name="CHOICE">' +
+		    '<shadow type="dropdown_control_number">' +
+		    '<field name="NUM">4</field>' +
+    		'</shadow>' +
+    	'</value>' +
+    '</block>' +
     '</xml>' + // Close XML
     '<xml id="toolbox-simple" style="display: none">' +
     '</xml>';
 
 function playAudio() {
-	var text = "Hi there. Can you teach me to say my name? Try dragging a block to the screen.";
+	var text = "I am all ready for the race. Now show me how to drive around.";
 	if (live) {
 		Android.generateSpeech(text);
 		} else {

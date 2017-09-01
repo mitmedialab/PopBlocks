@@ -30,13 +30,27 @@ goog.require('Blockly.Blocks');
 
 Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: none">' +
     '<block type="event_whenflagclicked"></block>' +
-    '<block type="malle_hi"></block>' +
+    '<block type="event_whentouched"></block>' +
+    '<block type="malle_setcolor">' +
+        '<value name="CHOICE">' +
+        '<shadow type="dropdown_malle_setcolor">' +
+        '<field name="CHOICE">mystery</field>' +
+        '</shadow>' +
+        '</value>' +
+    '</block>' +
+    '<block type="wedo_setcolor">' +
+        '<value name="CHOICE">' +
+        '<shadow type="dropdown_wedo_setcolor">' +
+        '<field name="CHOICE">mystery</field>' +
+        '</shadow>' +
+        '</value>' +
+        '</block>' +
     '</xml>' + // Close XML
     '<xml id="toolbox-simple" style="display: none">' +
     '</xml>';
 
 function playAudio() {
-	var text = "Hi there. Can you teach me to say my name? Try dragging a block to the screen.";
+	var text = "I need to get ready for the race. Can you make me look like a cool car?";
 	if (live) {
 		Android.generateSpeech(text);
 		} else {

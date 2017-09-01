@@ -30,13 +30,14 @@ goog.require('Blockly.Blocks');
 
 Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: none">' +
     '<block type="event_whenflagclicked"></block>' +
-    '<block type="malle_hi"></block>' +
+    '<block type="malle_happywiggle"></block>' +
+    '<block type="malle_excited"></block>' +
     '</xml>' + // Close XML
     '<xml id="toolbox-simple" style="display: none">' +
     '</xml>';
 
 function playAudio() {
-	var text = "Hi there. Can you teach me to say my name? Try dragging a block to the screen.";
+	var text = "I was invited to a big race today! Can you program me to be excited and sing a song?";
 	if (live) {
 		Android.generateSpeech(text);
 		} else {
