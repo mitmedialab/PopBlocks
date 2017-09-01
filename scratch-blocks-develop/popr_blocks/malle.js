@@ -37,7 +37,7 @@ Blockly.Blocks['event_whentouched'] = {
    */
   init: function() {
     this.jsonInit({
-      "id": "event_whentouched",
+      "id": "ezz",
       "message0": "%1",
       "args0": [
         {
@@ -160,20 +160,22 @@ Blockly.Blocks['dropdown_malle_setnote'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(new Blockly.FieldIconMenu([
-          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/note_c.svg',
-              value: '4', width: 48, height: 48, alt: 'C'},
-          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/note_d.svg',
-              value: '5', width: 48, height: 48, alt: 'D'},
-          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/note_e.svg',
-              value: '6', width: 48, height: 48, alt: 'E'},
-          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/note_f.svg',
-              value: '7', width: 48, height: 48, alt: 'F'},
-          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/note_g.svg',
-              value: '1', width: 48, height: 48, alt: 'G'},
           {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/note_a.svg',
-              value: '2', width: 48, height: 48, alt: 'A'},
+              value: '1', width: 48, height: 48, alt: 'A'},
           {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/note_b.svg',
-              value: '3', width: 48, height: 48, alt: 'B'}
+              value: '2', width: 48, height: 48, alt: 'B'},
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/note_c.svg',
+              value: '3', width: 48, height: 48, alt: 'C'},
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/note_d.svg',
+              value: '4', width: 48, height: 48, alt: 'D'},
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/note_e.svg',
+              value: '5', width: 48, height: 48, alt: 'E'},
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/note_fis.svg',
+              value: '6', width: 48, height: 48, alt: 'F'},
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/note_g.svg',
+              value: '7', width: 48, height: 48, alt: 'G'},
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/note_gis.svg',
+              value: '8', width: 48, height: 48, alt: 'Ais'}
         ]), 'CHOICE');
     this.setOutput(true);
     this.setColour(Blockly.Colours.sounds.primary,
@@ -183,11 +185,11 @@ Blockly.Blocks['dropdown_malle_setnote'] = {
   }
 };
 
-Blockly.Blocks['dropdown_malle_setaudio'] = {
+/*Blockly.Blocks['dropdown_malle_setaudio'] = {
   /**
    * Block for set color drop-down (used for shadow).
    * @this Blockly.Block
-   */
+   
   init: function() {
     this.appendDummyInput()
         .appendField(new Blockly.FieldIconMenu3([]), 'CHOICE');
@@ -196,6 +198,38 @@ Blockly.Blocks['dropdown_malle_setaudio'] = {
       Blockly.Colours.sounds.secondary,
       Blockly.Colours.sounds.tertiary
     );
+  }
+};*/
+
+Blockly.Blocks['dropdown_malle_setaudio'] = {
+  /**
+   * Block for set color drop-down (used for shadow).
+   * @this Blockly.Block
+   */
+  init: function() {
+   this.appendDummyInput()
+        .appendField(new Blockly.FieldIconMenu([
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/mic1.svg',
+              value: 'red', width: 48, height: 48, alt: 'mic1'},
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/mic2.svg',
+              value: 'orange', width: 48, height: 48, alt: 'mic2'},
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/mic3.svg',
+              value: 'yellow', width: 48, height: 48, alt: 'mic3'},
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/mic5.svg',
+              value: 'green', width: 48, height: 48, alt: 'mic5'},
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/mic6.svg',
+              value: 'teal', width: 48, height: 48, alt: 'mic6'},
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/mic7.svg',
+              value: 'blue', width: 48, height: 48, alt: 'mic7'},
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/mic8.svg',
+              value: 'purple', width: 48, height: 48, alt: 'mic8'},
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/mic9.svg',
+              value: 'pink', width: 48, height: 48, alt: 'mic9'}
+        ]), 'CHOICE');
+    this.setOutput(true);
+    this.setColour(Blockly.Colours.sounds.primary,
+      Blockly.Colours.sounds.secondary,
+      Blockly.Colours.sounds.tertiary);
   }
 };
 
