@@ -126,7 +126,7 @@ Blockly.Blocks['dropdown_wedo_number'] = {
             value: '5', width: 48, height: 48, alt: '5'},
           {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/dice-6.svg',
             value: '6', width: 48, height: 48, alt: '6'},
-        ]), 'NUM');
+        ]), 'CHOICE');
     this.setOutput(true);
     this.setColour(Blockly.Colours.motion.primary,
       Blockly.Colours.motion.secondary,
@@ -197,6 +197,138 @@ Blockly.Blocks['wedo_playnote'] = {
       "colour": Blockly.Colours.sounds.primary,
       "colourSecondary": Blockly.Colours.sounds.secondary,
       "colourTertiary": Blockly.Colours.sounds.tertiary
+    });
+  }
+};
+
+Blockly.Blocks['wedo_motorforward'] = {
+  /**
+   * Block to move motor forward for a duration
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.jsonInit({
+      "id": "wedo_motorforward",
+      "message0": "%1 %2",
+      "args0": [
+        {
+          "type": "field_image",
+          "src": Blockly.mainWorkspace.options.pathToMedia + "icons/forward.svg",
+          "width": 40,
+          "height": 40,
+          "alt": "Wedo Motor Forward"
+        },
+        {
+          "type": "input_value",
+          "name": "CHOICE"
+        }
+      ],
+      "inputsInline": true,
+      "previousStatement": null,
+      "nextStatement": null,
+      "category": Blockly.Categories.motion,
+      "colour": Blockly.Colours.motion.primary,
+      "colourSecondary": Blockly.Colours.motion.secondary,
+      "colourTertiary": Blockly.Colours.motion.tertiary
+    });
+  }
+};
+
+Blockly.Blocks['wedo_motorbackward'] = {
+  /**
+   * Block to move motor backward for a duration
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.jsonInit({
+      "id": "wedo_motorbackward",
+      "message0": "%1 %2",
+      "args0": [
+        {
+          "type": "field_image",
+          "src": Blockly.mainWorkspace.options.pathToMedia + "icons/backward.svg",
+          "width": 40,
+          "height": 40,
+          "alt": "Wedo Motor Backward"
+        },
+        {
+          "type": "input_value",
+          "name": "CHOICE"
+        }
+      ],
+      "inputsInline": true,
+      "previousStatement": null,
+      "nextStatement": null,
+      "category": Blockly.Categories.motion,
+      "colour": Blockly.Colours.motion.primary,
+      "colourSecondary": Blockly.Colours.motion.secondary,
+      "colourTertiary": Blockly.Colours.motion.tertiary
+    });
+  }
+};
+
+Blockly.Blocks['wedo_motorleft'] = {
+  /**
+   * Block to move motors left for a duration
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.jsonInit({
+      "id": "wedo_motorleft",
+      "message0": "%1 %2",
+      "args0": [
+        {
+          "type": "field_image",
+          "src": Blockly.mainWorkspace.options.pathToMedia + "icons/left.svg",
+          "width": 40,
+          "height": 40,
+          "alt": "Wedo Motor Left"
+        },
+        {
+          "type": "input_value",
+          "name": "CHOICE"
+        }
+      ],
+      "inputsInline": true,
+      "previousStatement": null,
+      "nextStatement": null,
+      "category": Blockly.Categories.motion,
+      "colour": Blockly.Colours.motion.primary,
+      "colourSecondary": Blockly.Colours.motion.secondary,
+      "colourTertiary": Blockly.Colours.motion.tertiary
+    });
+  }
+};
+
+Blockly.Blocks['wedo_motorright'] = {
+  /**
+   * Block to move motors right for a duration
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.jsonInit({
+      "id": "wedo_motorright",
+      "message0": "%1 %2",
+      "args0": [
+        {
+          "type": "field_image",
+          "src": Blockly.mainWorkspace.options.pathToMedia + "icons/right.svg",
+          "width": 40,
+          "height": 40,
+          "alt": "Wedo Motor Right"
+        },
+        {
+          "type": "input_value",
+          "name": "CHOICE"
+        }
+      ],
+      "inputsInline": true,
+      "previousStatement": null,
+      "nextStatement": null,
+      "category": Blockly.Categories.motion,
+      "colour": Blockly.Colours.motion.primary,
+      "colourSecondary": Blockly.Colours.motion.secondary,
+      "colourTertiary": Blockly.Colours.motion.tertiary
     });
   }
 };

@@ -46,9 +46,6 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
         '</shadow>' +
         '</value>' +
     '</block>' +
-    '<block type="wedo_motor1clockwise"></block>' +
-    '<block type="wedo_motor1counterclockwise"></block>' +
-    '<block type="wedo_motor1stop"></block>' +
     '<block type="malle_excited"></block>' +
     '<block type="malle_sad"></block>' +
     '<block type="malle_interested"></block>' +

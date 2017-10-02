@@ -189,7 +189,14 @@ div.menuButton:active, div.menuButton:hover{
   border-radius:25px;
   background-color:#283856;
 }
-
+#loading {
+	display:none;
+	position:absolute;
+	margin:200px auto;
+	width:100px;
+	left:0;
+	right:0;
+}
 
 
 

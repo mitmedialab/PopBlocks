@@ -109,7 +109,7 @@ Blockly.Settings.prototype.createDom = function() {
        'height': this.HEIGHT_, 'y': 0},
       this.svgGroup_);
   settingsSvg.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href',
-      workspace.options.pathToMedia + "settings.svg");
+      workspace.options.pathToMedia + "icons/play.svg");
 	this.svgGroup_.style.opacity = 0.8;
  
 

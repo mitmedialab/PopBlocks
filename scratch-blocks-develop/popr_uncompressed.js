@@ -110,6 +110,46 @@ Blockly.Popr.wedo_motor2counterclockwise = function(block) {
 Blockly.Popr.wedo_motor2stop = function(block) {
   return "w09 ";
 }
+Blockly.Popr.wedo_motorforward = function(block) {
+  var value;
+  for (var i = 0, child; child = block.getChildren()[i]; i++) {
+    if (child.getField("CHOICE") != null) {
+	  value = child.getField("CHOICE").getValue();
+	}
+  }
+  // w11 motor1cc w12 motor2c
+  return "w11_" + value + " w12_" + value + " ";
+}
+Blockly.Popr.wedo_motorbackward = function(block) {
+  var value;
+  for (var i = 0, child; child = block.getChildren()[i]; i++) {
+    if (child.getField("CHOICE") != null) {
+	  value = child.getField("CHOICE").getValue();
+	}
+  }
+  // w10 motor1c w13 motor2cc
+  return "w10_" + value + " w13_" + value + " ";
+}
+Blockly.Popr.wedo_motorleft = function(block) {
+  var value;
+  for (var i = 0, child; child = block.getChildren()[i]; i++) {
+    if (child.getField("CHOICE") != null) {
+	  value = child.getField("CHOICE").getValue();
+	}
+  }
+  // w11 motor1cc w13 motor2cc
+  return "w11_" + value + " w13_" + value + " ";
+}
+Blockly.Popr.wedo_motorright = function(block) {
+  var value;
+  for (var i = 0, child; child = block.getChildren()[i]; i++) {
+    if (child.getField("CHOICE") != null) {
+	  value = child.getField("CHOICE").getValue();
+	}
+  }
+  // w10 motor1c w12 motor2c
+  return "w10_" + value + " w12_" + value + " ";
+}
 /* Sound blocks */
 Blockly.Popr.wedo_playnote = function(block) {
   var value;
@@ -117,8 +157,8 @@ Blockly.Popr.wedo_playnote = function(block) {
     if (child.getField("CHOICE") != null) {
 	  value = child.getField("CHOICE").getValue();
 	}
-  }
-  return "w14_" + value + " ";
+  } // w14 too quiet
+  return "u01_" + value + "+200 ";
 }
 Blockly.Popr.malle_playnote = function(block) {
   var value;

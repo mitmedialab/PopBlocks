@@ -30,12 +30,40 @@ goog.require('Blockly.Blocks');
 
 Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: none">' +
     '<block type="event_whenflagclicked"></block>' +
-    '<block type="wedo_motor1clockwise"></block>' +
+    '<!--<block type="wedo_motor1clockwise"></block>' +
     '<block type="wedo_motor1counterclockwise"></block>' +
     '<block type="wedo_motor1stop"></block>' +
     '<block type="wedo_motor2clockwise"></block>' +
     '<block type="wedo_motor2counterclockwise"></block>' +
-    '<block type="wedo_motor2stop"></block>' +
+    '<block type="wedo_motor2stop"></block>-->' +
+    '<block type="wedo_motorforward">' + 
+	'<value name="CHOICE">' +
+    '<shadow type="dropdown_wedo_number">' +
+    '<field name="NUM">1</field>' +
+    '</shadow>' +
+    '</value>' +
+    '</block>' +
+    '<block type="wedo_motorbackward">' + 
+	'<value name="CHOICE">' +
+    '<shadow type="dropdown_wedo_number">' +
+    '<field name="NUM">1</field>' +
+    '</shadow>' +
+    '</value>' +
+    '</block>' +
+    '<block type="wedo_motorleft">' + 
+	'<value name="CHOICE">' +
+    '<shadow type="dropdown_wedo_number">' +
+    '<field name="NUM">1</field>' +
+    '</shadow>' +
+    '</value>' +
+    '</block>' +
+    '<block type="wedo_motorright">' + 
+	'<value name="CHOICE">' +
+    '<shadow type="dropdown_wedo_number">' +
+    '<field name="NUM">1</field>' +
+    '</shadow>' +
+    '</value>' +
+    '</block>' +
     '<block type="control_wait">' +
     	'<value name="DURATION">' +
     		'<shadow type="dropdown_control_number">' +

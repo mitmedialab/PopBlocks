@@ -29,12 +29,10 @@ goog.require('Blockly.Blocks');
  */
 
 Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: none">' +
-    '<block type="event_whenflagclicked"></block>' +
-    '<category name="Events" colour="#FFBF00" secondaryColour="#E6AC00" icon="../media/icons/event_whenflagclicked.svg">' +
-        '<block type="event_whenflagclicked"></block>' +
-        '<block type="event_whentouched"></block>' +
-        '<block type="event_whenlight"></block>' +
-        '<block type="event_whenheard"></block>' +
+    '<category name="Expressions" colour="#FF6680" secondaryColour="#FF4D6A" icon="../media/icons/expressions.svg">' +
+	    '<block type="malle_happywiggle"></block>' +
+	    '<block type="malle_excited"></block>' +
+	    '<block type="malle_dancebingo"></block>' +
     '</category>' +
     '<category name="Look" colour="#9966FF" secondaryColour="#855CD6" icon="../media/icons/looks.svg">' + 
     	'<block type="wedo_setcolor">' +
@@ -67,10 +65,11 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
 	    	'</value>' +
 	    '</block>' +
 	'</category>' +
-    '<category name="Expressions" colour="#FF6680" secondaryColour="#FF4D6A" icon="../media/icons/expressions.svg">' +
-	    '<block type="malle_happywiggle"></block>' +
-	    '<block type="malle_excited"></block>' +
-	    '<block type="malle_dancebingo"></block>' +
+    '<category name="Events" colour="#FFBF00" secondaryColour="#E6AC00" icon="../media/icons/event_whenflagclicked.svg">' +
+        '<block type="event_whenflagclicked"></block>' +
+        '<block type="event_whentouched"></block>' +
+        '<block type="event_whenlight"></block>' +
+        '<block type="event_whenheard"></block>' +
     '</category>' +
     '<category name="Control" colour="#FFAB19" secondaryColour="#EC9C13" icon="../media/icons/control_stop.svg">' +
 	    '<block type="control_forever"></block>' +

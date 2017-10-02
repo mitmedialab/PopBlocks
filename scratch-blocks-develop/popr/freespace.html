@@ -20,14 +20,14 @@
 	<link rel="stylesheet" type="text/css" href="index.css"> 
   </head>
 
-  <body onload="start()">
+  <body onload="start();loadWorkspace('free')">
     <nav class="sidenav-up" id="sidenav">
       <div>
-      	<a href="index.html" class="navLink" onclick="leaveWorkspace()"><img src="../media/home.svg" alt="Home"></a>
+      	<a href="index.html" class="navLink" onclick="saveWorkspace('free')"><img src="../media/home.svg" alt="Home"></a>
 	    <a href="#" onclick="saveNewWorkspace()" class="navLink"><img src="../media/save.svg" alt="Save"></a>
 	    <a href="#" onclick="addWedo()" class="navLink"><img src="../media/icons/wedo_add.svg" alt="Wedo"></a>
 	    <a href="#" onclick="addRobot()" class="navLink"><img src="../media/icons/add_robot.svg" alt="Robot"></a>
-	    <a href="record.html" onclick="saveNewWorkspace()" class="navLink"><img src="../media/icons/microphone.svg" alt="Robot"></a>
+	    <a href="record.html" onclick="saveWorkspace('free')" class="navLink"><img src="../media/icons/microphone.svg" alt="Robot"></a>
 	    <div class="menuButton" onclick="toggleSidenav()">&#x25B2;</div>
 	  </div>
 	</nav>	
