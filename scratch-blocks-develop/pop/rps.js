@@ -72,7 +72,7 @@ function selectMove(select) {
 	var element = document.getElementById(select);
 	element.className += ' selected';
 	if (live)
-		sendCommand('rps_' + select);
+		sendCommand('rps' + select);
 }
 
 function selectResult(select) {
@@ -83,7 +83,7 @@ function selectResult(select) {
 	var element = document.getElementById(select);
 	element.className += ' selected';
 	if (live)
-		sendCommand('rps_' + select);
+		sendCommand('rps' + select);
 }
 
 function clearSelections() {
@@ -101,5 +101,5 @@ function clearSelections() {
 function playAgain() {
 	clearSelections();
 	if (live)
-		sendCommand('rps_play');
+		sendCommand('rpsplay');
 }

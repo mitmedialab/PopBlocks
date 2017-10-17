@@ -15,26 +15,25 @@
     <script src="../popr_blocks/event.js"></script>
     <script src="../popr_blocks/wedo.js"></script>
     <script src="../popr_blocks/malle.js"></script>
-    <script src="../popr_blocks/game.js"></script>
-    <script src="./record.js"></script>
+    <script src="../popr_blocks/default_toolbox.js"></script>
     <script src="./index.js"></script>
-	<link rel="stylesheet" type="text/css" href="./index.css"> 
+    <script src="./record.js"></script>
+	<link rel="stylesheet" type="text/css" href="index.css"> 
   </head>
-	<!-- Make the RPS game have two modes: program mode and game mode
-		Make it so that the game mode lets you select your move once until the game restarts
-		Add play button and stop button?
-		Make sure you can tell which AI setting is on -->
-  <body onload="musicStart()">
+
+  <body onload="start();loadWorkspace('free');musicStart()">
     <nav class="sidenav-up" id="sidenav">
       <div>
-      	<a class="navLink" href="./index.html" onclick=""><img src="../media/home.svg" alt="Home"></a>
-	    <a href="freespace.html"class="navLink"><img src="../media/new.svg" alt="Wedo"></a>
+      	<a href="index.html" class="navLink" onclick="saveWorkspace('free')"><img src="../media/home.svg" alt="Home"></a>
+	    <!--<a href="record.html" onclick="saveWorkspace('free')" class="navLink"><img src="../media/icons/microphone.svg" alt="Record"></a>-->
+	    <!--<a href="#" onclick="addWedo()" class="navLink"><img src="../media/icons/wedo_add.svg" alt="Wedo"></a> -->
+	    <a href="#" onclick="saveNewWorkspace('free')" class="navLink"><img src="../media/save.svg" alt="Save"></a>
 	    <div class="menuButton" onclick="toggleSidenav()">&#x25B2;</div>
 	  </div>
-	</nav>	
+	</nav>
 	<div class="menuButton" onclick="toggleSidenav()">&#x25BC;</div>
-    <!---<div id="blocklyDiv" ></div>-->
-    <div id="settings" class="settings" style="display:block;top:100px;">
+    <div id="blocklyDiv" style="top:35px;"></div>
+    <div id="record" class="settings" style="display:none;top:275px;">
     	<div class="settingsRow">
       		<a id="red" class="note popupRow" href="#"><img src="../media/icons/mic1.svg" alt="Rock"></a>
       		<a id="orange" class="note popupRow" href="#"><img src="../media/icons/mic2.svg" alt="Paper"></a>
@@ -50,6 +49,14 @@
       		<a id="purple" class="note popupRow" href="#"><img src="../media/icons/mic9.svg" alt="Wedo"></a>
     	</div>
     </div>
-    
+    <div id="robot" class="settings" style="display:none;top:275px;">
+    	<div class="settingsRow">
+        	<a onclick="addRobot(1)" href="#" id="robot1" class="robot popupRow5 selected"><img src="../media/icons/add_robot_6.svg" alt="Robot"></a>
+        	<a onclick="addRobot(2)" href="#" id="robot2" class="robot popupRow5"><img src="../media/icons/add_robot.svg" alt="Robot"></a>
+        	<a onclick="addRobot(3)" href="#" id="robot3" class="robot popupRow5"><img src="../media/icons/add_robot_5.svg" alt="Robot"></a>
+        	<a onclick="addRobot(4)" href="#" id="robot4" class="robot popupRow5"><img src="../media/icons/add_robot_3.svg" alt="Robot"></a>
+        	<a onclick="addRobot(5)" href="#" id="robot5" class="robot popupRow5"><img src="../media/icons/add_robot_4.svg" alt="Robot"></a>
+        </div>
+	</div>
   </body>
 </html>

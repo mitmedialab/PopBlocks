@@ -1,10 +1,11 @@
 'use strict';
 
-var workspace = null;
-var live = window.location.href.startsWith("http://"); // whether or not this is live or just on computer
+let workspace = null;
+let live = window.location.href.startsWith("http://"); // whether or not this is live or just on computer
+let robotID = 1;
 
 function toggleSidenav() {
-    var nav = document.getElementById("sidenav");
+    let nav = document.getElementById("sidenav");
     if (nav.style.display == "block") {
         nav.className = "sidenav-up";
         setTimeout(function() {
@@ -19,7 +20,25 @@ function toggleSidenav() {
 }
 
 function toggleSettings() {
-    var nav = document.getElementById("settings");
+    let nav = document.getElementById("settings");
+    if (nav.style.display == "block") {
+        nav.style.display = "none";
+    } else {
+        nav.style.display = "block";
+    }
+}
+
+function toggleRecord() {
+    let nav = document.getElementById("record");
+    if (nav.style.display == "block") {
+        nav.style.display = "none";
+    } else {
+        nav.style.display = "block";
+    }
+}
+
+function toggleRobot() {
+    let nav = document.getElementById("robot");
     if (nav.style.display == "block") {
         nav.style.display = "none";
     } else {
@@ -28,7 +47,7 @@ function toggleSettings() {
 }
 
 function showLoading() {
-	var loading = document.getElementById("loading");
+	let loading = document.getElementById("loading");
 	loading.style.display = "block";
 }
 
@@ -130,7 +149,7 @@ function start() {
 
 
     // should look for # and take everything after
-    var number = parseFloat(window.location.href.slice(-1));
+    let number = parseFloat(window.location.href.slice(-1));
     if (!isNaN(number)) {
         loadWorkspace(number);
     }
@@ -160,18 +179,9 @@ function deleteAllRules() {
     Android.deleteAllRules();
 }
 
-function leaveWorkspace() {
-    // should look for # and take everything after
-    var number = parseFloat(window.location.href.slice(-1));
-    if (!isNaN(number))
-        saveWorkspace(number);
-    else
-        saveNewWorkspace();
-}
-
 function saveNewWorkspace() {
-    var xml = Blockly.Xml.workspaceToDom(workspace);
-    var xml_text = Blockly.Xml.domToText(xml)
+    let xml = Blockly.Xml.workspaceToDom(workspace);
+    let xml_text = Blockly.Xml.domToText(xml)
     if (live) {
         Android.saveNewWorkspace(xml_text);
     } else {
@@ -180,8 +190,8 @@ function saveNewWorkspace() {
 }
 
 function saveWorkspace(filename) {
-    var xml = Blockly.Xml.workspaceToDom(workspace);
-    var xml_text = Blockly.Xml.domToText(xml)
+    let xml = Blockly.Xml.workspaceToDom(workspace);
+    let xml_text = Blockly.Xml.domToText(xml)
     if (live) {
         Android.saveWorkspace(xml_text, filename);
     } else {
@@ -193,21 +203,36 @@ function addWedo() {
     Android.addWedo();
 }
 
-function addRobot() {
-    Android.addRobot();
+function addRobot(id) {
+	saveWorkspace("robot" + robotID); // save this robot's code
+	if (id > 0) {
+		let robots = document.getElementsByClassName('robot');
+		for (let i=0; i<robots.length; i++) {
+			robots[i].className = 'robot navRow popupRow5';
+		}
+		let element = document.getElementById('robot'+id);
+		element.className += ' selected';
+	}
+	robotID = id;
+    Android.addRobot(id);
+    toggleRobot();
+    setTimeout(function() {
+		loadWorkspace("robot" + robotID); // load code on new robot
+    }, 3000);
+    
 }
 
 function populateNav() {
-    var count;
+    let count;
     if (live) {
         count = Android.numPrograms();
     } else {
         count = 10; // 10;
     }
-    var prog = document.getElementById("programs");
+    let prog = document.getElementById("programs");
     for (let i = 0; i < count; i++) {
-        var a = document.createElement('a');
-        var img = document.createElement('img');
+        let a = document.createElement('a');
+        let img = document.createElement('img');
         img.src = "../media/piece" + (i % 7 + 1) + ".svg";
         img.alt = "Prog " + (i + 1);
         a.appendChild(img);
@@ -223,7 +248,7 @@ function populateNav() {
 }
 
 function toggleWorkspaces() {
-    var prog = document.getElementById("programs");
+    let prog = document.getElementById("programs");
     if (prog.style.display == "initial") {
         setTimeout(function() {
             prog.style.display = "none";
@@ -236,28 +261,28 @@ function toggleWorkspaces() {
 }
 
 function loadWorkspace(number) {
+	workspace.clear();
+    console.log("Loading program " + number);
     if (live) {
-        console.log("Loading program " + number);
-        var xml_text = Android.loadWorkspace(number);
-        var xml = Blockly.Xml.textToDom(xml_text);
+        let xml_text = Android.loadWorkspace(number);
+        let xml = Blockly.Xml.textToDom(xml_text);
         Blockly.Xml.domToWorkspace(xml, workspace);
 
-        var code = Blockly.Popr.workspaceToCode(workspace);
+        let code = Blockly.Popr.workspaceToCode(workspace);
         Android.saveRule(code);
     }
 }
 
 function updateFunction(event) {
-    var code = Blockly.Popr.workspaceToCode(workspace);
+    let code = Blockly.Popr.workspaceToCode(workspace);
 
     // Sort events into Android commands
     if (event.type == Blockly.Events.UI) {
-        if (event.element == 'click' || event.element == 'toolboxclick') {
-            var block = workspace.getBlockById(event.blockId);
-            var code = "";
+        if (event.element == 'click') {
+            let block = workspace.getBlockById(event.blockId);
+            let code = "";
             while (block != null) {
                 code += Blockly.Popr.blockToCode(block);
-                console.log(block);
                 block = block.getNextBlock();
             }
 
@@ -287,7 +312,7 @@ function updateFunction(event) {
                 console.log(event.element);
             }
         } else if (event.element == 'settings') {
-            var settings = document.getElementById('settings');
+            let settings = document.getElementById('settings');
             toggleSettings();
             if (!live) {
                 console.log(event.element);
@@ -299,6 +324,24 @@ function updateFunction(event) {
             } else {
                 console.log(event.element);
             }
+        } else if (event.element == 'toolboxclick') {
+            let block = workspace.getBlockById(event.blockId);
+            if (block.category_ == "pen") {
+            	if (block.type == "wedo_add") {
+            		addWedo();
+            	} else if (block.type == "malle_addrobot") {
+            		toggleRobot();
+            	} else if (block.type == "malle_newrecord") {
+            		toggleRecord();
+            	}
+            } else {
+	            let code = Blockly.Popr.blockHelp(block);
+	            if (live) {
+	                Android.sendCommand(code);
+	            } else {
+	                console.log(event.element + ' ' + code);
+	            }
+	        }
         }
         
 		// Log event

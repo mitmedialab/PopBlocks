@@ -62,6 +62,7 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
         '</shadow>' +
         '</value>' +
         '</block>' +
+		'<block type="wedo_add" disabled="true"></block>' +
     '</category>' + 
     // Sounds category
     '<category name="Sounds" colour="#CF63CF" secondaryColour="#C94FC9" icon="../media/icons/sounds.svg">' +
@@ -85,8 +86,8 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
         '</shadow>' +
         '</value>' +
         '</block>' +
+		'<block type="malle_newrecord" disabled="true"></block>' +
     '</category>' +
-
     // Event category
     '<category name="Events" colour="#FFBF00" secondaryColour="#E6AC00" icon="../media/icons/event_whenflagclicked.svg">' +
         '<block type="event_whenflagclicked"></block>' +
@@ -95,6 +96,7 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
         '<!--<block type="event_whenheard"></block>-->' +
         '<block type="wedo_whentilt"></block>' +
         '<block type="wedo_whendistanceclose"></block>' +
+		'<block type="wedo_add" disabled="true"></block>' +
     '</category>' +
     // Motion category
     '<category name="Motion" colour="#4C97FF" secondaryColour="#4280D7" icon="../media/icons/motion.svg">' + 
@@ -126,10 +128,10 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
         '</shadow>' +
         '</value>' +
         '</block>' +
+		'<block type="wedo_add" disabled="true"></block>' +
     '</category>' +
     // Control category
     '<category name="Control" colour="#FFAB19" secondaryColour="#EC9C13" icon="../media/icons/control_forever.svg">' +
-        '<!--<block type="control_stop"></block>-->' +
         '<block type="control_forever"></block>' +
         '<block type="control_repeat">' +
         '<value name="CHOICE">' +
@@ -145,7 +147,13 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
         '</shadow>' +
         '</value>' +
         '</block>' +
+        '<block type="control_stop"></block>' +
         '<!--<block type="control_sametime"></block>-->' +
+    '</category>' +
+    '<category name="Add" colour="#0fBD8C" secondaryColour="#0DA57A" icon="../media/icons/add.svg">' +
+		'<block type="wedo_add" disabled="true"></block>' +
+		'<block type="malle_newrecord" disabled="true"></block>' +
+		'<block type="malle_addrobot" disabled="true"></block>' +
     '</category>' +
     '</xml>' + // Close XML
     '<xml id="toolbox-simple" style="display: none">' +

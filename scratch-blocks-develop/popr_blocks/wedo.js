@@ -652,3 +652,30 @@ Blockly.Blocks['wedo_whendistanceclose'] = {
     });
   }
 };
+
+Blockly.Blocks['wedo_add'] = {
+  /**
+   * Block to add a Wedo
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.jsonInit({
+      "id": "wedo_add",
+      "message0": "%1",
+      "args0": [
+        {
+          "type": "field_image",
+          "src": Blockly.mainWorkspace.options.pathToMedia + "icons/wedo_add.svg",
+          "width": 40,
+          "height": 40,
+          "alt": "Add Wedo"
+        }
+      ],
+      "inputsInline": true,
+      "category": Blockly.Categories.pen,
+      "colour": Blockly.Colours.pen.primary,
+      "colourSecondary": Blockly.Colours.pen.secondary,
+      "colourTertiary": Blockly.Colours.pen.tertiary
+    });
+  }
+};

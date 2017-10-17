@@ -20,49 +20,7 @@
 
 'use strict';
 
-goog.provide('Blockly.Blocks.defaultToolbox');
-
 goog.require('Blockly.Blocks');
-
-/**
- * @fileoverview Provide a default toolbox XML.
- */
-
-Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: none">' +
-    '<block type="wedo_setcolor">' +
-        '<value name="CHOICE">' +
-        '<shadow type="dropdown_wedo_setcolor">' +
-        '<field name="CHOICE">mystery</field>' +
-        '</shadow>' +
-        '</value>' +
-    '</block>' +
-    '<block type="malle_setcolor">' +
-        '<value name="CHOICE">' +
-        '<shadow type="dropdown_malle_setcolor">' +
-        '<field name="CHOICE">mystery</field>' +
-        '</shadow>' +
-        '</value>' +
-    '</block>' +
-    '<block type="wedo_motor1clockwise"></block>' +
-    '<block type="wedo_motor1counterclockwise"></block>' +
-    '<block type="wedo_motor1stop"></block>' +
-    '<block type="malle_excited"></block>' +
-    '<block type="malle_sad"></block>' +
-    '<block type="malle_interested"></block>' +
-    '<block type="malle_happywiggle"></block>' +
-    '<block type="malle_fart"></block>' +
-    '<block type="malle_yawn"></block>' +
-    '<block type="malle_dancebingo"></block>' +
-    '<block type="control_wait">' +
-	    '<value name="DURATION">' +
-	    '<shadow type="dropdown_control_number">' +
-	    '<field name="NUM">1</field>' +
-	    '</shadow>' +
-	    '</value>' +
-    '</block>' +
-    '</xml>' + // Close XML
-    '<xml id="toolbox-simple" style="display: none">' +
-    '</xml>';
  
 function musicStart() {
 	var notes = document.getElementsByClassName('note');

@@ -743,3 +743,57 @@ Blockly.Blocks['malle_dancebingo'] = {
     });
   }
 };
+
+Blockly.Blocks['malle_newrecord'] = {
+  /**
+   * Block to add a recording
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.jsonInit({
+      "id": "wedo_add",
+      "message0": "%1",
+      "args0": [
+        {
+          "type": "field_image",
+          "src": Blockly.mainWorkspace.options.pathToMedia + "icons/record.svg",
+          "width": 40,
+          "height": 40,
+          "alt": "Add recording"
+        }
+      ],
+      "inputsInline": true,
+      "category": Blockly.Categories.pen,
+      "colour": Blockly.Colours.pen.primary,
+      "colourSecondary": Blockly.Colours.pen.secondary,
+      "colourTertiary": Blockly.Colours.pen.tertiary
+    });
+  }
+};
+
+Blockly.Blocks['malle_addrobot'] = {
+  /**
+   * Block to add a robot
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.jsonInit({
+      "id": "malle_addrobot",
+      "message0": "%1",
+      "args0": [
+        {
+          "type": "field_image",
+          "src": Blockly.mainWorkspace.options.pathToMedia + "icons/add_robot.svg",
+          "width": 40,
+          "height": 40,
+          "alt": "Add robot"
+        }
+      ],
+      "inputsInline": true,
+      "category": Blockly.Categories.pen,
+      "colour": Blockly.Colours.pen.primary,
+      "colourSecondary": Blockly.Colours.pen.secondary,
+      "colourTertiary": Blockly.Colours.pen.tertiary
+    });
+  }
+};

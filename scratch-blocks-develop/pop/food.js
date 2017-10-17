@@ -67,76 +67,59 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
 var food = 0;
 function foodStart() {
 	var foods = document.getElementsByClassName('food');
-	foods[0].addEventListener('touchstart', 
-		function() { selectfood(1);} );
-	foods[0].addEventListener('mousedown', 
+	foods[0].addEventListener('click', 
 		function() { selectfood(1);} );
 	
-	foods[1].addEventListener('touchstart', 
+	foods[1].addEventListener('click', 
 		function() { selectfood(2);} );
-	foods[1].addEventListener('mousedown', 
-		function() { selectfood(2)} );
 		
-	foods[2].addEventListener('touchstart', 
+	foods[2].addEventListener('click', 
 		function() { selectfood(3);} );
-	foods[2].addEventListener('mousedown', 
-		function() { selectfood(3)} );
 	
-	foods[3].addEventListener('touchstart', 
+	foods[3].addEventListener('click', 
 		function() { selectfood(4);} );
-	foods[3].addEventListener('mousedown', 
-		function() { selectfood(4)} );
 	
-	foods[4].addEventListener('touchstart', 
+	foods[4].addEventListener('click', 
 		function() { selectfood(5);} );
-	foods[4].addEventListener('mousedown', 
-		function() { selectfood(5)} );
 	
-	foods[5].addEventListener('touchstart', 
+	foods[5].addEventListener('click', 
 		function() { selectfood(6);} );
-	foods[5].addEventListener('mousedown', 
-		function() { selectfood(6)} );
 		
-	foods[6].addEventListener('touchstart', 
+	foods[6].addEventListener('click', 
 		function() { selectfood(7);} );
-	foods[6].addEventListener('mousedown', 
-		function() { selectfood(7)} );
 	
-	foods[7].addEventListener('touchstart', 
+	foods[7].addEventListener('click', 
 		function() { selectfood(8);} );
-	foods[7].addEventListener('mousedown', 
-		function() { selectfood(8)} );
 			
-	foods[8].addEventListener('touchstart', 
+	foods[8].addEventListener('click', 
 		function() { selectfood(9);} );
-	foods[8].addEventListener('mousedown', 
-		function() { selectfood(9)} );
 			
-	foods[9].addEventListener('touchstart', 
+	foods[9].addEventListener('click', 
 		function() { selectfood(10);} );
-	foods[9].addEventListener('mousedown', 
-		function() { selectfood(10)} );
 			
-	foods[10].addEventListener('touchstart', 
+	foods[10].addEventListener('click', 
 		function() { selectfood(11);} );
-	foods[10].addEventListener('mousedown', 
-		function() { selectfood(11)} );
 			
-	foods[11].addEventListener('touchstart', 
+	foods[11].addEventListener('click', 
 		function() { selectfood(12);} );
-	foods[11].addEventListener('mousedown', 
-		function() { selectfood(12)} );
+		
+	clearSelections();
 }
 
 function selectfood(select) {
 	var foods = document.getElementsByClassName('food');
 	for (var i=0; i<foods.length; i++) {
-		foods[i].className = 'food popupRow4';
+		if (foods[i].className.includes('wrong'))
+			foods[i].className += 'food popupRow4 wrong';
+		else 
+			foods[i].className = 'food popupRow4';
 	}
 	food = select;
 	var element = document.getElementById(select);
 	element.className += ' selected';
 	console.log(select-1);
+	if (live)
+		sendCommand('sortinput_'+ (food-1));
 }
 
 function selectcat(select) {
@@ -146,9 +129,12 @@ function selectcat(select) {
 	}
 	var element = document.getElementById(select);
 	element.className += ' selected';
+	var food_element = document.getElementById(food);
+	food_element.className += ' wrong';
 	// item+category
 	console.log((food-1) + "+" + (select-12));
-	
+	if (live)
+		sendCommand('sortinput_'+ (food-1) + "+" + (select-12));
 }
 
 function clearSelections() {
@@ -161,7 +147,7 @@ function clearSelections() {
 	for (var i=0; i<cats.length; i++) {
 		cats[i].className = 'cat popupRow4';
 	}
-	console.log('game_reset');
+	console.log('sortreset');
 	if (live)
-		sendCommand('game_reset');
+		sendCommand('sortreset');
 }

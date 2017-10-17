@@ -103,7 +103,7 @@ function musicStart() {
 		function() { releaseNote(8)} );
 		
 	document.getElementById('note_var').addEventListener('change',
-		function() { sliderChange('note_var'); });
+		function() { sliderChange('notevar'); });
 }
 
 function selectNote(select) {
