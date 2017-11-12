@@ -21,11 +21,11 @@
 Blockly.Popr = new Object();
 
 Blockly.Popr.workspaceToCode = function(workspace) {
-  var topBlocks = workspace.getTopBlocks();
-  var rules = "";
-  for (var i = 0; i < topBlocks.length; i++) {
-  	var block = topBlocks[i];
-	var code = "";
+  let topBlocks = workspace.getTopBlocks();
+  let rules = "";
+  for (let i = 0; i < topBlocks.length; i++) {
+  	let block = topBlocks[i];
+	let code = "";
   	while (block != null) {
   	  code += Blockly.Popr.blockToCode(block);
   	  block = block.getNextBlock();
@@ -36,9 +36,18 @@ Blockly.Popr.workspaceToCode = function(workspace) {
 }
 
 Blockly.Popr.blockToCode = function(block) {
-	var type = block.type;
-	var func = "Blockly.Popr." + type + "(block)";
+	let func = "Blockly.Popr." + block.type + "(block)";
 	return eval(func);
+}
+
+Blockly.Popr.blockHelp = function(block) {
+	let func = "Blockly.Popr." + block.type + "(block)";
+	let code = eval(func);
+	if (code.match("e01|e02|e03|e04|e05|e06|e07|e08|c02|c03|c04|w01|w02") || code) {
+		let val = eval(func);
+		return val.slice(0,1) + "h" + val.slice(1);
+	}
+	return code;
 }
 
 /* Event blocks */
@@ -47,8 +56,8 @@ Blockly.Popr.event_whenflagclicked = function(block) {
   return "e01 ";
 }
 Blockly.Popr.wedo_whentilt = function(block) {
-  var value;
-  /*for (var i = 0, child; child = block.getChildren()[i]; i++) {
+  let value;
+  /*for (let i = 0, child; child = block.getChildren()[i]; i++) {
   	if (child.getField("CHOICE") != null) {
 	  value = child.getField("CHOICE").getValue();
 	}
@@ -65,7 +74,7 @@ Blockly.Popr.event_whenlight = function(block) {
     return "e04 ";
 }
 Blockly.Popr.event_whenheard = function(block) {
-	/*for (var i = 0, child; child = block.getChildren()[i]; i++) {
+	/*for (let i = 0, child; child = block.getChildren()[i]; i++) {
 	  	if (child.getField("CHOICE") != null) {
 		  value = child.getField("CHOICE").getValue();
 		}
@@ -74,8 +83,8 @@ Blockly.Popr.event_whenheard = function(block) {
 }
 /* Looks blocks */
 Blockly.Popr.wedo_setcolor = function(block) {
-  var value;
-  for (var i = 0, child; child = block.getChildren()[i]; i++) {
+  let value;
+  for (let i = 0, child; child = block.getChildren()[i]; i++) {
     if (child.getField("CHOICE") != null) {
 	  value = child.getField("CHOICE").getValue();
 	}
@@ -83,8 +92,8 @@ Blockly.Popr.wedo_setcolor = function(block) {
   return "w03_" + value + " ";
 }
 Blockly.Popr.malle_setcolor = function(block) {
-  var value;
-  for (var i = 0, child; child = block.getChildren()[i]; i++) {
+  let value;
+  for (let i = 0, child; child = block.getChildren()[i]; i++) {
     if (child.getField("CHOICE") != null) {
 	  value = child.getField("CHOICE").getValue();
 	}
@@ -111,8 +120,8 @@ Blockly.Popr.wedo_motor2stop = function(block) {
   return "w09 ";
 }
 Blockly.Popr.wedo_motorforward = function(block) {
-  var value;
-  for (var i = 0, child; child = block.getChildren()[i]; i++) {
+  let value;
+  for (let i = 0, child; child = block.getChildren()[i]; i++) {
     if (child.getField("CHOICE") != null) {
 	  value = child.getField("CHOICE").getValue();
 	}
@@ -121,8 +130,8 @@ Blockly.Popr.wedo_motorforward = function(block) {
   return "w11_" + value + " w12_" + value + " ";
 }
 Blockly.Popr.wedo_motorbackward = function(block) {
-  var value;
-  for (var i = 0, child; child = block.getChildren()[i]; i++) {
+  let value;
+  for (let i = 0, child; child = block.getChildren()[i]; i++) {
     if (child.getField("CHOICE") != null) {
 	  value = child.getField("CHOICE").getValue();
 	}
@@ -131,8 +140,8 @@ Blockly.Popr.wedo_motorbackward = function(block) {
   return "w10_" + value + " w13_" + value + " ";
 }
 Blockly.Popr.wedo_motorleft = function(block) {
-  var value;
-  for (var i = 0, child; child = block.getChildren()[i]; i++) {
+  let value;
+  for (let i = 0, child; child = block.getChildren()[i]; i++) {
     if (child.getField("CHOICE") != null) {
 	  value = child.getField("CHOICE").getValue();
 	}
@@ -141,8 +150,8 @@ Blockly.Popr.wedo_motorleft = function(block) {
   return "w11_" + value + " w13_" + value + " ";
 }
 Blockly.Popr.wedo_motorright = function(block) {
-  var value;
-  for (var i = 0, child; child = block.getChildren()[i]; i++) {
+  let value;
+  for (let i = 0, child; child = block.getChildren()[i]; i++) {
     if (child.getField("CHOICE") != null) {
 	  value = child.getField("CHOICE").getValue();
 	}
@@ -152,8 +161,8 @@ Blockly.Popr.wedo_motorright = function(block) {
 }
 /* Sound blocks */
 Blockly.Popr.wedo_playnote = function(block) {
-  var value;
-  for (var i = 0, child; child = block.getChildren()[i]; i++) {
+  let value;
+  for (let i = 0, child; child = block.getChildren()[i]; i++) {
     if (child.getField("CHOICE") != null) {
 	  value = child.getField("CHOICE").getValue();
 	}
@@ -161,8 +170,8 @@ Blockly.Popr.wedo_playnote = function(block) {
   return "u01_" + value + "+200 ";
 }
 Blockly.Popr.malle_playnote = function(block) {
-  var value;
-  for (var i = 0, child; child = block.getChildren()[i]; i++) {
+  let value;
+  for (let i = 0, child; child = block.getChildren()[i]; i++) {
     if (child.getField("CHOICE") != null) {
 	  value = child.getField("CHOICE").getValue();
 	}
@@ -170,8 +179,8 @@ Blockly.Popr.malle_playnote = function(block) {
   return "m16_" + value + " ";
 }
 Blockly.Popr.malle_record = function(block) {
-  var value;
-  for (var i = 0, child; child = block.getChildren()[i]; i++) {
+  let value;
+  for (let i = 0, child; child = block.getChildren()[i]; i++) {
     if (child.getField("CHOICE") != null) {
 	  value = child.getField("CHOICE").getValue();
 	}
@@ -226,8 +235,8 @@ Blockly.Popr.control_stop = function(block) {
   return "c01 ";
 }
 Blockly.Popr.control_forever = function(block) {
-  var code = "c02 ";
-  var child = block.getChildren()[0];
+  let code = "c02 ";
+  let child = block.getChildren()[0];
   while (child != null) {
 	code += Blockly.Popr.blockToCode(child);
 	child = child.getNextBlock();
@@ -235,10 +244,10 @@ Blockly.Popr.control_forever = function(block) {
   return code + "ec02";
 }
 Blockly.Popr.control_repeat = function(block) {      	
-  //var code = block.type + "_";
-  var code = "c03_";
-  var children = block.getChildren();
-  var child = children[0];
+  //let code = block.type + "_";
+  let code = "c03_";
+  let children = block.getChildren();
+  let child = children[0];
   code += child.getField("NUM").getValue() + " ";
    
   child = children[1]; 
@@ -250,8 +259,8 @@ Blockly.Popr.control_repeat = function(block) {
   return code + "ec03 ";
 }
 Blockly.Popr.control_wait = function(block) {      	
-  var value;
-  for (var i = 0, child; child = block.getChildren()[i]; i++) {
+  let value;
+  for (let i = 0, child; child = block.getChildren()[i]; i++) {
     if (child.getField("NUM") != null) {
 	  value = child.getField("NUM").getValue();
 	}
@@ -259,8 +268,8 @@ Blockly.Popr.control_wait = function(block) {
   return "c04_" + value + " ";
 }
 Blockly.Popr.control_sametime = function(block) {      	
-  var code = "c05 ";
-  var child = block.getChildren()[0];
+  let code = "c05 ";
+  let child = block.getChildren()[0];
   while (child != null && child != block) {
     code += Blockly.Popr.blockToCode(child);
     child = child.getNextBlock();
