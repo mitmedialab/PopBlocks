@@ -10,11 +10,11 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="39.576248"
-   height="92.917503"
+   height="73.334"
    id="svg4297"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="chocolate.svg">
+   sodipodi:docname="milk.svg">
   <defs
      id="defs4299" />
   <sodipodi:namedview
@@ -26,7 +26,7 @@
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
      inkscape:cx="107.53409"
-     inkscape:cy="32.045121"
+     inkscape:cy="12.461618"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -36,8 +36,8 @@
      fit-margin-bottom="0"
      inkscape:window-width="472"
      inkscape:window-height="383"
-     inkscape:window-x="1168"
-     inkscape:window-y="525"
+     inkscape:window-x="894"
+     inkscape:window-y="357"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata4302">
@@ -47,7 +47,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -176,11 +176,6 @@
        id="path572"
        style="fill:#8cd7e4;fill-opacity:1;fill-rule:nonzero;stroke:none"
        d="m -22.637462,605.11768 -0.035,0.1125 -0.1275,0.0737 -0.255,0.0475 c -0.105,0.009 -0.24375,0.0138 -0.4175,0.0138 -0.17375,0 -0.315,-0.003 -0.42375,-0.0125 l -0.27,-0.0425 -0.1625,-0.08 -0.105,-0.135 -1.905,-3.015 0,3.03125 -0.0388,0.11125 -0.13,0.0788 -0.24875,0.05 c -0.1025,0.009 -0.23375,0.0138 -0.39,0.0138 -0.15875,0 -0.29,-0.005 -0.39375,-0.0138 l -0.24625,-0.05 -0.13125,-0.0788 -0.0387,-0.11125 0,-8.44 0.0387,-0.115 0.13125,-0.0863 0.24625,-0.0562 c 0.10375,-0.0125 0.235,-0.0187 0.39375,-0.0187 0.15625,0 0.2875,0.006 0.39,0.0187 l 0.24875,0.0562 0.13,0.0863 0.0388,0.115 0,5.025 1.695,-2.28 0.115,-0.1325 0.16875,-0.09 0.26375,-0.0475 c 0.10625,-0.0113 0.23875,-0.0175 0.40125,-0.0175 0.15625,0 0.29125,0.006 0.4,0.0175 l 0.265,0.0475 0.13875,0.0812 0.0362,0.11875 -0.0475,0.205 -0.14375,0.23 -1.6775,1.9 1.94,2.99625 0.11125,0.21875 0.035,0.17375" />
-    <path
-       inkscape:connector-curvature="0"
-       id="path574"
-       style="fill:#d1d1cf;fill-opacity:1;fill-rule:nonzero;stroke:none"
-       d="m -28.924962,656.94018 0,0 c 0.37375,0 0.75125,-0.004 1.125,-0.0113 -0.375,0.0113 -0.74875,0.0113 -1.125,0.0113" />
     <path
        inkscape:connector-curvature="0"
        id="path578"

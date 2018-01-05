@@ -10,11 +10,11 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="68.53067"
-   height="87.222893"
+   height="69.87664"
    id="svg4297"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="chicken.svg">
+   sodipodi:docname="fish.svg">
   <defs
      id="defs4299" />
   <sodipodi:namedview
@@ -26,7 +26,7 @@
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
      inkscape:cx="173.81195"
-     inkscape:cy="95.345383"
+     inkscape:cy="77.99913"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -36,8 +36,8 @@
      fit-margin-bottom="0"
      inkscape:window-width="472"
      inkscape:window-height="383"
-     inkscape:window-x="1168"
-     inkscape:window-y="525"
+     inkscape:window-x="894"
+     inkscape:window-y="357"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata4302">
@@ -47,7 +47,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -96,11 +96,6 @@
        id="path332"
        style="fill:#dff1f1;fill-opacity:1;fill-rule:nonzero;stroke:none"
        d="m 356.36407,682.76169 c -2.195,-3.17375 -24.39375,-27.93875 -29.05,-32.32375 0.645,-0.71625 1.26,-1.46375 1.78375,-2.2425 22.53875,23.09125 27.26625,34.56625 27.26625,34.56625" />
-    <path
-       inkscape:connector-curvature="0"
-       id="path334"
-       style="fill:#d1d1cf;fill-opacity:1;fill-rule:nonzero;stroke:none"
-       d="m 339.83907,720.24044 0,0 c 0.002,0 0.01,0 0.0175,0 -0.006,0 -0.0112,0 -0.0175,0 m 0.045,0 c 0.007,0 0.015,0 0.0225,0 -0.007,0 -0.015,0 -0.0225,0 m 0.0537,0 c 0.004,0 0.007,0 0.0113,0 -0.004,0 -0.007,0 -0.0113,0" />
     <path
        inkscape:connector-curvature="0"
        id="path338"

@@ -10,11 +10,11 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="60.778469"
-   height="93.780251"
+   height="75.061501"
    id="svg4297"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="tomato.svg">
+   sodipodi:docname="bread.svg">
   <defs
      id="defs4299" />
   <sodipodi:namedview
@@ -26,7 +26,7 @@
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
      inkscape:cx="202.97934"
-     inkscape:cy="49.857952"
+     inkscape:cy="31.139201"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -36,8 +36,8 @@
      fit-margin-bottom="0"
      inkscape:window-width="472"
      inkscape:window-height="383"
-     inkscape:window-x="1168"
-     inkscape:window-y="525"
+     inkscape:window-x="894"
+     inkscape:window-y="357"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata4302">
@@ -47,7 +47,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -121,11 +121,6 @@
        id="path170"
        style="fill:#f8e565;fill-opacity:1;fill-rule:nonzero;stroke:none"
        d="m 315.52323,644.55925 c 0,0 0,0 -0.001,0 0,0 0,0 0,-10e-4 l 16.48499,-12.095 10e-4,0 0,0 -16.485,12.09625" />
-    <path
-       inkscape:connector-curvature="0"
-       id="path172"
-       style="fill:#d1d1cf;fill-opacity:1;fill-rule:nonzero;stroke:none"
-       d="m 309.08823,674.753 c -1.76126,0 -3.5025,-0.08 -5.22251,-0.23875 1.71875,0.1575 3.45751,0.23875 5.21751,0.23875 1.92874,0 3.83625,-0.0975 5.71499,-0.28625 -1.87624,0.19125 -3.78125,0.28625 -5.70999,0.28625" />
     <path
        inkscape:connector-curvature="0"
        id="path176"
