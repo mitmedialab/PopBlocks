@@ -19,17 +19,21 @@
  */
 
 'use strict';
-var notes = [0,0,0,0,0,0,0];
-var oscillator;
-var audioCtx;
-//  {880.0, 440.0, 494.0, 554.0, 587.0, 659.0, 740.0, 831.0}; 
+let notes = [0,0,0,0,0,0,0,0];
+let oscillator;
+let audioCtx;
+let recording = false;
+let playing = false;
+let savedNotes = [];
+let savedDur = []
+//  {880.0, 440.0, 494.0, 554.0, 587.0, 659.0, 740.0, 830.6}; 
 function musicStart() {
 	audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 	oscillator = audioCtx.createOscillator();
 	oscillator.type = 'square';
 	oscillator.start(0);
 	
-	var notes = document.getElementsByClassName('note');
+	let notes = document.getElementsByClassName('note');
 	notes[0].addEventListener('touchstart', 
 		function() { selectNote(1);} );
 	notes[0].addEventListener('mousedown', 
@@ -102,40 +106,110 @@ function musicStart() {
 	notes[7].addEventListener('mouseup', 
 		function() { releaseNote(8)} );
 		
-	document.getElementById('note_var').addEventListener('change',
-		function() { sliderChange('notevar'); });
+	/*document.getElementById('note_let').addEventListener('change',
+		function() { sliderChange('notelet'); });*/
+		
+    document.getElementById('record').addEventListener('touchstart',
+        function() { startRecording() });
+    document.getElementById('record').addEventListener('mousedown',
+        function() { startRecording() });
+    document.getElementById('play').addEventListener('touchstart',
+        function() { startPlaying() });
+    document.getElementById('play').addEventListener('mousedown',
+        function() { startPlaying() });
+    document.getElementById('stop').addEventListener('touchstart',
+        function() { stopAll() });
+    document.getElementById('stop').addEventListener('mousedown',
+        function() { stopAll() });
+}
+
+function startRecording() {
+    console.log('Starting recording');
+    savedNotes = [];
+    savedDur = [];
+    recording = true;
+}
+
+function toggleRecordIcon() {
+	
+}
+
+function togglePlayIcon() {
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function startPlaying() {
+    console.log('Starting playing');
+    recording = false;
+    //savedNotes = document.getElementById("notes").value.split(",").map(Number);
+    //savedDur = document.getElementById("dur").value.split(",").map(Number);
+    console.log(savedNotes);
+    console.log(savedDur);
+    let i = 0;
+    if (savedNotes[i] == 0)
+    	i = 1;
+    for (; i<savedNotes.length; i++) {
+        selectNote(savedNotes[i]);
+        await sleep(savedDur[i]);
+        releaseNote(savedNotes[i]);
+    }
+}
+
+function stopAll() {
+    console.log('Stopping recording');
+    recording = false;
+    console.log(savedNotes);
 }
 
 function selectNote(select) {
-	var element = document.getElementById(select);
-	element.className += ' selected';
-	console.log("Pressed " + select);
-	notes[select-1] = Date.now();
-	
-	var freqs = [440.0, 494.0, 554.0, 587.0, 659.0, 740.0, 831.0, 880.0];
-	playNote(freqs[select-1]);
+	if (select > 0) {
+		let element = document.getElementById(select);
+		element.className += ' selected9';
+		console.log("Pressed " + select);
+		// Save note start time
+		notes[select] = Date.now();
+		if (recording) {
+			// Add rest and duration
+			savedNotes.push(0);
+			savedDur.push(Date.now()-notes[0]);
+		}
+		playNote(select);
+	}
 }
 
 function releaseNote(select) {
-	var element = document.getElementById(select);
-	var dur = Date.now() - notes[select-1];
-	element.className = 'note popupRow';
-	stopNote();
-	console.log('music_' + select + '+' + dur);
-	if (live)
-		sendCommand('music_' + select + '+' + dur);
+	if (select > 0) {
+		let element = document.getElementById(select);
+		let dur = Date.now() - notes[select];
+		element.className = 'note popupRow9';
+		stopNote();
+		if (recording) {
+			// Add note and duration
+		    savedNotes.push(select);
+		    savedDur.push(dur);
+		    // Save rest start time
+		    notes[0] = Date.now();
+		}
+		console.log('music_' + select + '+' + dur);
+		if (live)
+			sendCommand('music_' + select + '+' + dur);
+	}
 }
-
 function sliderChange(element) {
-	var el = document.getElementById(element);
+	let el = document.getElementById(element);
 	console.log(element + '_' + el.value);
 	if (live)
 		sendCommand(element + '_' + el.value);
 }
 
 
-function playNote(frequency) {
+function playNote(note) {
 	// create Oscillator node
+	let freqs = [440.0, 494.0, 554.0, 587.0, 659.0, 740.0, 830.6, 880.0];
+	let frequency = freqs[note-1];
 	oscillator.frequency.value = frequency; // value in hertz
 	oscillator.connect(audioCtx.destination);
 }

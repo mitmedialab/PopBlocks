@@ -34,24 +34,49 @@
 	</nav>	
 	<div class="menuButton" onclick="toggleSidenav()">&#x25BC;</div>
     <!---<div id="blocklyDiv" ></div>-->
+
     <div id="settings" class="settings" style="display:block;top:100px;">
+        <div class="settingsRow" style="display:block;top:100px;">
+      		<!---<button id="play">Play</button>
+      		<button id="record">Record</button>
+      		<button id="stop">Stop</button>-->
+      		<input type="text" id="notes" value="1,3,3,7,7,8,8">
+      		<input type="text" id="dur" value="200,200,200,200,200,200,200">
+        </div>
+        <div class="settingsRow">
+            <!---<button>Angry</button>
+            <button>Joyful</button><br/>
+            <button>Neutral</button><br/>
+            <button>Sad</button>
+            <button>Happy</button>-->
+      		<div class="range-slider">
+      			<img src="../media/icons/improv_down.svg" alt="Improv Down">
+      			<input id="notevar" class="range-slider__range" type="range" value="0" min="-10" max="10" step="1">
+      			<img src="../media/icons/improv_up.svg" alt="Improv Up">
+      		</div>
+    		<div class="range-slider">
+      			<img src="../media/icons/turtle.svg" alt="Slower">
+    			<input id="durvar" class="range-slider__range" type="range" value="0" min="-10" max="10" step="1">
+      			<img src="../media/icons/bunny.svg" alt="Faster">
+    		</div>
+    		
+        </div>
     	<div class="settingsRow">
-      		<a id="1" class="note popupRow" href="#"><img src="../media/icons/note_c.svg" alt="Rock"></a>
-      		<a id="2" class="note popupRow" href="#"><img src="../media/icons/note_cis.svg" alt="Paper"></a>
-      		<a id="3" class="note popupRow" href="#"><img src="../media/icons/note_d.svg" alt="Scissors"></a>
-    	</div>
-	    <div class="settingsRow">
-	    	<a id="4" class="note popupRow" href="#"><img src="../media/icons/note_dis.svg" alt="Random"></a>
-      		<a id="5" class="note popupRow" href="#"><img src="../media/icons/note_f.svg" alt="Learning"></a>
-      		<a id="6" class="note popupRow" href="#"><img src="../media/icons/note_g.svg" alt="Wedo"></a>
-    	</div>
-	    <div class="settingsRow">
-      		<a id="7" class="note popupRow" href="#"><img src="../media/icons/note_a.svg" alt="Wedo"></a>
-      		<a id="8" class="note popupRow" href="#"><img src="../media/icons/note_b.svg" alt="Wedo"></a>
-    	</div>
-	    <div class="settingsRow">
-      		<div class="range-slider"><input id="note_var" class="range-slider__range" type="range" value="0" min="0" max="10" step="1"></div>  				
-    	</div>
+      		<a id="1" style="background-color:#ff0000" class="note popupRow9" href="#"><img src="../media/icons/note.svg" alt="Rock"></a>
+      		<a id="2" style="background-color:#ff6600" class="note popupRow9" href="#"><img src="../media/icons/note.svg" alt="Paper"></a>
+      		<a id="3" style="background-color:#ffa10d" class="note popupRow9" href="#"><img src="../media/icons/note.svg" alt="Scissors"></a>
+	    	<a id="4" style="background-color:#ffcc00" class="note popupRow9" href="#"><img src="../media/icons/note.svg" alt="Random"></a>
+      		<a id="5" style="background-color:#aad400" class="note popupRow9" href="#"><img src="../media/icons/note.svg" alt="Learning"></a>
+      		<a id="6" style="background-color:#349aff" class="note popupRow9" href="#"><img src="../media/icons/note.svg" alt="Wedo"></a>
+      		<a id="7" style="background-color:#800080" class="note popupRow9" href="#"><img src="../media/icons/note.svg" alt="Wedo"></a>
+      		<a id="8" style="background-color:#ff4ec7" class="note popupRow9" href="#"><img src="../media/icons/note.svg" alt="Wedo"></a>
+      		<div class="popupRow9">
+      			<a id="play"><img src="../media/icons/play.svg" alt="Play"></a>
+      			<a id="stop_play" class="stop"><img src="../media/icons/stop.svg" alt="Stop Playing"></a>
+      			<a id="record"><img src="../media/icons/sound_record.svg" alt="Record"></a>
+      			<a id"stop_record" class="stop"><img src="../media/icons/stop.svg" alt="Stop Recording"></a>
+      		</div>
+	</div>  
     </div>
     
   </body>

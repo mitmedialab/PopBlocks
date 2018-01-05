@@ -156,8 +156,26 @@ h1 {
   text-align:center;
   border-radius:25px;
 }
+.popupRow9 {
+  color:white;
+  text-decoration:none;
+  width:10%;
+  display:inline-block;
+  text-align:center;
+}
+.note {
+  height:300px;
+  border:5px #334771 solid;
+  border-radius:0 0 30px 30px;
+}
+.stop {
+	display:none;
+}
 .selected {
 	background-color:#334771;
+}
+.selected9 {
+	border:5px #ffffff solid;
 }
 .wrong {
 	background-color:#800020;
@@ -177,6 +195,13 @@ h1 {
 .popupRow5 img {
   height:75px;
   margin:12px;
+}
+.popupRow9 img {
+  height:50px;
+  margin:12px;
+}
+.note img {
+  margin-top:213px;
 }
 .menuButton {
   color:#fff;
@@ -206,6 +231,28 @@ div.menuButton:active, div.menuButton:hover{
   border-radius:25px;
   background-color:#283856;
 }
+.foodRow {
+  display:block;
+  width:100%;
+  border:2px solid #24324D;
+  border-radius:25px;
+  background-color:#24324D;
+  overflow-x:scroll;
+}
+.foodRow::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+.foodRow::-webkit-scrollbar {
+	width: 12px;
+	background-color: #F5F5F5;
+}
+.foodRow::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #D62929;
+}
 #loading {
 	display:none;
 	position:absolute;
@@ -225,21 +272,25 @@ $range-handle-color-hover: $teal !default;
 .range-slider {
   width: 90%;
 }
+.range-slider img {
+	width:5%;
+	margin:0 2%;
+}
 .range-slider__range {
   -webkit-appearance: none;
-  width: 90%;
+  width: 80%;
   height: 20px;
   border-radius: 5px;
   background:#334771;
   outline: none;
   padding: 0;
-  margin: 50px 5%;
+  margin: 25px 0;
 }
 .range-slider__range::-webkit-slider-thumb {
   -webkit-appearance: none;
   border: none;
-  height: 50px;
-width: 50px;
+  height: 40px;
+  width: 40px;
 border-radius: 50%;
 background:#ffffff;
 }
