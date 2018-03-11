@@ -140,7 +140,7 @@ class S(BaseHTTPRequestHandler):
         content_length = int(self.headers['Content-Length'])
         post_data = self.rfile.read(content_length)
         result = self._process_data(post_data)
-        self.wfile.write("<html><body><h1>" + result + "</h1></body></html>")
+        self.wfile.write(result)
     
     def _process_data(self, data):
         global everything
@@ -152,7 +152,7 @@ class S(BaseHTTPRequestHandler):
                 self.groups[group_id] = Group(group_id)
             result = self.groups[group_id].process_interaction(data)
             
-        else: # process participant data
+        elif data[0] == 'P': # process participant data
             features = data.split('\t')
             pid = features[0]
             if pid not in self.participants:

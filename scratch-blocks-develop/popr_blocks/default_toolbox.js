@@ -31,18 +31,28 @@ goog.require('Blockly.Blocks');
 Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: none">' +
     // Expressions (More) category
     '<category name="Expressions" colour="#FF6680" secondaryColour="#FF4D6A" icon="../media/icons/expressions.svg">' +
-        '<block type="malle_nod"></block>' +
-        '<block type="malle_interested"></block>' +
-        '<block type="malle_happywiggle"></block>' +
         '<block type="malle_fart"></block>' +
         '<block type="malle_yawn"></block>' +
+        '<block type="malle_dancebingo"></block>' +
+        '<block type="malle_setemotion">' +
+        '<value name="CHOICE">' +
+        '<shadow type="dropdown_malle_emotion">' +
+        '<field name="CHOICE">happy</field>' +
+        '</shadow>' +
+        '</value>' +
+        '</block>' +
+        '<block type="malle_setspeech">' +
+        '<value name="CHOICE">' +
+        '<shadow type="dropdown_malle_speak">' +
+        '<field name="CHOICE">Hi</field>' +
+        '</shadow>' +
+        '</value>' +
+        '</block>' +
+        '<!--<block type="malle_idlestill"></block>' +
+        '<block type="malle_nod"></block>' +
         '<block type="malle_no"></block>' +
-        '<block type="malle_scared"></block>' +
-        '<block type="malle_sad"></block>' +
-        '<block type="malle_excited"></block>' +
         '<block type="malle_hi"></block>' +
         '<block type="malle_bye"></block>' +
-        '<!--<block type="malle_idlestill"></block>' +
         '<block type="malle_dancebingo"></block>' +
         '<block type="malle_posesleepingsnore"></block>-->' +
     '</category>' +
@@ -94,9 +104,6 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
         '<block type="event_whentouched"></block>' +
         '<block type="event_whenlight"></block>' +
         '<!--<block type="event_whenheard"></block>-->' +
-        '<block type="wedo_whentilt"></block>' +
-        '<block type="wedo_whendistanceclose"></block>' +
-		'<block type="wedo_add" disabled="true"></block>' +
     '</category>' +
     // Motion category
     '<category name="Motion" colour="#4C97FF" secondaryColour="#4280D7" icon="../media/icons/motion.svg">' + 
@@ -147,14 +154,12 @@ Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: no
         '</shadow>' +
         '</value>' +
         '</block>' +
-        '<block type="control_stop"></block>' +
         '<!--<block type="control_sametime"></block>-->' +
     '</category>' +
-    '<category name="Add" colour="#0fBD8C" secondaryColour="#0DA57A" icon="../media/icons/add.svg">' +
+    /*'<category name="Add" colour="#0fBD8C" secondaryColour="#0DA57A" icon="../media/icons/add.svg">' +
 		'<block type="wedo_add" disabled="true"></block>' +
-		'<block type="malle_newrecord" disabled="true"></block>' +
 		'<block type="malle_addrobot" disabled="true"></block>' +
-    '</category>' +
+    '</category>' +*/
     '</xml>' + // Close XML
     '<xml id="toolbox-simple" style="display: none">' +
     '</xml>';

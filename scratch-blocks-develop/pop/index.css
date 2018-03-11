@@ -10,6 +10,16 @@ body {
   margin:0;
 }
 
+a:link {
+  color:#fff;
+}
+a:visited {
+  color:#fff;
+}
+
+desc {
+  display:none;
+}
 .blocklySvg {
   /*background: url("castle.png"); !important
   background-size:100px; !important*/
@@ -17,7 +27,11 @@ body {
 
 h1 {
   font-weight: normal;
-  font-size: 140%;
+  text-align:center;
+  display:inline;
+  font-size: 15px;
+  color:#fff;
+  margin:none;
 }
 
 .credits {
@@ -122,9 +136,28 @@ h1 {
 }
 .navRow {
   height:100%;
+  font-size:24px;
+  line-height:36px;
   display:table-cell;
   text-align:center;
   border:1px solid #334771;
+}
+.helpButton {
+    position:absolute;
+    bottom:10px;
+    left:10px;
+}
+.helpButton img {
+    width:60px;
+    height:60px;
+}
+.train {
+	position:absolute;
+	bottom:10px;
+	right:10px;
+}
+.train img {
+	width:60px;
 }
 .popupRow {
   height:100%;
@@ -132,6 +165,16 @@ h1 {
   color:white;
   text-decoration:none;
   width:33%;
+  display:table-cell;
+  text-align:center;
+  border-radius:25px;
+}
+.popupRow2 {
+  height:100%;
+  font-size:90px;
+  color:white;
+  text-decoration:none;
+  width:50%;
   display:table-cell;
   text-align:center;
   border-radius:25px;
@@ -163,6 +206,39 @@ h1 {
   display:inline-block;
   text-align:center;
 }
+.dropdownRow {
+    color:white;
+    font-size:125px;
+    line-height:125px;
+    text-align:center;
+}
+.dropdownRow img {
+  height:75px;
+  margin-top:25px;
+}
+.dropdownBtn {
+    width:125px;
+    border:2px #334771 solid;
+    display:inline-block;
+    position:relative;
+}
+.dropdownBtn:hover {
+	background-color:#334771;
+}
+.dropdownContent {
+	position:absolute;
+	background-color:#334771;
+	border-radius:12px;
+	line-height:75px;
+	font-size:75px;
+	z-index:50;
+	margin-left:-33px;
+	margin-top:80px;
+}
+.dropdownContent img {
+  height:50px;
+  margin-top:0;
+}
 .note {
   height:300px;
   border:5px #334771 solid;
@@ -189,8 +265,8 @@ h1 {
   margin:12px;
 }
 .popupRow4 img {
-  height:75px;
-  margin:12px;
+  height:70px;
+  margin:12px 25px;
 }
 .popupRow5 img {
   height:75px;
@@ -231,27 +307,50 @@ div.menuButton:active, div.menuButton:hover{
   border-radius:25px;
   background-color:#283856;
 }
+/*.move img {
+    height:200px;
+}*/
 .foodRow {
   display:block;
   width:100%;
+  height:125px;
   border:2px solid #24324D;
   border-radius:25px;
   background-color:#24324D;
   overflow-x:scroll;
+  white-space:nowrap;
+}
+.food {
+	display:inline-block;
+	height:100px;
+	width:125px;
+}
+.foodCategory {
+  display:inline-block;
+  width:49%;
+  border:2px solid #24324D;
+  background-color:#24324D;
+  text-align:center;
+  height:250px;
+  background-position:center;
+  background-repeat:no-repeat;
+  background-size:contain;
+  vertical-align:top;
+  overflow-y:scroll;
 }
 .foodRow::-webkit-scrollbar-track {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 	border-radius: 10px;
-	background-color: #F5F5F5;
+	background-color: #334771;
 }
 .foodRow::-webkit-scrollbar {
 	width: 12px;
-	background-color: #F5F5F5;
+	background-color: #334771;
 }
 .foodRow::-webkit-scrollbar-thumb {
 	border-radius: 10px;
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-	background-color: #D62929;
+	background-color: #F5F5F5;
 }
 #loading {
 	display:none;
@@ -261,7 +360,9 @@ div.menuButton:active, div.menuButton:hover{
 	left:0;
 	right:0;
 }
-
+.imageDiv { 
+	text-align:center;
+}
 
 
 // Range Slider

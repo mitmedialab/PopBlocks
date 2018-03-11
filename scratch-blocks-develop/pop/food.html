@@ -28,37 +28,41 @@
     <nav class="sidenav-up" id="sidenav">
       <div>
       	<a class="navLink" href="./index.html" onclick=""><img src="../media/home.svg" alt="Home"></a>
-	    <a href="#" onclick="addWedo()" class="navLink"><img src="../media/icons/wedo_add.svg" alt="Wedo"></a>
-	    <a href="#" onclick="addRobot(0)" class="navLink"><img src="../media/icons/add_robot.svg" alt="Robot"></a>
 	    <div class="menuButton" onclick="toggleSidenav()">&#x25B2;</div>
 	  </div>
 	</nav>	
 	<div class="menuButton" onclick="toggleSidenav()">&#x25BC;</div>
     <!---<div id="blocklyDiv" ></div>-->
-    <div id="settings" class="settings" style="display:block;top:100px;">
-    	<div class="settingsRow">
-      		<a id="1" class="food popupRow4" href="#"><img src="../media/icons/food/banana.svg" alt="Banana"></a>
-      		<a id="2" class="food popupRow4" href="#"><img src="../media/icons/food/bread.svg" alt="Bread"></a>
-      		<a id="3" class="food popupRow4" href="#"><img src="../media/icons/food/broccoli.svg" alt="Broccoli"></a>
-      		<a id="4" class="food popupRow4" href="#"><img src="../media/icons/food/carrot.svg" alt="Carrot"></a>
-    	</div>
-	    <div class="settingsRow">
-	    	<a id="5" class="food popupRow4" href="#"><img src="../media/icons/food/cheese.svg" alt="Cheese"></a>
-      		<a id="6" class="food popupRow4" href="#"><img src="../media/icons/food/chicken.svg" alt="Chicken"></a>
-      		<a id="7" class="food popupRow4" href="#"><img src="../media/icons/food/chocolate.svg" alt="Chocolate"></a>
-      		<a id="8" class="food popupRow4" href="#"><img src="../media/icons/food/fish.svg" alt="Fish"></a>
-    	</div>
-	    <div class="settingsRow">
-      		<a id="9" class="food popupRow4" href="#"><img src="../media/icons/food/milk.svg" alt="Milk"></a>
-      		<a id="10" class="food popupRow4" href="#"><img src="../media/icons/food/rice.svg" alt="Rice"></a>
-      		<a id="11" class="food popupRow4" href="#"><img src="../media/icons/food/strawberry.svg" alt="Strawberry"></a>
-      		<a id="12" class="food popupRow4" href="#"><img src="../media/icons/food/tomato.svg" alt="Tomato"></a>
-    	</div>
-	    <div class="settingsRow">
-      		<a id="13" onclick="selectcat(13)" class="cat popupRow" href="#">1</a>
+    <div id="settings" class="settings" style="display:block;top:50px;">
+    	<div class="foodRow" id="foodRow">
+    		<a id="0" class="food popupRow4" href="#"><img src="../media/icons/food/banana.svg" alt="Banana"></a>
+      		<a id="1" class="food popupRow4" href="#"><img src="../media/icons/food/bread.svg" alt="Bread"></a>
+      		<a id="2" class="food popupRow4" href="#"><img src="../media/icons/food/broccoli.svg" alt="Broccoli"></a>
+      		<a id="3" class="food popupRow4" href="#"><img src="../media/icons/food/carrot.svg" alt="Carrot"></a>
+	    	<a id="4" class="food popupRow4" href="#"><img src="../media/icons/food/cheese.svg" alt="Cheese"></a>
+      		<a id="5" class="food popupRow4" href="#"><img src="../media/icons/food/chicken.svg" alt="Chicken"></a>
+      		<a id="6" class="food popupRow4" href="#"><img src="../media/icons/food/chocolate.svg" alt="Chocolate"></a>
+      		<a id="7" class="food popupRow4" href="#"><img src="../media/icons/food/fish.svg" alt="Fish"></a>
+      		<a id="8" class="food popupRow4" href="#"><img src="../media/icons/food/milk.svg" alt="Milk"></a>
+      		<a id="9" class="food popupRow4" href="#"><img src="../media/icons/food/rice.svg" alt="Rice"></a>
+      		<a id="10" class="food popupRow4" href="#"><img src="../media/icons/food/strawberry.svg" alt="Strawberry"></a>
+      		<a id="11" class="food popupRow4" href="#"><img src="../media/icons/food/tomato.svg" alt="Tomato"></a>
+    		<a id="12" class="food popupRow4" href="#"><img src="../media/icons/food/soda.svg" alt="Soda"></a>
+      		<a id="13" class="food popupRow4" href="#"><img src="../media/icons/food/juice.svg" alt="Orange Juice"></a>
+      		<a id="14" class="food popupRow4" href="#"><img src="../media/icons/food/butter.svg" alt="Butter"></a>
+      		<a id="15" class="food popupRow4" href="#"><img src="../media/icons/food/cookie.svg" alt="Cookies"></a>
+      		<a id="16" class="food popupRow4" href="#"><img src="../media/icons/food/chips.svg" alt="Chips"></a>
+      		<a id="17" class="food popupRow4" href="#"><img src="../media/icons/food/icecream.svg" alt="Ice Cream"></a>
+      		<a id="18" class="food popupRow4" href="#"><img src="../media/icons/food/corn.svg" alt="Corn"></a>
+      		<a id="19" class="food popupRow4" href="#"><img src="../media/icons/food/blueberries.svg" alt="Blueberries"></a>
+      		<!---<a id="13" onclick="selectcat(13)" class="cat popupRow" href="#">1</a>
       		<a id="14" onclick="selectcat(14)" class="cat popupRow" href="#">2</a>
-      		<a id="15" onclick="selectcat(15)" class="cat popupRow" href="#">3</a>
+      		<a id="15" onclick="selectcat(15)" class="cat popupRow" href="#">3</a>-->
     	</div>
+    		<div class="foodCategory" id="goodFood" style="background-image: url('../media/icons/win2.svg');">
+      		</div>
+    		<div class="foodCategory" id="badFood" style="background-image: url('../media/icons/lose2.svg');">
+      		</div>
 	    <div class="settingsRow">
       		<a class="popupRow"href="#" onclick="clearSelections();">x</a>	
     	</div>

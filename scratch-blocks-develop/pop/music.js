@@ -25,14 +25,20 @@ let audioCtx;
 let recording = false;
 let playing = false;
 let savedNotes = [];
-let savedDur = []
+let savedDur = [];
 //  {880.0, 440.0, 494.0, 554.0, 587.0, 659.0, 740.0, 830.6}; 
 function musicStart() {
+	groupID = localStorage.getItem("Group ID");
+	robotID = localStorage.getItem("Robot ID");
+	IP_address = localStorage.getItem("IP");
+
+	// Form oscillator for making music
 	audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 	oscillator = audioCtx.createOscillator();
 	oscillator.type = 'square';
 	oscillator.start(0);
 	
+	// Create event handlers for all notes
 	let notes = document.getElementsByClassName('note');
 	notes[0].addEventListener('touchstart', 
 		function() { selectNote(1);} );
@@ -106,21 +112,22 @@ function musicStart() {
 	notes[7].addEventListener('mouseup', 
 		function() { releaseNote(8)} );
 		
-	/*document.getElementById('note_let').addEventListener('change',
-		function() { sliderChange('notelet'); });*/
 		
-    document.getElementById('record').addEventListener('touchstart',
-        function() { startRecording() });
-    document.getElementById('record').addEventListener('mousedown',
-        function() { startRecording() });
-    document.getElementById('play').addEventListener('touchstart',
-        function() { startPlaying() });
-    document.getElementById('play').addEventListener('mousedown',
-        function() { startPlaying() });
-    document.getElementById('stop').addEventListener('touchstart',
-        function() { stopAll() });
-    document.getElementById('stop').addEventListener('mousedown',
-        function() { stopAll() });
+	document.getElementById('energy').addEventListener('change',
+		function() { sliderChange('energy'); });
+	document.getElementById('valence').addEventListener('change',
+		function() { sliderChange('valence'); });
+		
+    document.getElementById('record').addEventListener('click',
+        function() { recording=true; playing=false; toggleIcon(); startRecording(); });
+    document.getElementById('play').addEventListener('click',
+        function() { playing=true; recording=false; toggleIcon(); startPlaying() });
+    document.getElementById('stop_play').addEventListener('click',
+        function() { stopAll(); toggleIcon(); });
+    document.getElementById('stop_record').addEventListener('click',
+        function() { stopAll(); toggleIcon(); });
+        
+    sendCommand("m18_Let's+get+our+groove+on");
 }
 
 function startRecording() {
@@ -128,13 +135,40 @@ function startRecording() {
     savedNotes = [];
     savedDur = [];
     recording = true;
+    playing = false;
+}
+
+function toggleIcon() {
+    toggleRecordIcon();
+    togglePlayIcon();
 }
 
 function toggleRecordIcon() {
-	
+    let record = document.getElementById('record');
+    let stop = document.getElementById('stop_record');
+    if (recording) {
+		log("G" + groupID + "\tDate:" + Date.now() + "\tMusic\tStarted Recording\n");
+	    record.style.display = "none";
+	    stop.style.display = "inherit";
+	} else {
+		log("G" + groupID + "\tDate:" + Date.now() + "\tMusic\tStopped Recording\n");
+	    record.style.display = "inherit";
+	    stop.style.display = "none";
+	}
 }
 
 function togglePlayIcon() {
+    let play = document.getElementById('play');
+    let stop = document.getElementById('stop_play');
+    if (playing) {
+		log("G" + groupID + "\tDate:" + Date.now() + "\tMusic\tStarted Playing\n");
+	    play.style.display = "none";
+	    stop.style.display = "inherit";
+	} else {
+		log("G" + groupID + "\tDate:" + Date.now() + "\tMusic\tStopped Playing\n");
+	    play.style.display = "inherit";
+	    stop.style.display = "none";
+	}
 }
 
 function sleep(ms) {
@@ -142,33 +176,32 @@ function sleep(ms) {
 }
 
 async function startPlaying() {
-    console.log('Starting playing');
-    recording = false;
-    //savedNotes = document.getElementById("notes").value.split(",").map(Number);
-    //savedDur = document.getElementById("dur").value.split(",").map(Number);
-    console.log(savedNotes);
-    console.log(savedDur);
     let i = 0;
     if (savedNotes[i] == 0)
     	i = 1;
     for (; i<savedNotes.length; i++) {
-        selectNote(savedNotes[i]);
-        await sleep(savedDur[i]);
-        releaseNote(savedNotes[i]);
+        if (playing) {
+            selectNote(savedNotes[i]);
+            await sleep(savedDur[i]);
+            releaseNote(savedNotes[i]);
+        }
     }
+    stopAll();
+    toggleIcon();
 }
 
 function stopAll() {
-    console.log('Stopping recording');
+	// stop playing and recording
     recording = false;
-    console.log(savedNotes);
+    playing = false;
 }
 
 function selectNote(select) {
+	// choose a note by index and highlight it
 	if (select > 0) {
 		let element = document.getElementById(select);
 		element.className += ' selected9';
-		console.log("Pressed " + select);
+		
 		// Save note start time
 		notes[select] = Date.now();
 		if (recording) {
@@ -181,6 +214,7 @@ function selectNote(select) {
 }
 
 function releaseNote(select) {
+	// when the user releases the note stop playing it
 	if (select > 0) {
 		let element = document.getElementById(select);
 		let dur = Date.now() - notes[select];
@@ -193,16 +227,14 @@ function releaseNote(select) {
 		    // Save rest start time
 		    notes[0] = Date.now();
 		}
-		console.log('music_' + select + '+' + dur);
-		if (live)
-			sendCommand('music_' + select + '+' + dur);
+		log("G" + groupID + "\tDate:" + Date.now() + "\tMusic\tNote:" + select + "\tDuration:" + dur + "\n");
+		sendCommand('music_' + select + '+' + dur);
 	}
 }
 function sliderChange(element) {
 	let el = document.getElementById(element);
-	console.log(element + '_' + el.value);
-	if (live)
-		sendCommand(element + '_' + el.value);
+	log("G" + groupID + "\tDate:" + Date.now() + "\tMusic\tChanged:" + el.id + "\tValue:" + el.value + "\n");
+	sendCommand(element + '_' + el.value);
 }
 
 
@@ -218,5 +250,3 @@ function stopNote() {
 	//oscillator.stop();
 	oscillator.disconnect();
 }
-
-// Android.log(Date.now() + "\t" + event.type + "\t" + event.element + "\t" + event.newValue + "\t" + code + "\n");

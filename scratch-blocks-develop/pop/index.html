@@ -11,32 +11,38 @@
 	<link rel=icon href="favicon.png">
   </head>
 
-  <body onload="populateNav()">
-  <img id="loading" src="loading.gif" alt="Loading">
+  <body onload="loadIndex()">
+  <img id="loading" src="loading.svg" alt="Loading">
   <div>
   	<div style="width:100%; display:table">
-		<a onclick="showLoading()" href="./story1_1.html" class="navRow indexNav"><img src="../media/crown.svg" alt="Castle Story Tutorial"></a>
-		<a onclick="showLoading()" href="./story2_1.html" class="navRow indexNav"><img src="../media/car.svg" alt="Race Story Tutorial"></a>
+		<a onclick="showLoading()" href="./Story/story1_1.html" class="navRow indexNav"><img src="../media/crown.svg" alt="Castle Story Tutorial"></a>
+		<!---<a onclick="showLoading()" href="./Story/story2_1.html" class="navRow indexNav"><img src="../media/car.svg" alt="Race Story Tutorial"></a>-->
     </div>
     <div style="width:100%; display:table">
-    	<a onclick="showLoading()" href="./rps.html" class="navRow indexNav"><img src="../media/game.svg" alt="Rock Paper Scissors"></a>
+    	<a onclick="showLoading()" href="./rps1.html" class="navRow indexNav"><img src="../media/game.svg" alt="Rock Paper Scissors"></a>
     </div>
     <div style="width:100%; display:table">
     	<a onclick="showLoading()" href="./music.html" class="navRow indexNav"><img src="../media/icons/note.svg" alt="Music Maker"></a>
     </div>
-    <!--<div style="width:100%; display:table">
+    <div style="width:100%; display:table">
     	<a onclick="showLoading()" href="./food.html" class="navRow indexNav"><img src="../media/icons/food/strawberry.svg" alt="Food Sorter"></a>
     </div>
-	<div style="width:100%; display:table">
+    <div style="width:100%; display:table">
+    	<a onclick-"showLoading()" href="./Test/test_index.html" class="navRow indexNav"><img src="../media/icons/star.svg" alt="Tests"></a>
+    </div>
+	<!--<div style="width:100%; display:table">
     	<a onclick="showLoading()" href="tega.html" class="navRow indexNav"><img src="../media/icons/tega_blue.svg" alt="New Workspace"></a>
     </div>-->
     <div style="width:100%; display:table">
     	<a onclick="showLoading()" href="freespace.html" class="navRow indexNav"><img src="../media/new.svg" alt="New Workspace"></a>
-	    <a href="#" onclick="toggleWorkspaces()" class="navRow indexNav"><img src="../media/open.svg" alt="Load Workspace">
+	    <!--<a href="#" onclick="toggleWorkspaces()" class="navRow indexNav"><img src="../media/open.svg" alt="Load Workspace">
 			<div id="programs"></div>
-	    </a>
+	    </a>-->
 	</div>
-    <a href="credits.html" class="navLink"><img src="../media/credits.svg" alt="Credits"></a>
+    <!--<a href="credits.html" class="navLink"><img src="../media/credits.svg" alt="Credits"></a>-->
+	<a id="id" onclick="setGID()" href="javascript:void(0);" class="navRow">Group ID: null</a>
+	<a id="rid" onclick="setRobotID()" href="javascript:void(0);" class="navRow">Robot ID: null</a>
+	<a id="ip" onclick="setIP()" href="javascript:void(0);" class="navRow">IP: null</a>
   </div>
 	
   </body>

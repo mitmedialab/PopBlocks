@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>PopBlocks</title>
+
+    <script src="../../blockly_uncompressed_horizontal.js"></script>
+    <script src="../../popr_uncompressed.js"></script>
+    <script src="../../msg/messages.js"></script>
+    <script src="../../blocks_common/math.js"></script>
+    <script src="../../blocks_common/text.js"></script>
+    <script src="../../popr_blocks/control.js"></script>
+    <script src="../../popr_blocks/event.js"></script>
+    <script src="../../popr_blocks/wedo.js"></script>
+    <script src="../../popr_blocks/malle.js"></script>
+    <script src="./test.js"></script>
+    <script src="../index.js"></script>
+	<link rel="stylesheet" type="text/css" href="../index.css"> 
+  </head>
+
+  <body onload="testStart()">
+	<div class="stableNav">
+      	<a id="back" class="navRow" href="./test1_5.html"><img id="back" src="../../media/icons/back.svg" alt="Back"></a>
+      	<a class="navRow" onclick="authenticate()"><img src="../../media/icons/star.svg" alt="Tests"></a>
+      	<a id="next" class="navRow" onclick="navPress()"><img id="next" src="../../media/icons/next.svg" alt="Next"></a>
+  	</div>
+     <div id="1" class="imageDiv">
+  	<h1>#6</h1><embed width="900" height="300" src="./Test_Images/test1_6.mp4"></embed></div>
+     <desc id="1">Where are Scott's mittens really? In his backpack or in the closet?</desc>
+	<div id="answers" class="settingsRow" style="background-color:#24324D">
+  		<a id="0" class="answer popupRow" href="#"><img id="0" src="./Test_Images/bag_answer.svg" alt="Backpack"></a>
+  		<a id="1" class="answer popupRow" href="#"><img id="1" src="./Test_Images/closet_answer.svg" alt="Closet"></a>
+	</div>
+  </body>
+</html>

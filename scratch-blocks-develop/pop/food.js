@@ -28,113 +28,126 @@ goog.require('Blockly.Blocks');
  * @fileoverview Provide a default toolbox XML.
  */
 
-Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: none">' +
-    '<block type="wedo_setcolor">' +
-        '<value name="CHOICE">' +
-        '<shadow type="dropdown_wedo_setcolor">' +
-        '<field name="CHOICE">mystery</field>' +
-        '</shadow>' +
-        '</value>' +
-    '</block>' +
-    '<block type="malle_setcolor">' +
-        '<value name="CHOICE">' +
-        '<shadow type="dropdown_malle_setcolor">' +
-        '<field name="CHOICE">mystery</field>' +
-        '</shadow>' +
-        '</value>' +
-    '</block>' +
-    '<block type="wedo_motor1clockwise"></block>' +
-    '<block type="wedo_motor1counterclockwise"></block>' +
-    '<block type="wedo_motor1stop"></block>' +
-    '<block type="malle_excited"></block>' +
-    '<block type="malle_sad"></block>' +
-    '<block type="malle_interested"></block>' +
-    '<block type="malle_happywiggle"></block>' +
-    '<block type="malle_fart"></block>' +
-    '<block type="malle_yawn"></block>' +
-    '<block type="malle_dancebingo"></block>' +
-    '<block type="control_wait">' +
-	    '<value name="DURATION">' +
-	    '<shadow type="dropdown_control_number">' +
-	    '<field name="NUM">1</field>' +
-	    '</shadow>' +
-	    '</value>' +
-    '</block>' +
-    '</xml>' + // Close XML
-    '<xml id="toolbox-simple" style="display: none">' +
-    '</xml>';
-
-var food = 0;
 function foodStart() {
 	var foods = document.getElementsByClassName('food');
-	foods[0].addEventListener('click', 
-		function() { selectfood(1);} );
+	for (var i=0; i<foods.length; i++) {
+		/*foods[i].addEventListener('click', 
+			function() { selectfood(event);} );
+		foods[i].addEventListener('mouseover', 
+			function(event) { dragfood(event);} );	*/
+		foods[i].addEventListener('mousedown',
+		    function() { selectfood(event); });
+		foods[i].addEventListener('mousemove',
+		    function() { dragfood(event); });	
+		foods[i].addEventListener('mouseup',
+		    function() { releasefood(); });	
+		foods[i].addEventListener('touchstart',
+		    function() { selectfood(event); });	
+		foods[i].addEventListener('touchmove',
+		    function() { dragfood(event); });	
+		foods[i].addEventListener('touchend',
+		    function() { releasefood(); });
+	}
 	
-	foods[1].addEventListener('click', 
-		function() { selectfood(2);} );
-		
-	foods[2].addEventListener('click', 
-		function() { selectfood(3);} );
+	var categories = document.getElementsByClassName('foodCategory');
 	
-	foods[3].addEventListener('click', 
-		function() { selectfood(4);} );
+	// Load group id
+	groupID = localStorage.getItem("Group ID");
+	if (groupID == -1 || groupID == null) {
+		groupID = prompt("Group ID: ");
+		localStorage.setItem("Group ID", groupID);
+	}
 	
-	foods[4].addEventListener('click', 
-		function() { selectfood(5);} );
-	
-	foods[5].addEventListener('click', 
-		function() { selectfood(6);} );
-		
-	foods[6].addEventListener('click', 
-		function() { selectfood(7);} );
-	
-	foods[7].addEventListener('click', 
-		function() { selectfood(8);} );
-			
-	foods[8].addEventListener('click', 
-		function() { selectfood(9);} );
-			
-	foods[9].addEventListener('click', 
-		function() { selectfood(10);} );
-			
-	foods[10].addEventListener('click', 
-		function() { selectfood(11);} );
-			
-	foods[11].addEventListener('click', 
-		function() { selectfood(12);} );
-		
+	// clear all other data
 	clearSelections();
 }
 
-function selectfood(select) {
-	var foods = document.getElementsByClassName('food');
-	for (var i=0; i<foods.length; i++) {
-		if (foods[i].className.includes('wrong'))
-			foods[i].className += 'food popupRow4 wrong';
-		else 
-			foods[i].className = 'food popupRow4';
+function selectfood(event) {
+	var element = event.path[0];
+	if (element.tagName == 'IMG') {
+		element = event.path[1];
 	}
-	food = select;
-	var element = document.getElementById(select);
-	element.className += ' selected';
-	console.log(select-1);
-	if (live)
-		sendCommand('sortinput_'+ (food-1));
+	if (element.className == 'food popupRow4 selected') {
+		releasefood();
+	} else {
+		var foods = document.getElementsByClassName('food');
+		for (var i=0; i<foods.length; i++) {
+			foods[i].className = 'food popupRow4';
+		}
+		element.className += ' selected';
+		if (live) {
+			sendCommand('sortinput_'+ element.id);
+			Android.log("G" + groupID + "\tfood\t" + Date.now() + "\t" + element.id);
+		} else {
+			console.log("G" + groupID + "\tfood\t" + Date.now() + "\t" + element.id);
+		}
+	}
 }
 
-function selectcat(select) {
-	var cats = document.getElementsByClassName('cat');
-	for (var i=0; i<cats.length; i++) {
-		cats[i].className = 'cat popupRow';
+function dragfood(event) {
+    // get element
+	var element = event.path[0];
+	
+	// get mouse
+	var mouseX = event.clientX;
+	var mouseY = event.clientY;
+	if (mouseX == undefined)
+	    mouseX = event.touches[0].pageX;
+	if (mouseY == undefined)
+	    mouseY = event.touches[0].pageY;
+	    
+	if (element.tagName == 'IMG') {
+		element = event.path[1];
 	}
-	var element = document.getElementById(select);
-	element.className += ' selected';
-	var food_element = document.getElementById(food);
-	food_element.className += ' wrong';
-	// item+category
-	console.log((food-1) + "+" + (select-12));
-	if (live)
-		sendCommand('sortinput_'+ (food-1) + "+" + (select-12));
+	// if food is selected, have it follow the mouse
+	if (element.className == 'food popupRow4 selected') {
+		element.style.position = "absolute";
+		element.style.left = (mouseX-150) + "px";
+		element.style.top = (mouseY-125) + "px";
+	}
+}
+
+function releasefood() {
+	var foods = document.getElementsByClassName('food');
+	for (var i=0; i<foods.length; i++) {
+		foods[i].className = 'food popupRow4';
+	}
+	// get element
+	var element = event.path[0];
+	if (element.tagName == 'IMG') {
+		element = event.path[1];
+	}
+	// get mouse
+	var mouseX = event.clientX;
+	var mouseY = event.clientY;
+	if (mouseX == undefined)
+	    mouseX = event.changedTouches[0].pageX;
+	if (mouseY == undefined)
+	    mouseY = event.changedTouches[0].pageY;
+	
+	// place element inside of correct div
+	var good = document.getElementById("goodFood").getBoundingClientRect();
+	var bad = document.getElementById("badFood").getBoundingClientRect();
+	var category = null, number;
+	if (mouseX > good.left && mouseX < good.right && mouseY > good.top && mouseY < good.bottom) {
+		category = document.getElementById("goodFood");
+		number = 1;
+	}
+	if (mouseX > bad.left && mouseX < bad.right && mouseY > bad.top && mouseY < bad.bottom) {
+		category = document.getElementById("badFood");
+		number = 2;
+	}
+	if (category != null) {
+		element.parentElement.removeChild(element);
+		category.appendChild(element);
+		if (live) {
+			sendCommand('sortinput_'+ element.id + "+" + number);
+			Android.log("G" + groupID + "\tfood\t" + Date.now() + "\t" + element.id + "\t" + number);
+		} else {
+			console.log("G" + groupID + "\tfood\t" + Date.now() + "\t" + element.id + "\t" + number);
+		}
+	}
+    element.style.position = "inherit";
 }
 
 function clearSelections() {
@@ -142,10 +155,18 @@ function clearSelections() {
 	for (var i=0; i<foods.length; i++) {
 		foods[i].className = 'food popupRow4';
 	}
-	food = 0;
 	var cats = document.getElementsByClassName('cat');
 	for (var i=0; i<cats.length; i++) {
 		cats[i].className = 'cat popupRow4';
+	}
+	var foodRow = document.getElementById("foodRow");
+	var goodFoods = document.getElementById("goodFood");
+	while (goodFoods.children.length > 0) {
+		foodRow.appendChild(goodFoods.children[0]);
+	}
+	var badFoods = document.getElementById("badFood");
+	while (badFoods.children.length > 0) {
+		foodRow.appendChild(badFoods.children[0]);
 	}
 	console.log('sortreset');
 	if (live)

@@ -23,7 +23,7 @@
 goog.require('Blockly.Blocks');
  
 function musicStart() {
-	var notes = document.getElementsByClassName('note');
+	var notes = document.getElementsByClassName('mic');
 	notes[0].addEventListener('touchstart', 
 		function() { selectNote('red');} );
 	notes[0].addEventListener('mousedown', 
@@ -108,7 +108,7 @@ function selectNote(select) {
 
 function releaseNote(select) {
 	var element = document.getElementById(select);
-	element.className = 'note popupRow';
+	element.className = 'mic popupRow';
 	console.log('m20');
 	if (live)
 		sendCommand('m20');

@@ -60,6 +60,15 @@ function navPress() {
 	// check the answer on that page
 	if (answer != -1) {
 		// OK to move on
+		if (test == 1 && page == 6) {
+		next = "./test4_0.html";
+		} else if (test == 2 && page == 4) {
+		next = "./test_index.html";
+		} else if (test == 3 && page == 7) { 
+		next = "./test2_0.html";
+		} else if (test == 4 && page == 5) {
+		next = "./test3_0.html";
+		}
 		window.location.href = next;
 	} else {
 		// error message?

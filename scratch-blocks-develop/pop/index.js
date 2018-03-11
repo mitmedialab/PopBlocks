@@ -3,6 +3,8 @@
 let workspace = null;
 let live = window.location.href.startsWith("http://"); // whether or not this is live or just on computer
 let robotID = 1;
+let groupID = 0;
+let IP_address = "192.168.1.1.121";
 
 function toggleSidenav() {
     let nav = document.getElementById("sidenav");
@@ -77,10 +79,10 @@ function injectWorkspace() {
         zoom: {
             controls: false,
             wheel: true,
-            startScale: 1.2,
+            startScale: 1,
             maxScale: 4,
             minScale: 0.25,
-            scaleSpeed: 1.1
+            scaleSpeed: 1
         },
         colours: {
             workspace: '#334771',
@@ -96,7 +98,7 @@ function injectWorkspace() {
     });
 }
 
-function alternateWorkspace() {
+function rpsWorkspace() {
     workspace = Blockly.inject('blocklyDiv', {
         comments: true,
         disable: false,
@@ -108,7 +110,7 @@ function alternateWorkspace() {
         toolbox: null,
         trashcan: true,
         playControls: false,
-        settings: true,
+        settings: false,
         horizontalLayout: true,
         toolboxPosition: 'start',
         sounds: true,
@@ -121,10 +123,10 @@ function alternateWorkspace() {
         zoom: {
             controls: false,
             wheel: true,
-            startScale: 1.1,
+            startScale: 1,
             maxScale: 4,
             minScale: 0.25,
-            scaleSpeed: 1.1
+            scaleSpeed: 1
         },
         colours: {
             workspace: '#334771',
@@ -140,12 +142,59 @@ function alternateWorkspace() {
     });
 }
 
+function storyWorkspace() {
+    workspace = Blockly.inject('blocklyDiv', {
+        comments: true,
+        disable: false,
+        collapse: false,
+        media: '../../media/',
+        readOnly: false,
+        rtl: false,
+        scrollbars: true,
+        toolbox: null,
+        trashcan: true,
+        playControls: true,
+        settings: false,
+        horizontalLayout: true,
+        toolboxPosition: 'start',
+        sounds: true,
+        grid: {
+            spacing: 55,
+            length: 2,
+            colour: '#FFF',
+            snap: true
+        },
+        zoom: {
+            controls: false,
+            wheel: true,
+            startScale: 1,
+            maxScale: 4,
+            minScale: 0.25,
+            scaleSpeed: 1
+        },
+        colours: {
+            workspace: '#334771',
+            toolbox: '#24324D',
+            flyout: '#283856',
+            scrollbar: '#24324D',
+            scrollbarHover: '#0C111A',
+            insertionMarker: '#FFFFFF',
+            insertionMarkerOpacity: 0.3,
+            fieldShadow: 'rgba(255, 255, 255, 0.3)',
+            dragShadowOpacity: 0.6
+        }
+    });
+}
+
+
 function start() {
     // Setup blocks
-    if (window.location.href.search("rps") == -1 & window.location.href.search("music") == -1)
-        injectWorkspace();
+    if (window.location.href.search("rps") != -1)
+        rpsWorkspace();
+    else if (window.location.href.search("story") != -1)
+        storyWorkspace();
     else
-        alternateWorkspace();
+        injectWorkspace();
 
 
     // should look for # and take everything after
@@ -154,7 +203,14 @@ function start() {
         loadWorkspace(number);
     }
     workspace.addChangeListener(updateFunction);
-    populateNav();
+    // Load old programs
+    //populateNav();
+    
+    // Try to find group ID
+    groupID = localStorage.getItem("Group ID");
+    if (groupID == null)
+    	groupID = -1;
+    
 }
 
 function showAndroidToast(toast) {
@@ -162,7 +218,17 @@ function showAndroidToast(toast) {
 }
 
 function sendCommand(command) {
-    Android.sendCommand(command);
+    if (live)
+        Android.sendCommand(command);
+    else
+        console.log(command);
+}
+
+function log(entry) {
+    if (live)
+        Android.log(entry)
+    else
+        console.log(entry)
 }
 
 function saveRule(rule) {
@@ -199,13 +265,21 @@ function saveWorkspace(filename) {
     }
 }
 
+function saveFile(filename, text) {
+    if (live) {
+        Android.saveWorkspace(text, filename);
+    } else {
+        console.log(text);
+    }
+}
+
 function addWedo() {
     Android.addWedo();
 }
 
 function addRobot(id) {
 	saveWorkspace("robot" + robotID); // save this robot's code
-	if (id > 0) {
+	if (id < 0) {
 		let robots = document.getElementsByClassName('robot');
 		for (let i=0; i<robots.length; i++) {
 			robots[i].className = 'robot navRow popupRow5';
@@ -221,7 +295,44 @@ function addRobot(id) {
     }, 3000);
     
 }
-
+function setRobotID() {
+    robotID = prompt("Robot ID: ");
+	localStorage.setItem("Robot ID", robotID);
+	populateSettings();
+	if (live) {
+		Android.addRobot(parseInt(robotID));
+	}
+}
+function loadIndex() {
+    populateSettings();
+    // Load old programs
+    // populateNav();
+}
+function populateSettings() {
+	groupID = localStorage.getItem("Group ID");
+	document.getElementById("id").innerHTML = "Group ID: " + groupID;
+	robotID = localStorage.getItem("Robot ID");
+	document.getElementById("rid").innerHTML = "Robot ID: " + robotID;
+	IP_address = localStorage.getItem("IP");
+	document.getElementById("ip").innerHTML = "IP: http://" + IP_address;
+}
+function setGID() {
+    groupID = prompt("Group ID: ");
+	localStorage.setItem("Group ID", groupID);
+	populateSettings();
+	if (live)
+		Android.setPID(groupID);
+}
+function setIP() {
+    let ip = prompt("IP Address: ");
+	document.getElementById("ip").innerHTML = "IP: http://" + ip;
+	localStorage.setItem("IP", ip);
+	populateSettings();
+	if (live) {
+	    Android.setIpAddress(ip);
+	    log("Connected tablet: " + groupID);
+    }
+}
 function populateNav() {
     let count;
     if (live) {
@@ -238,7 +349,6 @@ function populateNav() {
         a.appendChild(img);
         a.href = "freespace.html#" + (i + 1);
         a.onclick = function() {
-            console.log('what up');
             loadWorkspace(i + 1);
         }
         a.className = "progLink";
@@ -273,25 +383,28 @@ function loadWorkspace(number) {
     }
 }
 
-function updateFunction(event) {
-    let code = Blockly.Popr.workspaceToCode(workspace);
+function loadFile(name) {
+    if (live) {
+        let text = Android.loadWorkspace(name);
+        return text;
+    }
+    return "";
+}
 
+function updateFunction(event) {
+    let all_code = Blockly.Popr.workspaceToCode(workspace);
+    let code = "";
     // Sort events into Android commands
     if (event.type == Blockly.Events.UI) {
         if (event.element == 'click') {
             let block = workspace.getBlockById(event.blockId);
-            let code = "";
             while (block != null) {
                 code += Blockly.Popr.blockToCode(block);
                 block = block.getNextBlock();
             }
 
-            if (live) {
-                Android.sendCommand(code);
-            } else {
-                console.log(event.element + ' ' + code);
-            }
-
+            sendCommand(code);
+            
         } else if (event.element == 'categoryclick') {
 
             if (!live) {
@@ -335,24 +448,19 @@ function updateFunction(event) {
             		toggleRecord();
             	}
             } else {
-	            let code = Blockly.Popr.blockHelp(block);
-	            if (live) {
-	                Android.sendCommand(code);
-	            } else {
-	                console.log(event.element + ' ' + code);
-	            }
+	            code = Blockly.Popr.blockHelp(block);
+	            sendCommand(code);
+	            
 	        }
         }
         
 		// Log event
-		if (live) {
-		    Android.log(Date.now() + "\t" + event.element + "\t" + event.newValue + "\t" + code + "\n");
-		}
+		log("G" + groupID + "\tDate:" + Date.now() + "\tWorkspace\tElement:" + event.element + "\tOldVal:" + event.oldValue + "\tNewVal:" + event.newValue + "\tBlock:" + code + "\tWorkspace:" + all_code + "\n");
     } else {
         if (live) {
-            Android.resetRules(code);
+            Android.resetRules(all_code);
         } else {
-            console.log(event.code);
+            console.log(all_code + " " + event.type);
         }
     }
 }
