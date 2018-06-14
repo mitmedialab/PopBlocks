@@ -21,8 +21,7 @@
 /**
  * @fileoverview Icon picker input field.
  * This is primarily for use in Scratch Horizontal blocks.
- * Pops open a drop-down with icons; when an icon is selected, it replaces
- * the dropdown image, rather than the total block image
+ * Pops open a drop-down with icons; can use plus button to add new options
  * @author randiw12@mit.edu (Randi Williams)
  */
 'use strict';
@@ -30,6 +29,10 @@
 goog.provide('Blockly.FieldIconMenu3');
 
 goog.require('Blockly.DropDownDiv');
+
+let names = ["red", "orange", "yellow", "green", "teal", "blue", "purple"];
+
+let icons_ = [];
 
 /**
  * Class for an icon menu field.
@@ -39,12 +42,13 @@ goog.require('Blockly.DropDownDiv');
  */
 Blockly.FieldIconMenu3 = function(icons) {
   /** @type {object} */
-  this.icons_ = icons;
+  this.icons_ = icons_;
   // Example:
   // [{src: '...', width: 20, height: 20, alt: '...', value: 'machine_value'}, ...]
   // First icon provides the default values.
   var defaultValue = '';
   Blockly.FieldIconMenu3.superClass_.constructor.call(this, defaultValue);
+  
   this.addArgType('iconmenu');
 };
 goog.inherits(Blockly.FieldIconMenu3, Blockly.Field);
@@ -77,7 +81,11 @@ Blockly.FieldIconMenu3.prototype.init = function(block) {
   /** @type {Number} */
   this.arrowY_ = 10;
   
-  var imgSrc = this.getSrcForValue(this.value_);
+  if (this.value === null || this.value_ === undefined) {
+ 	this.setParentFieldImage(this.getSrcForValue('rophone'));
+  } else {
+	  this.setParentFieldImage(this.getSrcForValue(this.value_));
+  }
   if (block.RTL) {
     // In RTL, the icon position is flipped and rendered from the right (offset by width)
     this.arrowX_ = -this.arrowX_ - arrowSize;
@@ -106,8 +114,9 @@ Blockly.FieldIconMenu3.prototype.CURSOR = 'default';
  * @override
  */
 Blockly.FieldIconMenu3.prototype.setValue = function(newValue) {
-  if (newValue === null || newValue === this.value_) {
-    return;  // No change
+  if (newValue === null || newValue === "") {
+ 	this.setParentFieldImage(this.getSrcForValue('rophone'));
+ 	 return;
   }
   if (this.sourceBlock_ && Blockly.Events.isEnabled()) {
     Blockly.Events.fire(new Blockly.Events.Change(
@@ -183,11 +192,6 @@ Blockly.FieldIconMenu3.prototype.getValue = function() {
  */
 Blockly.FieldIconMenu3.prototype.getSrcForValue = function(value) {
   return Blockly.mainWorkspace.options.pathToMedia + "icons/mic" + value + ".svg";
-  for (var i = 0, icon; icon = this.icons_[i]; i++) {
-    if (icon.value === value) {
-      return icon.src;
-    }
-  }
 };
 
 /**
@@ -219,7 +223,7 @@ Blockly.FieldIconMenu3.prototype.showEditor_ = function() {
   plusButton.style.backgroundColor = this.sourceBlock_.getColour();
   plusButton.style.borderColor = this.sourceBlock_.getColourTertiary();
   Blockly.bindEvent_(plusButton, 'click', this, this.plusClick_);
-  Blockly.bindEvent_(plusButton, 'mouseup', this, this.plusClick_);
+  //Blockly.bindEvent_(plusButton, 'mouseup', this, this.plusClick_);
   
   Blockly.bindEvent_(plusButton, 'mousedown', plusButton, function(e) {
       this.setAttribute('class', 'blocklyDropDownButton blocklyDropDownButtonHover');
@@ -233,15 +237,8 @@ Blockly.FieldIconMenu3.prototype.showEditor_ = function() {
   	  this.setAttribute('class', 'blocklyDropDownButton');
 	  contentDiv.removeAttribute('aria-activedescendant');
 	});
-  var buttonImg = document.createElement('img');
-  buttonImg.src = Blockly.mainWorkspace.options.pathToMedia + 'add.svg';
-  plusButton.setAttribute('data-value', '');
-  buttonImg.setAttribute('data-value', '');
-  plusButton.appendChild(buttonImg);
-  contentDiv.appendChild(plusButton);
-  // end add button
   
-  for (var i = 0, icon; icon = this.icons_[i]; i++) {
+  for (var i = 0, icon; icon = icons_[i]; i++) {
     // Icons with the type property placeholder take up space but don't have any functionality
     // Use for special-case layouts
     if (icon.type == 'placeholder') {
@@ -253,7 +250,7 @@ Blockly.FieldIconMenu3.prototype.showEditor_ = function() {
       continue;
     }
     var button = document.createElement('button');
-    button.setAttribute('id', ':' + i); // For aria-activedescendant
+    button.setAttribute('id', ':' + names[i]); // For aria-activedescendant
     button.setAttribute('role', 'menuitem');
     button.setAttribute('class', 'blocklyDropDownButton');
     button.title = icon.alt;
@@ -285,7 +282,7 @@ Blockly.FieldIconMenu3.prototype.showEditor_ = function() {
       contentDiv.removeAttribute('aria-activedescendant');
     });
     var buttonImg = document.createElement('img');
-    buttonImg.src = Blockly.mainWorkspace.options.pathToMedia + 'icons/mic' + (i+1) + '.svg';
+    buttonImg.src = Blockly.mainWorkspace.options.pathToMedia + 'icons/mic' + names[i] + '.svg';
     //buttonImg.alt = icon.alt;
     // Upon click/touch, we will be able to get the clicked element as e.target
     // Store a data attribute on all possible click targets so we can match it to the icon.
@@ -294,6 +291,18 @@ Blockly.FieldIconMenu3.prototype.showEditor_ = function() {
     button.appendChild(buttonImg);
     contentDiv.appendChild(button);
   }
+  
+  // begin plus button
+  var buttonImg = document.createElement('img');
+  buttonImg.src = Blockly.mainWorkspace.options.pathToMedia + 'add.svg';
+  plusButton.setAttribute('data-value', '');
+  buttonImg.setAttribute('data-value', '');
+  plusButton.appendChild(buttonImg);
+  
+  var i = icons_.length;
+  if (i < 7)
+	  contentDiv.appendChild(plusButton);
+  // end plus button
   
   contentDiv.style.width = Blockly.FieldIconMenu.DROPDOWN_WIDTH + 'px';
 
@@ -329,18 +338,18 @@ Blockly.FieldIconMenu3.prototype.showEditor_ = function() {
  * @private
  */
 Blockly.FieldIconMenu3.prototype.plusClick_ = function(e) {
-  var i = this.icons_.length;
-  if (i < 9) {
+  var i = icons_.length;
+  if (i < 7) {
 	  var event = new Blockly.Events.Record(i+1);
 	  event.workspaceId = Blockly.mainWorkspace.id;
 	  Blockly.Events.fire(event);
 
 	  var contentDiv = Blockly.DropDownDiv.getContentDiv();
-	  	var icon = {value: '' + (i+1),
+	  	var icon = {value: '' + names[i],
 	  				width: 48,
 	  				height: 48,
 	  				alt: 'Record ' + (i+1)};
-	  	this.icons_.push(icon);
+	  	icons_.push(icon);
 	    var button = document.createElement('button');
 	    button.setAttribute('id', ':' + i); // For aria-activedescendant
 	    button.setAttribute('role', 'menuitem');
@@ -356,8 +365,12 @@ Blockly.FieldIconMenu3.prototype.plusClick_ = function(e) {
 	    }
 	    button.style.backgroundColor = backgroundColor;
 	    button.style.borderColor = this.sourceBlock_.getColourTertiary();
+	    toggleRecord(icon.value);
+  		Blockly.DropDownDiv.hide();
+  		this.setValue(icon.value);
+	    
 	    Blockly.bindEvent_(button, 'click', this, this.buttonClick_);
-	    Blockly.bindEvent_(button, 'mouseup', this, this.buttonClick_);
+	    //Blockly.bindEvent_(button, 'mouseup', this, this.buttonClick_);
 	    // These are applied manually instead of using the :hover pseudoclass
 	    // because Android has a bad long press "helper" menu and green highlight
 	    // that we must prevent with ontouchstart preventDefault
@@ -374,7 +387,7 @@ Blockly.FieldIconMenu3.prototype.plusClick_ = function(e) {
 	      contentDiv.removeAttribute('aria-activedescendant');
 	    });
 	    var buttonImg = document.createElement('img');
-	    buttonImg.src = Blockly.mainWorkspace.options.pathToMedia + 'icons/mic' + (i+1) + '.svg';
+	    buttonImg.src = Blockly.mainWorkspace.options.pathToMedia + 'icons/mic' + names[i+1] + '.svg';
 	    //buttonImg.alt = icon.alt;
 	    // Upon click/touch, we will be able to get the clicked element as e.target
 	    // Store a data attribute on all possible click targets so we can match it to the icon.
@@ -393,8 +406,9 @@ Blockly.FieldIconMenu3.prototype.plusClick_ = function(e) {
  */
 Blockly.FieldIconMenu3.prototype.buttonClick_ = function(e) {
   var value = e.target.getAttribute('data-value');
-  this.setValue(value);
+  toggleRecord(value);
   Blockly.DropDownDiv.hide(); // don't hide, pop open another window?
+  this.setValue(value);
 };
 
 /**

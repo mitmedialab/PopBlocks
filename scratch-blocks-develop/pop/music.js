@@ -26,8 +26,13 @@ let recording = false;
 let playing = false;
 let savedNotes = [];
 let savedDur = [];
+let emotionVals = [0,0,0,0,0,0,0,0];
+let emotion = 0;
 //  {880.0, 440.0, 494.0, 554.0, 587.0, 659.0, 740.0, 830.6}; 
 function musicStart() {
+	sendCommand("energy_0");
+	sendCommand("valence_0");
+	
 	groupID = localStorage.getItem("Group ID");
 	robotID = localStorage.getItem("Robot ID");
 	IP_address = localStorage.getItem("IP");
@@ -37,6 +42,23 @@ function musicStart() {
 	oscillator = audioCtx.createOscillator();
 	oscillator.type = 'square';
 	oscillator.start(0);
+	
+		
+	document.getElementById('energy').addEventListener('change',
+		function() { sliderChange('energy'); });
+	document.getElementById('valence').addEventListener('change',
+		function() { sliderChange('valence'); });
+	
+	document.getElementById('play').addEventListener('click',
+        function() { playing=true; recording=false; toggleIcon(); startPlaying() });
+    document.getElementById('stop_play').addEventListener('click',
+        function() { stopAll(); toggleIcon(); });
+    	
+    document.getElementById('record').addEventListener('click',
+        function() { recording=true; playing=false; toggleIcon(); startRecording(); });
+    document.getElementById('stop_record').addEventListener('click',
+        function() { stopAll(); toggleIcon(); });
+
 	
 	// Create event handlers for all notes
 	let notes = document.getElementsByClassName('note');
@@ -111,22 +133,7 @@ function musicStart() {
 		function() { releaseNote(8)} );
 	notes[7].addEventListener('mouseup', 
 		function() { releaseNote(8)} );
-		
-		
-	document.getElementById('energy').addEventListener('change',
-		function() { sliderChange('energy'); });
-	document.getElementById('valence').addEventListener('change',
-		function() { sliderChange('valence'); });
-		
-    document.getElementById('record').addEventListener('click',
-        function() { recording=true; playing=false; toggleIcon(); startRecording(); });
-    document.getElementById('play').addEventListener('click',
-        function() { playing=true; recording=false; toggleIcon(); startPlaying() });
-    document.getElementById('stop_play').addEventListener('click',
-        function() { stopAll(); toggleIcon(); });
-    document.getElementById('stop_record').addEventListener('click',
-        function() { stopAll(); toggleIcon(); });
-        
+		        
     sendCommand("m18_Let's+get+our+groove+on");
 }
 
@@ -146,14 +153,16 @@ function toggleIcon() {
 function toggleRecordIcon() {
     let record = document.getElementById('record');
     let stop = document.getElementById('stop_record');
-    if (recording) {
-		log("G" + groupID + "\tDate:" + Date.now() + "\tMusic\tStarted Recording\n");
-	    record.style.display = "none";
-	    stop.style.display = "inherit";
-	} else {
-		log("G" + groupID + "\tDate:" + Date.now() + "\tMusic\tStopped Recording\n");
-	    record.style.display = "inherit";
-	    stop.style.display = "none";
+    if (record != null) {
+        if (recording) {
+		    log("G" + groupID + "\tDate:" + Date.now() + "\tMusic\tStarted Recording\n");
+	        record.style.display = "none";
+	        stop.style.display = "inherit";
+	    } else {
+		    log("G" + groupID + "\tDate:" + Date.now() + "\tMusic\tStopped Recording\n");
+	        record.style.display = "inherit";
+	        stop.style.display = "none";
+	    }
 	}
 }
 
@@ -176,6 +185,7 @@ function sleep(ms) {
 }
 
 async function startPlaying() {
+    console.log(savedNotes);
     let i = 0;
     if (savedNotes[i] == 0)
     	i = 1;
@@ -200,7 +210,8 @@ function selectNote(select) {
 	// choose a note by index and highlight it
 	if (select > 0) {
 		let element = document.getElementById(select);
-		element.className += ' selected9';
+		if (element != null)
+    		element.className += ' selected9';
 		
 		// Save note start time
 		notes[select] = Date.now();
@@ -218,7 +229,8 @@ function releaseNote(select) {
 	if (select > 0) {
 		let element = document.getElementById(select);
 		let dur = Date.now() - notes[select];
-		element.className = 'note popupRow9';
+		if (element != null)
+    		element.className = 'note popupRow9';
 		stopNote();
 		if (recording) {
 			// Add note and duration
@@ -231,10 +243,17 @@ function releaseNote(select) {
 		sendCommand('music_' + select + '+' + dur);
 	}
 }
+
 function sliderChange(element) {
 	let el = document.getElementById(element);
 	log("G" + groupID + "\tDate:" + Date.now() + "\tMusic\tChanged:" + el.id + "\tValue:" + el.value + "\n");
 	sendCommand(element + '_' + el.value);
+    if (emotion != 0) {
+        let en = document.getElementById('energy');
+	    let val = document.getElementById('valence');
+        emotionVals[2*emotion-2] = en.value;
+        emotionVals[2*emotion-1] = val.value;
+    }
 }
 
 
@@ -249,4 +268,31 @@ function playNote(note) {
 function stopNote() {
 	//oscillator.stop();
 	oscillator.disconnect();
+}
+
+function changeEmotion(side) {
+    let sideColors = ["yellow", "orange", "blue", "purple"];
+    if (side == undefined) {
+        side = event.target.id[11];
+    }
+    console.log('toggledropdown side ' + side);
+    let button = document.getElementById("dropdownBtn" + side);
+    
+    let sliders = document.getElementsByClassName("range-slider__range");
+    for (let i=0; i<sliders.length; i++)
+        sliders[i].style.backgroundColor = sideColors[side-1];
+    
+    emotion = side;
+    
+    let en = document.getElementById('energy');
+	let val = document.getElementById('valence');
+    en.value = emotionVals[2*side-2];
+    val.value = emotionVals[2*side-1];
+    sendCommand("energy_" + en.value);
+    sendCommand("valence_" + val.value);
+}
+
+function setMusic() {
+    savedNotes=[1, 0, 2, 0, 4, 0, 4, 0, 2, 0, 1, 0];
+    savedDur=[500, 50, 500, 50, 500, 150, 500, 50, 500, 50, 500, 50];
 }

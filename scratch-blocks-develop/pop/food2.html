@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>PopBlocks</title>
+
+    <script src="../blockly_uncompressed_horizontal.js"></script>
+    <script src="../popr_uncompressed.js"></script>
+    <script src="../msg/messages.js"></script>
+    <script src="../blocks_common/math.js"></script>
+    <script src="../blocks_common/text.js"></script>
+    <script src="../popr_blocks/control.js"></script>
+    <script src="../popr_blocks/event.js"></script>
+    <script src="../popr_blocks/wedo.js"></script>
+    <script src="../popr_blocks/malle2.js"></script>
+    <script src="../popr_blocks/game.js"></script>
+    <script src="./index.js"></script>
+    <script src="./food.js"></script>
+	<link rel="stylesheet" type="text/css" href="./index.css"> 
+  </head>
+  <body onload="start(); loadWorkspace('food');">
+    <nav class="sidenav-up" id="sidenav">
+      <div>
+        <a class="navLink" href="./food.html" onclick="saveWorkspace('food')"><img src="../media/icons/back.svg" alt="Back"></a>
+      	<a class="navLink" href="./index.html" onclick="saveWorkspace('food')"><img src="../media/home.svg" alt="Home"></a>
+	    <div class="menuButton" onclick="toggleSidenav()">&#x25B2;</div>
+	  </div>
+	</nav>	
+	<div class="menuButton" onclick="toggleSidenav()">&#x25BC;</div>
+    <a class="helpButton" onclick="helpButton()"><img src="../media/icons/help.svg" alt="Help"></a>
+    <div id="blocklyDiv"></div>
+    
+  </body>
+</html>

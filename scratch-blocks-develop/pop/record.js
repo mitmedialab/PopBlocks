@@ -21,97 +21,130 @@
 'use strict';
 
 goog.require('Blockly.Blocks');
- 
+
+let recording = false;
+let listening = false;
+let playing = false;
+let repeating = false;
+let recorded_speech = {"red":"", "orange":"", "yellow":"", "green":"", "teal":"", "blue":"", "purple":""}
+let select = "red";
+
 function musicStart() {
-	var notes = document.getElementsByClassName('mic');
-	notes[0].addEventListener('touchstart', 
-		function() { selectNote('red');} );
-	notes[0].addEventListener('mousedown', 
-		function() { selectNote('red');} );
-	notes[0].addEventListener('touchend', 
-		function() { releaseNote('red');} );
-	notes[0].addEventListener('mouseup', 
-		function() { releaseNote('red'); } );
-	
-	notes[1].addEventListener('touchstart', 
-		function() { selectNote('orange');} );
-	notes[1].addEventListener('mousedown', 
-		function() { selectNote('orange')} );
-	notes[1].addEventListener('touchend', 
-		function() { releaseNote('orange')} );
-	notes[1].addEventListener('mouseup', 
-		function() { releaseNote('orange')} );
 		
-	notes[2].addEventListener('touchstart', 
-		function() { selectNote('yellow');} );
-	notes[2].addEventListener('mousedown', 
-		function() { selectNote('yellow')} );
-	notes[2].addEventListener('touchend', 
-		function() { releaseNote('yellow')} );
-	notes[2].addEventListener('mouseup', 
-		function() { releaseNote('yellow')} );
-	
-	notes[3].addEventListener('touchstart', 
-		function() { selectNote('green');} );
-	notes[3].addEventListener('mousedown', 
-		function() { selectNote('green')} );
-	notes[3].addEventListener('touchend', 
-		function() { releaseNote('green')} );
-	notes[3].addEventListener('mouseup', 
-		function() { releaseNote('green')} );
-	
-	notes[4].addEventListener('touchstart', 
-		function() { selectNote('teal');} );
-	notes[4].addEventListener('mousedown', 
-		function() { selectNote('teal')} );
-	notes[4].addEventListener('touchend', 
-		function() { releaseNote('teal')} );
-	notes[4].addEventListener('mouseup', 
-		function() { releaseNote('teal')} );
-	
-	notes[5].addEventListener('touchstart', 
-		function() { selectNote('blue');} );
-	notes[5].addEventListener('mousedown', 
-		function() { selectNote('blue')} );
-	notes[5].addEventListener('touchend', 
-		function() { releaseNote('blue')} );
-	notes[5].addEventListener('mouseup', 
-		function() { releaseNote('blue')} );
+	document.getElementById('play').addEventListener('click',
+        function() { playing=true; recording=false; toggleIcon(); playRecord() });
+    document.getElementById('stop_play').addEventListener('click',
+        function() { playing=false; toggleIcon(); stopPlay();});
 		
-	notes[6].addEventListener('touchstart', 
-		function() { selectNote('purple');} );
-	notes[6].addEventListener('mousedown', 
-		function() { selectNote('purple')} );
-	notes[6].addEventListener('touchend', 
-		function() { releaseNote('purple')} );
-	notes[6].addEventListener('mouseup', 
-		function() { releaseNote('purple')} );
-	
-	notes[7].addEventListener('touchstart', 
-		function() { selectNote('pink');} );
-	notes[7].addEventListener('mousedown', 
-		function() { selectNote('pink')} );
-	notes[7].addEventListener('touchend', 
-		function() { releaseNote('pink')} );
-	notes[7].addEventListener('mouseup', 
-		function() { releaseNote('pink')} );
+ 	document.getElementById('record').addEventListener('click',
+        function() { playing=false; recording=true; toggleIcon();});
+    document.getElementById('stop_record').addEventListener('click',
+        function() { recording=false; toggleIcon(); console.log('stop');});
+        
+    document.getElementById('repeat').addEventListener('click',
+        function() { repeating=true; listening=false; toggleIcon(); repeatSpeech() });
+    document.getElementById('stop_repeat').addEventListener('click',
+        function() { repeating=false; toggleIcon(); stopPlay();});
+		
+ 	document.getElementById('listen').addEventListener('click',
+        function() { repeating=false; listening=true; getSpeech(); toggleIcon();});
+    document.getElementById('stop_listen').addEventListener('click',
+        function() { listening=false; toggleIcon(); console.log('stop');});
+}
+
+
+function toggleIcon() {
+    toggleRecordIcon();
+    togglePlayIcon();
+    toggleSpeechIcon();
+    toggleRepeatIcon();
+}
+
+function toggleRecordIcon() {
+    let record = document.getElementById('record');
+    let stop = document.getElementById('stop_record');
+    if (record != null) {
+        if (recording) {
+		    log("G" + groupID + "\tDate:" + Date.now() + "\tMusic\tStarted Recording\n");
+	        record.style.display = "none";
+	        stop.style.display = "inline-block";
+	        selectNote();
+	    } else {
+		    log("G" + groupID + "\tDate:" + Date.now() + "\tMusic\tStopped Recording\n");
+	        record.style.display = "inline-block";
+	        stop.style.display = "none";
+	        releaseNote();
+	    }
+	}
+}
+
+function toggleSpeechIcon() {
+    let record = document.getElementById('listen');
+    let stop = document.getElementById('stop_listen');
+    if (record != null) {
+        if (listening) {
+		    log("G" + groupID + "\tDate:" + Date.now() + "\tMusic\tStarted Listening\n");
+	        record.style.display = "none";
+	        stop.style.display = "inline-block";
+	        selectNote();
+	    } else {
+		    log("G" + groupID + "\tDate:" + Date.now() + "\tMusic\tStopped Listening\n");
+	        record.style.display = "inline-block";
+	        stop.style.display = "none";
+	        releaseNote();
+	    }
+	}
+}
+
+function togglePlayIcon() {
+    let play = document.getElementById('play');
+    let stop = document.getElementById('stop_play');
+    if (playing) {
+		log("G" + groupID + "\tDate:" + Date.now() + "\tMusic\tStarted Playing\n");
+	    play.style.display = "none";
+	    stop.style.display = "inline-block";
+	} else {
+		log("G" + groupID + "\tDate:" + Date.now() + "\tMusic\tStopped Playing\n");
+	    play.style.display = "inline-block";
+	    stop.style.display = "none";
+	}
+}
+
+function toggleRepeatIcon() {
+    let play = document.getElementById('repeat');
+    let stop = document.getElementById('stop_repeat');
+    if (repeating) {
+		log("G" + groupID + "\tDate:" + Date.now() + "\tMusic\tStarted Repeat\n");
+	    play.style.display = "none";
+	    stop.style.display = "inline-block";
+	} else {
+		log("G" + groupID + "\tDate:" + Date.now() + "\tMusic\tStopped Repeat\n");
+	    play.style.display = "inline-block";
+	    stop.style.display = "none";
+	}
+}
+
+function playRecord() {
+    let color = document.getElementById('micimg').alt;
+	sendCommand('m19_record/' + color + '.3gp');
+}
+
+function repeatSpeech() {
+	let speech = document.getElementById('speechimg').alt;
+	sendCommand('m18_' + recorded_speech[speech]);
+}
+
+function stopPlay() {
+	sendCommand('stop');
 }
 
 function selectNote(select) {
-	var element = document.getElementById(select);
-	element.className += ' selected';
-	console.log('m17_record/' + select + '.3gp');
-	
-	if (live)
-		sendCommand('m17_record/' + select + '.3gp');
+    let color = document.getElementById('micimg').alt;
+	sendCommand('m17_record/' + color + '.3gp');
 }
 
 function releaseNote(select) {
-	var element = document.getElementById(select);
-	element.className = 'mic popupRow';
-	console.log('m20');
-	if (live)
-		sendCommand('m20');
+	sendCommand('m20');
 }
 
 // Android.log(Date.now() + "\t" + event.type + "\t" + event.element + "\t" + event.newValue + "\t" + code + "\n");

@@ -237,53 +237,38 @@ Blockly.Blocks['dropdown_malle_emotion'] = {
   }
 };
 
-/*Blockly.Blocks['dropdown_malle_setaudio'] = {
-  /**
-   * Block for set color drop-down (used for shadow).
-   * @this Blockly.Block
-   
-  init: function() {
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldIconMenu3([]), 'CHOICE');
-    this.setOutput(true);
-    this.setColour(Blockly.Colours.sounds.primary,
-      Blockly.Colours.sounds.secondary,
-      Blockly.Colours.sounds.tertiary
-    );
-  }
-};*/
-
 Blockly.Blocks['dropdown_malle_setaudio'] = {
   /**
    * Block for set color drop-down (used for shadow).
    * @this Blockly.Block
    */
   init: function() {
-   this.appendDummyInput()
-        .appendField(new Blockly.FieldIconMenu([
-          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/mic1.svg',
-              value: 'red', width: 48, height: 48, alt: 'mic1'},
-          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/mic2.svg',
-              value: 'orange', width: 48, height: 48, alt: 'mic2'},
-          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/mic3.svg',
-              value: 'yellow', width: 48, height: 48, alt: 'mic3'},
-          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/mic5.svg',
-              value: 'green', width: 48, height: 48, alt: 'mic5'},
-          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/mic6.svg',
-              value: 'teal', width: 48, height: 48, alt: 'mic6'},
-          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/mic7.svg',
-              value: 'blue', width: 48, height: 48, alt: 'mic7'},
-          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/mic8.svg',
-              value: 'purple', width: 48, height: 48, alt: 'mic8'},
-          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/mic9.svg',
-              value: 'pink', width: 48, height: 48, alt: 'mic9'}
-        ]), 'CHOICE');
+    this.appendDummyInput()
+        .appendField(new Blockly.MicIconMenu([]), 'CHOICE');
     this.setOutput(true);
     this.setColour(Blockly.Colours.sounds.primary,
       Blockly.Colours.sounds.secondary,
-      Blockly.Colours.sounds.tertiary);
+      Blockly.Colours.sounds.tertiary
+    );
   }
 };
+
+Blockly.Blocks['dropdown_malle_setspeech'] = {
+  /**
+   * Block for set color drop-down (used for shadow).
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.SpeechIconMenu([]), 'CHOICE');
+    this.setOutput(true);
+    this.setColour(Blockly.Colours.sounds.primary,
+      Blockly.Colours.sounds.secondary,
+      Blockly.Colours.sounds.tertiary
+    );
+  }
+};
+
 
 Blockly.Blocks['malle_setcolor'] = {
   /**
@@ -400,6 +385,39 @@ Blockly.Blocks['malle_record'] = {
           "width": 40,
           "height": 40,
           "alt": "Execute malle recording"
+        },
+        {
+          "type": "input_value",
+          "name": "CHOICE"
+        }
+      ],
+      "inputsInline": true,
+      "previousStatement": null,
+      "nextStatement": null,
+      "category": Blockly.Categories.sounds,
+      "colour": Blockly.Colours.sounds.primary,
+      "colourSecondary": Blockly.Colours.sounds.secondary,
+      "colourTertiary": Blockly.Colours.sounds.tertiary
+    });
+  }
+};
+
+Blockly.Blocks['malle_repeat'] = {
+  /**
+   * Block repeats speech
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.jsonInit({
+      "id": "malle_repeat",
+      "message0": "%1 %2",
+      "args0": [
+        {
+          "type": "field_image",
+          "src": Blockly.mainWorkspace.options.pathToMedia + "icons/speechbubble.svg",
+          "width": 40,
+          "height": 40,
+          "alt": "Execute malle repeating speech"
         },
         {
           "type": "input_value",

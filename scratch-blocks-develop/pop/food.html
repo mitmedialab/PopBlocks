@@ -16,23 +16,26 @@
     <script src="../popr_blocks/wedo.js"></script>
     <script src="../popr_blocks/malle.js"></script>
     <script src="../popr_blocks/game.js"></script>
-    <script src="./food.js"></script>
     <script src="./index.js"></script>
+    <script src="./food.js"></script>
 	<link rel="stylesheet" type="text/css" href="./index.css"> 
   </head>
 	<!-- Make the RPS game have two modes: program mode and game mode
 		Make it so that the game mode lets you select your move once until the game restarts
 		Add play button and stop button?
 		Make sure you can tell which AI setting is on -->
-  <body onload="foodStart();">
+  <body onload="foodStart(); sendCommand('sortscan_1')">
     <nav class="sidenav-up" id="sidenav">
       <div>
-      	<a class="navLink" href="./index.html" onclick=""><img src="../media/home.svg" alt="Home"></a>
+      	<a class="navLink" href="./index.html" onclick="sendCommand('sortscan_0')"><img src="../media/home.svg" alt="Home"></a>
+	    <a class="navLink" href="./food2.html"><img src="../media/icons/next.svg" alt="Next"></a>
 	    <div class="menuButton" onclick="toggleSidenav()">&#x25B2;</div>
 	  </div>
 	</nav>	
 	<div class="menuButton" onclick="toggleSidenav()">&#x25BC;</div>
     <!---<div id="blocklyDiv" ></div>-->
+    <a class="helpButton" onclick="helpButton()"><img src="../media/icons/help.svg" alt="Help"></a>
+    <a class="train"href="#" onclick="clearSelections();"><img src="../media/icons/reset.svg" alt="Reset"></a>
     <div id="settings" class="settings" style="display:block;top:50px;">
     	<div class="foodRow" id="foodRow">
     		<a id="0" class="food popupRow4" href="#"><img src="../media/icons/food/banana.svg" alt="Banana"></a>
@@ -63,9 +66,7 @@
       		</div>
     		<div class="foodCategory" id="badFood" style="background-image: url('../media/icons/lose2.svg');">
       		</div>
-	    <div class="settingsRow">
-      		<a class="popupRow"href="#" onclick="clearSelections();">x</a>	
-    	</div>
+	    
     </div>
     
   </body>

@@ -15,27 +15,28 @@
     <script src="../popr_blocks/event.js"></script>
     <script src="../popr_blocks/wedo.js"></script>
     <script src="../popr_blocks/malle.js"></script>
-    <script src="./rps.js"></script>
     <script src="./index.js"></script>
+    <script src="./rps.js"></script>
 	<link rel="stylesheet" type="text/css" href="index.css"> 
   </head>
 
-  <body onload="rpsstart('play')">
+  <body onload="rpsstart('play'); sendCommand('rpsscan_1')">
     <div class="stableNav">
-        <a class="navRow" href="./rps2.html"><img src="../media/icons/back.svg" alt = "Back"></a>
-	    <a class="navRow" href="./index.html"><img src="../media/home.svg" alt="Home"></a>
+        <a class="navRow" onclick="sendCommand('rpsscan_0')" href="./rps2.html"><img src="../media/icons/back.svg" alt = "Back"></a>
+	    <a class="navRow" onclick="sendCommand('rpsscan_0')" href="./index.html"><img src="../media/home.svg" alt="Home"></a>
      </div>
+    <a class="helpButton" onclick="helpButton()"><img src="../media/icons/help.svg" alt="Help"></a>
     <div style="top:100px;">
     	<div class="settingsRow">
       		<a id="rock" class="move popupRow" href="#" onclick="playMove('rock')"><img src="../media/icons/rock.svg" alt="Rock"></a>
       		<a id="paper" class="move popupRow" href="#" onclick="playMove('paper')"><img src="../media/icons/paper.svg" alt="Paper"></a>
       		<a id="scissors" class="move popupRow" href="#" onclick="playMove('scissors')"><img src="../media/icons/scissors.svg" alt="Scissors"></a>
     	</div>
-	    <div class="settingsRow">
+	    <!--<div class="settingsRow">
 	    	<a id="win" class="result popupRow" href="#" onclick="selectResult('win')"><img src="../media/icons/win.svg" alt="Random"></a>
       		<a id="draw" class="result popupRow" href="#" onclick="selectResult('draw')"><img src="../media/icons/tie.svg" alt="Learning"></a>
       		<a id="lose" class="result popupRow" href="#" onclick="selectResult('lose')"><img src="../media/icons/lose.svg" alt="Wedo"></a>
-    	</div>
+    	</div>-->
 	    <div class="settingsRow">
       		<a class="popupRow" style="width:50%;" href="#" onclick="playAgain()">&#x25B6;</a>
       		<a class="popupRow" style="width:50%;" href="#" onclick="clearSelections();">x</a>

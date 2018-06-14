@@ -198,6 +198,15 @@ Blockly.Popr.malle_record = function(block) {
   }
   return "m19_record/" + value + ".3gp ";
 }
+Blockly.Popr.malle_repeat = function(block) {
+  let value;
+  for (let i = 0, child; child = block.getChildren()[i]; i++) {
+    if (child.getField("CHOICE") != null) {
+	  value = child.getField("CHOICE").getValue();
+	}
+  }
+  return "m18_"+value;
+}
 Blockly.Popr.malle_setemotion = function(block) {
     let child = block.getChildren()[0];
     let value = child.getField("CHOICE").getValue();
@@ -287,7 +296,7 @@ Blockly.Popr.control_repeat = function(block) {
   let code = "c03_";
   let children = block.getChildren();
   let child = children[0];
-  code += child.getField("CHOICE").getValue() + " ";
+  code += child.getField("NUM").getValue() + " ";
    
   child = children[1]; 
   while (child != null) {

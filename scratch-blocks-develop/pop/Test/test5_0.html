@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>PopBlocks</title>
+    <script src="../index.js"></script>
+    <script src="./test.js"></script>
+	<link rel="stylesheet" type="text/css" href="../index.css"> 
+  </head>
+
+  <body onload="testStart()">
+	<div class="stableNav">
+      	<a class="navRow" onclick="authenticate()"><img src="../../media/icons/star.svg" alt="Tests"></a>
+      	<a id="next" class="navRow" onclick="navPress()"><img id="next" src="../../media/icons/next.svg" alt="Next"></a>
+  	</div>
+    <div class="imageDiv"><embed width="900" height="300" src="./Test_Images/test5_0.svg"></embed></div>
+    <desc>I'm going to ask you a few questions and you tell me which answer you think is best. Answer questions by picking one of the shapes at the bottom. Let's try it. Which one of these foods is bad for your teeth?</desc>
+	<div id="answers" class="settingsRow" style="background-color:#24324D">
+  		<a id="0" class="answer popupRow" href="#"><img id="0" src="./Test_Images/strawberry_answer.svg" alt="Paper"></a>
+  		<a id="1" class="answer popupRow" href="#"><img id="1" src="./Test_Images/icecream_answer.svg" alt="Rock"></a>
+  		<a id="2" class="answer popupRow" href="#"><img id="2" src="./Test_Images/corn_answer.svg" alt="Scissors"></a>
+	</div>
+  </body>
+</html>

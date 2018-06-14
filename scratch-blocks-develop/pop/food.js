@@ -28,6 +28,63 @@ goog.require('Blockly.Blocks');
  * @fileoverview Provide a default toolbox XML.
  */
 
+Blockly.Blocks.defaultToolbox = '<xml id="toolbox-categories" style="display: none">' +
+    '<block type="event_whenwin"></block>' +
+    '<block type="event_whenlose"></block>' +
+    '<block type="wedo_setcolor">' +
+        '<value name="CHOICE">' +
+        '<shadow type="dropdown_wedo_setcolor">' +
+        '<field name="CHOICE">mystery</field>' +
+        '</shadow>' +
+        '</value>' +
+    '</block>' +
+    '<block type="malle_setcolor">' +
+        '<value name="CHOICE">' +
+        '<shadow type="dropdown_malle_setcolor">' +
+        '<field name="CHOICE">mystery</field>' +
+        '</shadow>' +
+        '</value>' +
+    '</block>' +
+    '<block type="malle_excited"></block>' +
+    '<block type="malle_dancebingo"></block>' +
+    '<block type="malle_sad"></block>' +
+    '<block type="malle_interested"></block>' +
+    '<block type="malle_fart"></block>' +
+    '<block type="malle_happywiggle"></block>' +
+    '<block type="wedo_motorforward">' + 
+    	'<value name="CHOICE">' +
+        '<shadow type="dropdown_wedo_number">' +
+        '<field name="NUM">1</field>' +
+        '</shadow>' +
+        '</value>' +
+    '</block>' +
+    '<block type="wedo_motorbackward">' + 
+    	'<value name="CHOICE">' +
+        '<shadow type="dropdown_wedo_number">' +
+        '<field name="NUM">1</field>' +
+        '</shadow>' +
+        '</value>' +
+    '</block>' +
+    '<block type="wedo_motorleft">' + 
+    	'<value name="CHOICE">' +
+        '<shadow type="dropdown_wedo_number">' +
+        '<field name="NUM">1</field>' +
+        '</shadow>' +
+        '</value>' +
+    '</block>' +
+    '<block type="wedo_motorright">' + 
+    	'<value name="CHOICE">' +
+        '<shadow type="dropdown_wedo_number">' +
+        '<field name="NUM">1</field>' +
+        '</shadow>' +
+        '</value>' +
+    '</block>' +
+	'<block type="wedo_add" disabled="true"></block>' +
+    '</xml>' + // Close XML
+    '<xml id="toolbox-simple" style="display: none">' +
+    '</xml>';
+
+
 function foodStart() {
 	var foods = document.getElementsByClassName('food');
 	for (var i=0; i<foods.length; i++) {
@@ -35,12 +92,12 @@ function foodStart() {
 			function() { selectfood(event);} );
 		foods[i].addEventListener('mouseover', 
 			function(event) { dragfood(event);} );	*/
-		foods[i].addEventListener('mousedown',
+		/*foods[i].addEventListener('mousedown',
 		    function() { selectfood(event); });
 		foods[i].addEventListener('mousemove',
 		    function() { dragfood(event); });	
 		foods[i].addEventListener('mouseup',
-		    function() { releasefood(); });	
+		    function() { releasefood(); });	*/
 		foods[i].addEventListener('touchstart',
 		    function() { selectfood(event); });	
 		foods[i].addEventListener('touchmove',
@@ -75,12 +132,7 @@ function selectfood(event) {
 			foods[i].className = 'food popupRow4';
 		}
 		element.className += ' selected';
-		if (live) {
-			sendCommand('sortinput_'+ element.id);
-			Android.log("G" + groupID + "\tfood\t" + Date.now() + "\t" + element.id);
-		} else {
-			console.log("G" + groupID + "\tfood\t" + Date.now() + "\t" + element.id);
-		}
+		
 	}
 }
 
@@ -146,6 +198,10 @@ function releasefood() {
 		} else {
 			console.log("G" + groupID + "\tfood\t" + Date.now() + "\t" + element.id + "\t" + number);
 		}
+	} else {
+    	if (live)
+			sendCommand('sortinput_'+ element.id);
+		log("G" + groupID + "\tfood\t" + Date.now() + "\t" + element.id);
 	}
     element.style.position = "inherit";
 }

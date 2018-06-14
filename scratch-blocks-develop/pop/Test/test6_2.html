@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>PopBlocks</title>
+    <script src="../index.js"></script>
+    <script src="./test.js"></script>
+	<link rel="stylesheet" type="text/css" href="../index.css"> 
+  </head>
+
+  <body onload="testStart()">
+	<div class="stableNav">
+      	<a id="back" class="navRow" href="./test6_1.html"><img id="back" src="../../media/icons/back.svg" alt="Back"></a>
+      	<a class="navRow" onclick="authenticate()"><img src="../../media/icons/star.svg" alt="Tests"></a>
+      	<a id="next" class="navRow" onclick="navPress()"><img id="next" src="../../media/icons/next.svg" alt="Next"></a>
+  	</div>
+     <div class="imageDiv" id="1">
+  	<h1>#2</h1><embed width="900" height="300" src="./Test_Images/test6_2.svg"></embed></div>
+     <desc id="1">Stella is playing music with the robot and she tells the robot to play back her song in a happy way. Now, which one of these is the robot most likely to play back to her?</desc>
+	<div id="answers" class="settingsRow" style="background-color:#24324D">
+  		<a id="0" class="answer popupRow" href="#"><img id="0" src="./Test_Images/same_answer.svg" alt="Same"></a>
+  		<a id="1" class="answer popupRow" href="#"><img id="1" src="./Test_Images/different_answer.svg" alt="Different"></a>
+	</div>
+  </body>
+</html>

@@ -21,7 +21,7 @@
 	<link rel="stylesheet" type="text/css" href="index.css"> 
   </head>
 
-  <body onload="start();loadWorkspace('free');musicStart()">
+  <body onload="start();musicStart();loadWorkspace('free');">
     <nav class="sidenav-up" id="sidenav">
       <div>
       	<a href="index.html" class="navLink" onclick="saveWorkspace('free')"><img src="../media/home.svg" alt="Home"></a>
@@ -39,27 +39,26 @@
 	</nav>
 	<div class="menuButton" onclick="toggleSidenav()">&#x25BC;</div>
     <div id="blocklyDiv" style="top:35px;"></div>
-    <a class="helpButton" onclick="sendCommand('help')"><img src="../media/icons/help.svg" alt="Help"></a>
-    <div id="record" class="settings" style="display:none;top:275px;">
+    <a class="helpButton" onclick="helpButton()"><img src="../media/icons/help.svg" alt="Help"></a>
+    <div class="settings mic_popup">
+    	<a class="amic"></a>
     	<div class="settingsRow">
-      		<a id="red" class="mic popupRow" href="#"><img src="../media/icons/mic1.svg" alt="Rock"></a>
-      		<a id="orange" class="mic popupRow" href="#"><img src="../media/icons/mic2.svg" alt="Paper"></a>
-      		<a id="yellow" class="mic popupRow" href="#"><img src="../media/icons/mic3.svg" alt="Scissors"></a>
-    	</div>
-	    <div class="settingsRow">
-	    	<a id="green" class="mic popupRow" href="#"><img src="../media/icons/mic5.svg" alt="Random"></a>
-      		<a id="teal" class="mic popupRow" href="#"><img src="../media/icons/mic6.svg" alt="Learning"></a>
-      		<a id="blue" class="mic popupRow" href="#"><img src="../media/icons/mic7.svg" alt="Wedo"></a>
-    	</div>
+    		<a id="play"><img src="../media/icons/play.svg" alt="Play"></a>
+			<a id="stop_play" style="display:none"><img src="../media/icons/stop.svg" alt="Stop Playing"></a>
+			<a id="record"><img src="../media/icons/sound_record.svg" alt="Record"></a>
+			<a id="stop_record" style="display:none"><img src="../media/icons/stop.svg" alt="Stop Recording"></a>
+			<a class="settingsRow" style="border:0px" onclick="toggleRecord()">X</a>
+		</div>
     </div>
-    <div id="robot" class="settings" style="display:none;top:275px;">
+    <div class="settings speech_popup">
+    	<a class="speech"></a>
     	<div class="settingsRow">
-        	<a onclick="addRobot(1)" href="#" id="robot1" class="robot popupRow5 selected"><img src="../media/icons/add_robot_6.svg" alt="Robot"></a>
-        	<a onclick="addRobot(2)" href="#" id="robot2" class="robot popupRow5"><img src="../media/icons/add_robot_2.svg" alt="Robot"></a>
-        	<a onclick="addRobot(3)" href="#" id="robot3" class="robot popupRow5"><img src="../media/icons/add_robot_5.svg" alt="Robot"></a>
-        	<a onclick="addRobot(4)" href="#" id="robot4" class="robot popupRow5"><img src="../media/icons/add_robot_3.svg" alt="Robot"></a>
-        	<a onclick="addRobot(5)" href="#" id="robot5" class="robot popupRow5"><img src="../media/icons/add_robot_4.svg" alt="Robot"></a>
-        </div>
-	</div>
+    		<a id="play"><img src="../media/icons/play.svg" alt="Play"></a>
+			<a id="stop_play" style="display:none"><img src="../media/icons/stop.svg" alt="Stop Playing"></a>
+			<a id="record"><img src="../media/icons/sound_record.svg" alt="Record"></a>
+			<a id="stop_record" style="display:none"><img src="../media/icons/stop.svg" alt="Stop Recording"></a>
+			<a class="settingsRow" style="border:0px" onclick="toggleSpeech()">X</a>
+		</div>
+    </div>
   </body>
 </html>

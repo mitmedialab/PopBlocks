@@ -2,6 +2,8 @@
 
 let workspace = null;
 let live = window.location.href.startsWith("http://"); // whether or not this is live or just on computer
+let page = window.location.href.split("/").pop().split(".")[0];
+
 let robotID = 1;
 let groupID = 0;
 let IP_address = "192.168.1.1.121";
@@ -30,20 +32,35 @@ function toggleSettings() {
     }
 }
 
-function toggleRecord() {
-    let nav = document.getElementById("record");
-    if (nav.style.display == "block") {
+function toggleRecord(color) {
+    let nav = document.getElementsByClassName("mic_popup")[0];
+    let link = document.getElementsByClassName("amic")[0];
+    // <a class="amic" ><img src="../media/icons/mic1.svg" alt="Mic1"></a>
+    if (nav.style.display == "block" || nav.style.display == " ") {
         nav.style.display = "none";
+    	link.innerHTML = "";
     } else {
+    	let img = document.createElement('img');
+    	img.id = "micimg";
+    	img.src = "../media/icons/mic" + color + ".svg";
+    	img.alt = color;
+    	link.appendChild(img);
         nav.style.display = "block";
     }
 }
 
-function toggleRobot() {
-    let nav = document.getElementById("robot");
-    if (nav.style.display == "block") {
+function toggleSpeech(color) {
+    let nav = document.getElementsByClassName("speech_popup")[0];
+    let link = document.getElementsByClassName("speech")[0];
+    if (nav.style.display == "block" || nav.style.display == " ") {
         nav.style.display = "none";
+    	link.innerHTML = "";
     } else {
+    	let img = document.createElement('img');
+    	img.id = "speechimg";
+    	img.src = "../media/icons/speech" + color + ".svg";
+    	img.alt = color;
+    	link.appendChild(img);
         nav.style.display = "block";
     }
 }
@@ -109,7 +126,7 @@ function rpsWorkspace() {
         scrollbars: true,
         toolbox: null,
         trashcan: true,
-        playControls: false,
+        playControls: true,
         settings: false,
         horizontalLayout: true,
         toolboxPosition: 'start',
@@ -189,7 +206,7 @@ function storyWorkspace() {
 
 function start() {
     // Setup blocks
-    if (window.location.href.search("rps") != -1)
+    if (window.location.href.search("rps") != -1 || window.location.href.search("food") != -1)
         rpsWorkspace();
     else if (window.location.href.search("story") != -1)
         storyWorkspace();
@@ -210,6 +227,14 @@ function start() {
     groupID = localStorage.getItem("Group ID");
     if (groupID == null)
     	groupID = -1;
+    	
+    // change highlighted robot
+    robotID = localStorage.getItem("Robot ID");
+	let robots = document.getElementsByClassName("robot");
+	for (let i=0; i<robots.length; i++) {
+		robots[i].className = "robot popupRow5";
+	}
+	robots[robotID-1].className += " selected";
     
 }
 
@@ -278,23 +303,29 @@ function addWedo() {
 }
 
 function addRobot(id) {
+	robotID = localStorage.getItem("Robot ID");
 	saveWorkspace("robot" + robotID); // save this robot's code
-	if (id < 0) {
-		let robots = document.getElementsByClassName('robot');
-		for (let i=0; i<robots.length; i++) {
-			robots[i].className = 'robot navRow popupRow5';
-		}
-		let element = document.getElementById('robot'+id);
-		element.className += ' selected';
-	}
+	if (id <= 0) {
+		id = setRobotID();
+	} 
+	// save robot id
 	robotID = id;
-    Android.addRobot(id);
-    toggleRobot();
-    setTimeout(function() {
-		loadWorkspace("robot" + robotID); // load code on new robot
-    }, 3000);
-    
+	localStorage.setItem("Robot ID", robotID);
+	
+	// change highlighted robot
+	let robots = document.getElementsByClassName("robot");
+	for (let i=0; i<robots.length; i++) {
+		robots[i].className = "robot popupRow5";
+	}
+	robots[id-1].className += " selected";
+	
+	if (live)
+		Android.addRobot(id);
+	else
+		console.log("Robot ID: ", robotID);
+	toggleSettings();
 }
+
 function setRobotID() {
     robotID = prompt("Robot ID: ");
 	localStorage.setItem("Robot ID", robotID);
@@ -302,6 +333,7 @@ function setRobotID() {
 	if (live) {
 		Android.addRobot(parseInt(robotID));
 	}
+	return robotID;
 }
 function loadIndex() {
     populateSettings();
@@ -315,6 +347,11 @@ function populateSettings() {
 	document.getElementById("rid").innerHTML = "Robot ID: " + robotID;
 	IP_address = localStorage.getItem("IP");
 	document.getElementById("ip").innerHTML = "IP: http://" + IP_address;
+	if (live) {
+	    Android.setIpAddress(IP_address);
+		Android.setPID(groupID);
+		Android.addRobot(parseInt(robotID));
+	}
 }
 function setGID() {
     groupID = prompt("Group ID: ");
@@ -362,7 +399,7 @@ function toggleWorkspaces() {
     if (prog.style.display == "initial") {
         setTimeout(function() {
             prog.style.display = "none";
-        }, 100);
+            }, 100);
     } else {
         setTimeout(function() {
             prog.style.display = "initial";
@@ -389,6 +426,10 @@ function loadFile(name) {
         return text;
     }
     return "";
+}
+
+function helpButton() {
+	sendCommand('help_' + page);
 }
 
 function updateFunction(event) {
@@ -455,7 +496,7 @@ function updateFunction(event) {
         }
         
 		// Log event
-		log("G" + groupID + "\tDate:" + Date.now() + "\tWorkspace\tElement:" + event.element + "\tOldVal:" + event.oldValue + "\tNewVal:" + event.newValue + "\tBlock:" + code + "\tWorkspace:" + all_code + "\n");
+		log("G" + groupID + "\tDate:" + Date.now() + "\t" + page + "\tElement:" + event.element + "\tOldVal:" + event.oldValue + "\tNewVal:" + event.newValue + "\tBlock:" + code + "\tWorkspace:" + all_code + "\n");
     } else {
         if (live) {
             Android.resetRules(all_code);

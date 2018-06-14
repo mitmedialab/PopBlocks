@@ -1,6 +1,6 @@
 'use strict';
 let pid = -1;
-let page = -1;
+let pageNum = -1;
 let test = -1;
 let answer = -1;
 
@@ -19,11 +19,11 @@ function testStart() {
 	let url = window.location.href;
 	let url_index = url.search("test");
 	test = parseInt(url.substring(url_index+4, url_index+5));
-	page = parseInt(url.substring(url_index+6, url_index+7));
-	console.log(page, test);
+	pageNum = parseInt(url.substring(url_index+6, url_index+7));
+	console.log(pageNum, test);
 	
 	// TODO load previous answer
-	let prev_answer = localStorage.getItem("pid" + pid + "_test" + test + "_page" + page);
+	let prev_answer = localStorage.getItem("pid" + pid + "_test" + test + "_page" + pageNum);
 	console.log(prev_answer);
 	if (prev_answer != -1 && prev_answer != null) {
 		answers[prev_answer].className += ' selected';
@@ -37,11 +37,8 @@ function selectAnswer(e) {
 	if (selection.tagName == "IMG") {
 		selection = selection.parentElement;
 	}
-	if (live)
-		Android.log("P" + pid + "\tDate:" + Date.now() + "\tTest:" + test + "\tPage:" + page + "\tAnswer:" + selection.id + "\n");
-	else
-		console.log("" + Date.now() + " PID:" + pid + " Test:" + test + " Page:" + page + " Answer:" + selection.id);
-	localStorage.setItem("pid" + pid + "_test" + test + "_page" + page, selection.id);
+	log("P" + pid + "\tDate:" + Date.now() + "\tTest:" + test + "\tPage:" + pageNum + "\tAnswer:" + selection.id + "\n");
+	localStorage.setItem("pid" + pid + "_test" + test + "_page" + pageNum, selection.id);
 	selection.className += ' selected';
 	answer = selection.id;
 }
@@ -56,17 +53,17 @@ function navPress() {
 	// on nav press, ensure that an answer was chosen before allowing user to move forward
 	// identify which test we are on
 	let current_test = test - 1;
-	let next = "./test" + test + "_" + (page+1) + ".html";
+	let next = "./test" + test + "_" + (pageNum+1) + ".html";
 	// check the answer on that page
 	if (answer != -1) {
 		// OK to move on
-		if (test == 1 && page == 6) {
+		if (test == 1 && pageNum == 6) {
 		next = "./test4_0.html";
-		} else if (test == 2 && page == 4) {
+		} else if (test == 2 && pageNum == 4) {
 		next = "./test_index.html";
-		} else if (test == 3 && page == 7) { 
+		} else if (test == 3 && pageNum == 7) { 
 		next = "./test2_0.html";
-		} else if (test == 4 && page == 5) {
+		} else if (test == 4 && pageNum == 5) {
 		next = "./test3_0.html";
 		}
 		window.location.href = next;

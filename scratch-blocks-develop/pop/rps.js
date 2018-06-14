@@ -95,7 +95,7 @@ function clearSelections() {
 	for (var i=0; i < results.length; i++) {
 		results[i].className = 'result popupRow';
 	}
-	
+	saveFile('rpstrain', '000000');
 	sendCommand('rpsreset');
 }
 

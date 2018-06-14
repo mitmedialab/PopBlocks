@@ -89,14 +89,14 @@ Blockly.Blocks['dropdown_wedo_setnote'] = {
               value: '7', width: 48, height: 48, alt: 'F#'},
           {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/set-note_g.svg',
               value: '8', width: 48, height: 48, alt: 'G'},
-          /*{src: Blockly.mainWorkspace.options.pathToMedia + 'icons/set-note_gis.svg',
+          {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/set-note_gis.svg',
               value: '9', width: 48, height: 48, alt: 'G#'},
           {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/set-note_a.svg',
               value: '10', width: 48, height: 48, alt: 'A'},
           {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/set-note_ais.svg',
               value: '11', width: 48, height: 48, alt: 'A#'},
           {src: Blockly.mainWorkspace.options.pathToMedia + 'icons/set-note_b.svg',
-              value: '12', width: 48, height: 48, alt: 'B'}*/
+              value: '12', width: 48, height: 48, alt: 'B'}
         ]), 'CHOICE');
     this.setOutput(true);
     this.setColour(Blockly.Colours.sounds.primary,
@@ -637,7 +637,7 @@ Blockly.Blocks['wedo_whendistanceclose'] = {
       "args0": [
         {
           "type": "field_image",
-          "src": Blockly.mainWorkspace.options.pathToMedia + "icons/wedo_when-distance_close.svg",
+          "src": Blockly.mainWorkspace.options.pathToMedia + "icons/event_whensee2.svg",
           "width": 40,
           "height": 40,
           "alt": "When distance close"
